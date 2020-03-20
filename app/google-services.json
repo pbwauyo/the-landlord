@@ -1,0 +1,85 @@
+{
+  "project_info": {
+    "project_number": "509893369062",
+    "firebase_url": "https://the-landlord-53e72.firebaseio.com",
+    "project_id": "the-landlord-53e72",
+    "storage_bucket": "the-landlord-53e72.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509893369062:android:d915cee3aa2b9136402f27",
+        "android_client_info": {
+          "package_name": "com.debrayo.thelandlord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509893369062-7ckekm9srv984aqsg6s0bgciu4kqr6lg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.debrayo.thelandlord",
+            "certificate_hash": "ce9e7a7a87e6cce83453d2bf98c5f470b20d1b26"
+          }
+        },
+        {
+          "client_id": "509893369062-5cp1p96l6n6mpc910ba6n9pr7ghfe21l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS_F4Evz1LeFbDQhEqicd22gqO975ZT0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509893369062-5cp1p96l6n6mpc910ba6n9pr7ghfe21l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509893369062:android:c7a39c2a12d64b2f402f27",
+        "android_client_info": {
+          "package_name": "com.peter.thelandlord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509893369062-m4f226h00bq8gd4r122hdsff89485j9n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.peter.thelandlord",
+            "certificate_hash": "4cad7ad984619320f521feba540d125e1a9d2b90"
+          }
+        },
+        {
+          "client_id": "509893369062-5cp1p96l6n6mpc910ba6n9pr7ghfe21l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS_F4Evz1LeFbDQhEqicd22gqO975ZT0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509893369062-5cp1p96l6n6mpc910ba6n9pr7ghfe21l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
