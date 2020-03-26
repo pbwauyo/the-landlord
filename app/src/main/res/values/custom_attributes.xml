@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="imageBackground" format="reference"/>
+    <attr name="secondaryIconColor" format="color"/>
+
+<!--    card radi-->
+    <attr name="smallCardCornerRadius" format="dimension"/>
+    <attr name="mediumCardCornerRadius" format="dimension"/>
+    <attr name="largeCardCornerRadius" format="dimension"/>
+
+<!--    card elevation-->
+    <attr name="smallCardElevation" format="dimension"/>
+    <attr name="mediumCardElevation" format="dimension"/>
+    <attr name="largeCardElevation" format="dimension"/>
+
+<!--    margin start-->
+    <attr name="smallMarginStart" format="dimension"/>
+    <attr name="mediumMarginStart" format="dimension"/>
+    <attr name="largeMarginStart" format="dimension"/>
+    <attr name="extraLargeMarginStart" format="dimension"/>
+
+<!--    margin end-->
+    <attr name="smallMarginEnd" format="dimension"/>
+    <attr name="mediumMarginEnd" format="dimension"/>
+    <attr name="largeMarginEnd" format="dimension"/>
+    <attr name="extraLargeMarginEnd" format="dimension"/>
+
+<!--    margin top-->
+    <attr name="smallMarginTop" format="dimension"/>
+    <attr name="mediumMarginTop" format="dimension"/>
+    <attr name="largeMarginTop" format="dimension"/>
+    <attr name="extraLargeMarginTop" format="dimension"/>
+
+<!--    margin bottom-->
+    <attr name="smallMarginBottom" format="dimension"/>
+    <attr name="mediumMarginBottom" format="dimension"/>
+    <attr name="largeMarginBottom" format="dimension"/>
+    <attr name="extraLargeMarginBottom" format="dimension"/>
+
+<!--    padding start-->
+    <attr name="smallPaddingStart" format="dimension"/>
+    <attr name="mediumPaddingStart" format="dimension"/>
+    <attr name="largePaddingStart" format="dimension"/>
+    <attr name="extraLargePaddingStart" format="dimension"/>
+
+<!--    padding end-->
+    <attr name="smallPaddingEnd" format="dimension"/>
+    <attr name="mediumPaddingEnd" format="dimension"/>
+    <attr name="largePaddingEnd" format="dimension"/>
+    <attr name="extraLargePaddingEnd" format="dimension"/>
+
+<!--    padding top-->
+    <attr name="smallPaddingTop" format="dimension"/>
+    <attr name="mediumPaddingTop" format="dimension"/>
+    <attr name="largePaddingTop" format="dimension"/>
+    <attr name="extraLargePaddingTop" format="dimension"/>
+
+<!--    padding bottom-->
+    <attr name="smallPaddingBottom" format="dimension"/>
+    <attr name="mediumPaddingBottom" format="dimension"/>
+    <attr name="largePaddingBottom" format="dimension"/>
+    <attr name="extraLargePaddingBottom" format="dimension"/>
+</resources>

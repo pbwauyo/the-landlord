@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<!--    card radi-->
+    <dimen name="cardRadiusSmall">4dp</dimen>
+    <dimen name="cardRadiusMedium">8dp</dimen>
+    <dimen name="cardRadiusLarge">10dp</dimen>
+
+<!--    card elevation-->
+    <dimen name="smallCardElevation">2dp</dimen>
+    <dimen name="mediumCardElevation">4dp</dimen>
+    <dimen name="largeCardElevation">6dp</dimen>
+
+<!--    margin start-->
+    <dimen name="smallMarginStart">2dp</dimen>
+    <dimen name="mediumMarginStart">5dp</dimen>
+    <dimen name="largeMarginStart">8dp</dimen>
+    <dimen name="extraLargeMarginStart">10dp</dimen>
+
+<!--    margin end-->
+    <dimen name="smallMarginEnd">2dp</dimen>
+    <dimen name="mediumMarginEnd">5dp</dimen>
+    <dimen name="largeMarginEnd">8dp</dimen>
+    <dimen name="extraLargeMarginEnd">10dp</dimen>
+
+<!--    margin top-->
+    <dimen name="smallMarginTop">2dp</dimen>
+    <dimen name="mediumMarginTop">5dp</dimen>
+    <dimen name="largeMarginTop">8dp</dimen>
+    <dimen name="extraLargeMarginTop">10dp</dimen>
+
+<!--    margin bottom-->
+    <dimen name="smallMarginBottom">2dp</dimen>
+    <dimen name="mediumMarginBottom">5dp</dimen>
+    <dimen name="largeMarginBottom">8dp</dimen>
+    <dimen name="extraLargeMarginBottom">10dp</dimen>
+
+<!--    padding start-->
+    <dimen name="smallPaddingStart">2dp</dimen>
+    <dimen name="mediumPaddingStart">5dp</dimen>
+    <dimen name="largePaddingStart">8dp</dimen>
+    <dimen name="extraLargePaddingStart">10dp</dimen>
+
+<!--    padding end-->
+    <dimen name="smallPaddingEnd">2dp</dimen>
+    <dimen name="mediumPaddingEnd">5dp</dimen>
+    <dimen name="largePaddingEnd">8dp</dimen>
+    <dimen name="extraLargePaddingEnd">10dp</dimen>
+
+<!--    padding top-->
+    <dimen name="smallPaddingTop">2dp</dimen>
+    <dimen name="mediumPaddingTop">5dp</dimen>
+    <dimen name="largePaddingTop">8dp</dimen>
+    <dimen name="extraLargePaddingTop">10dp</dimen>
+
+<!--    padding bottom-->
+    <dimen name="smallPaddingBottom">2dp</dimen>
+    <dimen name="mediumPaddingBottom">5dp</dimen>
+    <dimen name="largePaddingBottom">8dp</dimen>
+    <dimen name="extraLargePaddingBottom">10dp</dimen>
+
+</resources>

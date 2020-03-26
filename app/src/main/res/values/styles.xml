@@ -1,13 +1,84 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/mainBackgroundColor</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryDark</item>
+        <item name="imageBackground">@drawable/image_view_purple_background</item>
+        <item name="secondaryIconColor">@color/white</item>
+
+<!--        card radius-->
+        <item name="cardCornerRadius">?attr/smallCardCornerRadius</item>
+        <item name="smallCardCornerRadius">@dimen/cardRadiusSmall</item>
+        <item name="mediumCardCornerRadius">@dimen/cardRadiusMedium</item>
+        <item name="largeCardCornerRadius">@dimen/cardRadiusLarge</item>
+
+<!--        card elevation-->
+        <item name="smallCardElevation">@dimen/smallCardElevation</item>
+        <item name="mediumCardElevation">@dimen/mediumCardElevation</item>
+        <item name="largeCardElevation">@dimen/largeCardElevation</item>
+        <item name="cardElevation">?attr/smallCardElevation</item>
+
+<!--        margin start-->
+        <item name="smallMarginStart">@dimen/smallMarginStart</item>
+        <item name="mediumMarginStart">@dimen/mediumMarginStart</item>
+        <item name="largeMarginStart">@dimen/largeMarginStart</item>
+        <item name="extraLargeMarginStart">@dimen/extraLargeMarginStart</item>
+
+<!--        margin end-->
+        <item name="smallMarginEnd">@dimen/smallMarginEnd</item>
+        <item name="mediumMarginEnd">@dimen/mediumMarginEnd</item>
+        <item name="largeMarginEnd">@dimen/largeMarginEnd</item>
+        <item name="extraLargeMarginEnd">@dimen/extraLargeMarginEnd</item>
+
+<!--        margin top-->
+        <item name="smallMarginTop">@dimen/smallMarginTop</item>
+        <item name="mediumMarginTop">@dimen/mediumMarginTop</item>
+        <item name="largeMarginTop">@dimen/largeMarginTop</item>
+        <item name="extraLargeMarginTop">@dimen/extraLargeMarginTop</item>
+
+<!--        margin bottom-->
+        <item name="smallMarginBottom">@dimen/smallMarginBottom</item>
+        <item name="mediumMarginBottom">@dimen/mediumMarginBottom</item>
+        <item name="largeMarginBottom">@dimen/largeMarginBottom</item>
+        <item name="extraLargeMarginBottom">@dimen/extraLargeMarginBottom</item>
+
+<!--        padding start-->
+        <item name="smallPaddingStart">@dimen/smallPaddingStart</item>
+        <item name="mediumPaddingStart">@dimen/mediumPaddingStart</item>
+        <item name="largePaddingStart">@dimen/largePaddingStart</item>
+        <item name="extraLargePaddingStart">@dimen/extraLargePaddingStart</item>
+
+<!--        padding end-->
+        <item name="smallPaddingEnd">@dimen/smallPaddingEnd</item>
+        <item name="mediumPaddingEnd">@dimen/mediumPaddingEnd</item>
+        <item name="largePaddingEnd">@dimen/largePaddingEnd</item>
+        <item name="extraLargePaddingEnd">@dimen/extraLargePaddingEnd</item>
+
+<!--         padding top-->
+        <item name="smallPaddingTop">@dimen/smallPaddingTop</item>
+        <item name="mediumPaddingTop">@dimen/mediumPaddingTop</item>
+        <item name="largePaddingTop">@dimen/largePaddingTop</item>
+        <item name="extraLargePaddingTop">@dimen/extraLargePaddingTop</item>
+
+<!--        padding bottom-->
+        <item name="smallPaddingBottom">@dimen/smallPaddingBottom</item>
+        <item name="mediumPaddingBottom">@dimen/mediumPaddingBottom</item>
+        <item name="largePaddingBottom">@dimen/largePaddingBottom</item>
+        <item name="extraLargePaddingBottom">@dimen/extraLargePaddingBottom</item>
+
+
     </style>
 
-    <style name="AppTheme.Material" parent="Theme.MaterialComponents.DayNight"/>
 
 </resources>

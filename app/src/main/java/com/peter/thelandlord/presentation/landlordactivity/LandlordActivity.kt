@@ -1,7 +1,8 @@
-package com.peter.thelandlord
+package com.peter.thelandlord.presentation.landlordactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.peter.thelandlord.R
 
 class LandlordActivity : AppCompatActivity() {
 
