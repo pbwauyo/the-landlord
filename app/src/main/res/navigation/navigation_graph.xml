@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/propertyList">
+
+    <fragment
+        android:id="@+id/propertyList"
+        android:name="com.peter.thelandlord.presentation.propertylist.PropertyList"
+        android:label="fragment_property_list"
+        tools:layout="@layout/fragment_property_list" >
+        <action
+            android:id="@+id/action_propertyList_to_propertyDetails"
+            app:destination="@id/propertyDetails" />
+        <action
+            android:id="@+id/action_propertyList_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/transactionSummary"
+        android:name="com.peter.thelandlord.presentation.transactionsummary.TransactionSummary"
+        android:label="fragment_transaction_summary"
+        tools:layout="@layout/fragment_transaction_summary" >
+        <action
+            android:id="@+id/action_transactionSummary_to_propertyList"
+            app:destination="@id/propertyList" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.peter.thelandlord.presentation.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_transactionSummary"
+            app:destination="@id/transactionSummary" />
+    </fragment>
+    <fragment
+        android:id="@+id/propertyDetails"
+        android:name="com.peter.thelandlord.presentation.propertydetails.PropertyDetails"
+        android:label="fragment_property_details"
+        tools:layout="@layout/fragment_property_details" >
+        <action
+            android:id="@+id/action_propertyDetails_to_rentalsList"
+            app:destination="@id/rentalsList" />
+        <action
+            android:id="@+id/action_propertyDetails_to_debtorsList"
+            app:destination="@id/debtorsList" />
+        <action
+            android:id="@+id/action_propertyDetails_to_balancesList"
+            app:destination="@id/balancesList" />
+        <action
+            android:id="@+id/action_propertyDetails_to_addRental"
+            app:destination="@id/addRental" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRental"
+        android:name="com.peter.thelandlord.presentation.addrental.AddRental"
+        android:label="fragment_add_rental"
+        tools:layout="@layout/fragment_add_rental" />
+    <fragment
+        android:id="@+id/rentalsList"
+        android:name="com.peter.thelandlord.presentation.rentalslist.RentalsList"
+        android:label="fragment_rentals_list"
+        tools:layout="@layout/fragment_rentals_list" >
+        <action
+            android:id="@+id/action_rentalsList_to_rentalDetails"
+            app:destination="@id/rentalDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/rentalDetails"
+        android:name="com.peter.thelandlord.presentation.rentaldetails.RentalDetails"
+        android:label="fragment_rental_details"
+        tools:layout="@layout/fragment_rental_details" >
+        <action
+            android:id="@+id/action_rentalDetails_to_addPayment"
+            app:destination="@id/addPayment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addPayment"
+        android:name="com.peter.thelandlord.presentation.addpayment.AddPayment"
+        android:label="fragment_add_payment"
+        tools:layout="@layout/fragment_add_payment" />
+    <fragment
+        android:id="@+id/debtorsList"
+        android:name="com.peter.thelandlord.presentation.debtorslist.DebtorsList"
+        android:label="fragment_debtors_list"
+        tools:layout="@layout/fragment_debtors_list" />
+    <fragment
+        android:id="@+id/balancesList"
+        android:name="com.peter.thelandlord.presentation.balanceslist.BalancesList"
+        android:label="fragment_balances_list"
+        tools:layout="@layout/fragment_balances_list" />
+    <fragment
+        android:id="@+id/paymentsListFragment"
+        android:name="com.peter.thelandlord.presentation.paymentslist.PaymentsListFragment"
+        android:label="fragment_payments_list"
+        tools:layout="@layout/fragment_payments_list" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.peter.thelandlord.presentation.auth.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_propertyList"
+            app:destination="@id/propertyList"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.peter.thelandlord.presentation.auth.register.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_propertyList"
+            app:destination="@id/propertyList"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

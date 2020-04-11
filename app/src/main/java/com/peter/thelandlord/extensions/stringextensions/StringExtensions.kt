@@ -5,5 +5,5 @@ fun String.isNonNullStringValid(): Boolean{
 }
 
 fun String?.isNullableStringValid(): Boolean{
-    return !(this == null || this.trim() == "")
+    return !(this == null || this.trim().isEmpty())
 }

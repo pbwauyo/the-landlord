@@ -8,8 +8,8 @@ import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
 class BaseApplication : MultiDexApplication(),  HasAndroidInjector{
-    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
+    @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()

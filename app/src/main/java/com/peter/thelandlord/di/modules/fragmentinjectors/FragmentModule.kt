@@ -7,10 +7,13 @@ import com.peter.thelandlord.presentation.auth.login.LoginFragment
 import com.peter.thelandlord.presentation.auth.register.RegisterFragment
 import com.peter.thelandlord.presentation.balanceslist.BalancesList
 import com.peter.thelandlord.presentation.debtorslist.DebtorsList
+import com.peter.thelandlord.presentation.paymentslist.PaymentsListFragment
+import com.peter.thelandlord.presentation.profile.ProfileFragment
 import com.peter.thelandlord.presentation.propertydetails.PropertyDetails
 import com.peter.thelandlord.presentation.propertylist.PropertyList
 import com.peter.thelandlord.presentation.rentaldetails.RentalDetails
 import com.peter.thelandlord.presentation.rentalslist.RentalsList
+import com.peter.thelandlord.presentation.transactionsummary.TransactionSummary
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -39,6 +42,12 @@ abstract class FragmentModule {
     abstract fun debtorsListFragmentInjector(): DebtorsList
 
     @ContributesAndroidInjector
+    abstract fun paymentsListInjector(): PaymentsListFragment
+
+    @ContributesAndroidInjector
+    abstract fun profileFragmentInjector(): ProfileFragment
+
+    @ContributesAndroidInjector
     abstract fun propertyDetailsInjector(): PropertyDetails
 
     @ContributesAndroidInjector
@@ -49,5 +58,8 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun rentalListInjector(): RentalsList
+
+    @ContributesAndroidInjector
+    abstract fun transactionsSummaryInjector(): TransactionSummary
 
 }

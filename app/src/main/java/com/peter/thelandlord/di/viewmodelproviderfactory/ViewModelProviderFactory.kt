@@ -28,4 +28,8 @@ class ViewModelProviderFactory constructor(
             throw (RuntimeException(e))
         }
     }
+
+    override fun toString(): String {
+        return "My VM Factory Created"
+    }
 }

@@ -3,6 +3,7 @@
     <attr name="imageBackground" format="reference"/>
     <attr name="secondaryIconColor" format="color"/>
 
+    <attr name="authEditTextColor" format="color"/>
 <!--    card radi-->
     <attr name="smallCardCornerRadius" format="dimension"/>
     <attr name="mediumCardCornerRadius" format="dimension"/>
@@ -60,4 +61,6 @@
     <attr name="mediumPaddingBottom" format="dimension"/>
     <attr name="largePaddingBottom" format="dimension"/>
     <attr name="extraLargePaddingBottom" format="dimension"/>
+
+    <attr name="primaryLight" format="color"/>
 </resources>

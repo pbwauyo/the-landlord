@@ -6,7 +6,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.thelandlord.data.AuthRepository
 import com.peter.thelandlord.di.viewmodelkey.ViewModelKey
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
-import com.peter.thelandlord.presentation.auth.UserLoginViewModel
+import com.peter.thelandlord.presentation.auth.AuthViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -34,10 +34,10 @@ object AppModule {
         return FirebaseFirestore.getInstance()
     }
 
-    @ViewModelKey(UserLoginViewModel::class)
+    @ViewModelKey(AuthViewModel::class)
     @IntoMap
     @Provides
     fun providesLoginViewModel(authRepository: AuthRepository): ViewModel{
-        return UserLoginViewModel(authRepository)
+        return AuthViewModel(authRepository)
     }
 }
