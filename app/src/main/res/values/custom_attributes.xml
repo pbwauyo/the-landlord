@@ -63,4 +63,7 @@
     <attr name="extraLargePaddingBottom" format="dimension"/>
 
     <attr name="primaryLight" format="color"/>
+    <attr name="defaultTextColor" format="color"/>
+    <attr name="mainTextColor" format="color"/>
+    <attr name="mainTextInputColor" format="color"/>
 </resources>

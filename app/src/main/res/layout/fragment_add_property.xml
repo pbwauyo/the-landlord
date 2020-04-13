@@ -47,6 +47,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/property_name"
+                    android:paddingHorizontal="@dimen/largePaddingStart"
+                    android:paddingVertical="@dimen/mediumPaddingTop"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -57,7 +59,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/property_name_edit_txt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/mainTextInputColor"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -67,7 +70,7 @@
             android:id="@+id/property_location_card_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="?attr/largeMarginTop"
+            android:layout_marginTop="?attr/extraLargeMarginTop"
             app:layout_constraintTop_toBottomOf="@id/property_name_card_view">
             
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -79,6 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/location"
+                    android:paddingVertical="@dimen/mediumPaddingTop"
+                    android:paddingHorizontal="@dimen/largePaddingStart"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -88,8 +93,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/property_location">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/property_location_edit_txt"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:textColor="?attr/mainTextInputColor"/>
+
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -102,6 +110,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="?largeMarginTop"
-            android:text="@string/add"/>
+            android:text="@string/add" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

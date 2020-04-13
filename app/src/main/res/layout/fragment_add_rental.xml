@@ -29,7 +29,9 @@
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
-                  android:text="@string/rental__id"/>
+                  android:text="@string/rental__id"
+                  android:paddingHorizontal="@dimen/extraLargePaddingStart"
+                  android:paddingTop="@dimen/mediumPaddingTop"/>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="0dp"
@@ -42,7 +44,8 @@
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/rental_id_edit_txt"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:textColor="?attr/mainTextInputColor"/>
               </com.google.android.material.textfield.TextInputLayout>
           </androidx.constraintlayout.widget.ConstraintLayout>
       </com.google.android.material.card.MaterialCardView>
@@ -65,7 +68,9 @@
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
-                  android:text="@string/monthly_amount"/>
+                  android:text="@string/monthly_amount"
+                  android:paddingHorizontal="@dimen/extraLargePaddingStart"
+                  android:paddingTop="@dimen/mediumPaddingTop"/>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="0dp"
@@ -78,7 +83,9 @@
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/rental_amount_edit_txt"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:textColor="?attr/mainTextInputColor"/>
+
               </com.google.android.material.textfield.TextInputLayout>
           </androidx.constraintlayout.widget.ConstraintLayout>
       </com.google.android.material.card.MaterialCardView>
@@ -101,7 +108,9 @@
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
-                  android:text="@string/tenant_name"/>
+                  android:text="@string/tenant_name"
+                  android:paddingHorizontal="@dimen/extraLargePaddingStart"
+                  android:paddingTop="@dimen/mediumPaddingTop"/>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="0dp"
@@ -114,7 +123,9 @@
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/tenant_name_edit_txt"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:textColor="?attr/mainTextInputColor"/>
+
               </com.google.android.material.textfield.TextInputLayout>
           </androidx.constraintlayout.widget.ConstraintLayout>
       </com.google.android.material.card.MaterialCardView>
@@ -137,7 +148,9 @@
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
-                  android:text="@string/tenant_contact"/>
+                  android:text="@string/tenant_contact"
+                  android:paddingHorizontal="@dimen/extraLargePaddingStart"
+                  android:paddingTop="@dimen/mediumPaddingTop"/>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="0dp"
@@ -150,7 +163,9 @@
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/tenant_contact_edit_txt"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:textColor="?attr/mainTextInputColor"/>
+
               </com.google.android.material.textfield.TextInputLayout>
           </androidx.constraintlayout.widget.ConstraintLayout>
       </com.google.android.material.card.MaterialCardView>
@@ -173,7 +188,9 @@
                   android:layout_height="wrap_content"
                   app:layout_constraintStart_toStartOf="parent"
                   app:layout_constraintEnd_toEndOf="parent"
-                  android:text="@string/tenancy_start_date"/>
+                  android:text="@string/tenancy_start_date"
+                  android:paddingHorizontal="@dimen/extraLargePaddingStart"
+                  android:paddingTop="@dimen/mediumPaddingTop"/>
 
               <com.google.android.material.textfield.TextInputLayout
                   android:layout_width="0dp"
@@ -186,7 +203,9 @@
                   <com.google.android.material.textfield.TextInputEditText
                       android:id="@+id/tenancy_start_date_edit_txt"
                       android:layout_width="match_parent"
-                      android:layout_height="wrap_content"/>
+                      android:layout_height="wrap_content"
+                      android:textColor="?attr/mainTextInputColor"/>
+
               </com.google.android.material.textfield.TextInputLayout>
           </androidx.constraintlayout.widget.ConstraintLayout>
       </com.google.android.material.card.MaterialCardView>
