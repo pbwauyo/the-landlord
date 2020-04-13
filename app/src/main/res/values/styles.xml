@@ -28,6 +28,7 @@
         <item name="android:textViewStyle">@style/CustomTextViewStyle</item>
         <item name="materialButtonStyle">@style/CustomMaterialOutlineButtonStyle</item>
         <item name="textInputStyle">@style/CustomMaterialFilledTextInputLayout</item>
+        <item name="bottomNavigationStyle">@style/CustomBottomNavigationBarStyle</item>
 
 <!--        card radius-->
         <item name="cardCornerRadius">?attr/smallCardCornerRadius</item>
@@ -89,6 +90,10 @@
         <item name="largePaddingBottom">@dimen/largePaddingBottom</item>
         <item name="extraLargePaddingBottom">@dimen/extraLargePaddingBottom</item>
 
+    </style>
+
+    <style name="CustomBottomNavigationBarStyle" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
+        <!-- TODO WILL UPDATE LATER ON -->
     </style>
 
     <style name="CustomMaterialFilledTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
