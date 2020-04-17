@@ -9,6 +9,7 @@
 <!--    </style>-->
 
     <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
+
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -25,9 +26,9 @@
 
         <item name="defaultTextColor">@color/blackLight</item>
         <item name="materialCardViewStyle">@style/CardViewStyleMain</item>
+        <item name="cardViewStyle">@style/OldCardViewStyleMain</item>
         <item name="android:textViewStyle">@style/CustomTextViewStyle</item>
         <item name="materialButtonStyle">@style/CustomMaterialOutlineButtonStyle</item>
-        <item name="textInputStyle">@style/CustomMaterialFilledTextInputLayout</item>
         <item name="bottomNavigationStyle">@style/CustomBottomNavigationBarStyle</item>
 
 <!--        card radius-->
@@ -90,14 +91,11 @@
         <item name="largePaddingBottom">@dimen/largePaddingBottom</item>
         <item name="extraLargePaddingBottom">@dimen/extraLargePaddingBottom</item>
 
+
     </style>
 
     <style name="CustomBottomNavigationBarStyle" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
         <!-- TODO WILL UPDATE LATER ON -->
-    </style>
-
-    <style name="CustomMaterialFilledTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@color/primaryLightShade2</item>
     </style>
 
     <style name="CustomMaterialOutlineButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
@@ -109,23 +107,55 @@
         <item name="android:textColor">?attr/mainTextColor</item>
     </style>
 
-    <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">8dp</item>
-    </style>
-
-    <style name="CardViewStyleMain" parent="Widget.MaterialComponents.CardView">
-        <item name="cardBackgroundColor">@color/white</item>
-        <item name="cardCornerRadius">8dp</item>
-        <item name="elevation">3dp</item>
-    </style>
-
     <style name="AuthTextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="hintTextColor">@color/colorPrimary</item>
         <item name="android:textColorHint">@color/primaryLight</item>
         <item name="boxStrokeColor">@color/custom_selector_color</item>
         <item name="boxStrokeErrorColor">@color/red</item>
     </style>
-    
 
+    <style name="CustomMaterialFilledTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/primaryLightShade2</item>
+        <item name="boxStrokeColor">@color/transparent_color_statelist</item>
+        <item name="android:textColorHint">@color/primaryLight</item>
+        <item name="hintTextColor">@color/transparentColor</item>
+        <item name="hintAnimationEnabled">false</item>
+        <item name="hintEnabled">false</item>
+        <item name="shapeAppearanceOverlay">@style/TextInputLayoutShapeAppearance</item>
+    </style>
+
+    <style name="CardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">8dp</item>
+    </style>
+
+    <style name="TextInputLayoutShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+    </style>
+
+    <style name="CardViewStyleMain" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">false</item>
+    </style>
+
+    <style name="OldCardViewStyleMain" parent="">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">false</item>
+    </style>
+
+    <style name="HintTextAppearance" parent="TextAppearance.MaterialComponents.Caption">
+
+    </style>
+
+    <style name="AppTheme.SecondaryTheme">
+        <item name="textInputStyle">@style/CustomMaterialFilledTextInputLayout</item>
+    </style>
 </resources>

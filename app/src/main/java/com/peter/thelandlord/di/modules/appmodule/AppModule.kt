@@ -4,8 +4,12 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.thelandlord.data.AuthRepository
+import com.peter.thelandlord.data.PropertyManagementRepoImpl
+import com.peter.thelandlord.data.RentalManagementRepoImpl
 import com.peter.thelandlord.di.viewmodelkey.ViewModelKey
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
+import com.peter.thelandlord.presentation.addproperty.PropertyViewModel
+import com.peter.thelandlord.presentation.addrental.RentalViewModel
 import com.peter.thelandlord.presentation.auth.AuthViewModel
 import dagger.Module
 import dagger.Provides
@@ -32,6 +36,32 @@ object AppModule {
     @Provides
     fun providesFirestoreInstance(): FirebaseFirestore {
         return FirebaseFirestore.getInstance()
+    }
+
+    @Singleton
+    @Provides
+    fun providesPropertyManagementRepoImpl(firestore: FirebaseFirestore, firebaseAuth: FirebaseAuth): PropertyManagementRepoImpl{
+        return PropertyManagementRepoImpl(firestore, firebaseAuth)
+    }
+
+    @Singleton
+    @Provides
+    fun providesRentalManagementRepoImpl(firestore: FirebaseFirestore): RentalManagementRepoImpl{
+        return RentalManagementRepoImpl(firestore)
+    }
+
+    @ViewModelKey(RentalViewModel::class)
+    @IntoMap
+    @Provides
+    fun providesRentalViewModel(rentalManagementRepoImpl: RentalManagementRepoImpl): ViewModel{
+        return RentalViewModel(rentalManagementRepoImpl)
+    }
+
+    @ViewModelKey(PropertyViewModel::class)
+    @IntoMap
+    @Provides
+    fun providesPropertyViewModel(propertyManagementRepoImpl: PropertyManagementRepoImpl): ViewModel{
+        return PropertyViewModel(propertyManagementRepoImpl)
     }
 
     @ViewModelKey(AuthViewModel::class)

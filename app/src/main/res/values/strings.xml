@@ -30,5 +30,12 @@
     <string name="first_name">First name</string>
     <string name="last_name">Last name</string>
     <string name="sign_out">SIGN OUT</string>
+    <string name="enter_property_name">Enter property name</string>
+    <string name="enter_location">Enter Location</string>
+    <string name="enter_rental_id">Enter Rental ID</string>
+    <string name="enter_monthly_amount">Enter monthly amount</string>
+    <string name="enter_tenant_name">Enter tenant name</string>
+    <string name="enter_tenant_contact">Enter tenant contact</string>
+    <string name="enter_tenant_start_date">Enter tenant start date</string>
 
 </resources>

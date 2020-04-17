@@ -1,4 +1,4 @@
-package com.peter.thelandlord.domain.usecase
+package com.peter.thelandlord.domain.usecases.authusecases
 
 import androidx.lifecycle.MutableLiveData
 import com.peter.thelandlord.domain.interfaces.AuthRepositoryInterface

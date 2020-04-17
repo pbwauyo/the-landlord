@@ -12,6 +12,7 @@
     <color name="black">#000000</color>
     <color name="red">#D50000</color>
     <color name="blackLight">#808080</color>
+    <color name="transparentColor">#00FFFFFF</color>
 
 </resources>
 

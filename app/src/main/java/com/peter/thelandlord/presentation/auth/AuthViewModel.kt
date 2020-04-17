@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.peter.thelandlord.data.AuthRepository
 import com.peter.thelandlord.domain.models.Landlord
 import com.peter.thelandlord.domain.models.Login
-import com.peter.thelandlord.domain.usecase.CheckSignedInUserUseCase
-import com.peter.thelandlord.domain.usecase.LoginUseCase
-import com.peter.thelandlord.domain.usecase.RegisterUseCase
-import com.peter.thelandlord.domain.usecase.SignOutUseCase
+import com.peter.thelandlord.domain.usecases.authusecases.CheckSignedInUserUseCase
+import com.peter.thelandlord.domain.usecases.authusecases.LoginUseCase
+import com.peter.thelandlord.domain.usecases.authusecases.RegisterUseCase
+import com.peter.thelandlord.domain.usecases.authusecases.SignOutUseCase
 import com.peter.thelandlord.extensions.stringextensions.*
 import com.peter.thelandlord.singleliveevent.SingleLiveEvent
 
@@ -52,10 +52,22 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
         get() = _landlordLiveData
 
     //use cases
-    private val loginUser = LoginUseCase(authRepository)
-    private val checkSignedInUser = CheckSignedInUserUseCase(authRepository)
-    private val registerUser = RegisterUseCase(authRepository)
-    private val signOut = SignOutUseCase(authRepository)
+    private val loginUser =
+        LoginUseCase(
+            authRepository
+        )
+    private val checkSignedInUser =
+        CheckSignedInUserUseCase(
+            authRepository
+        )
+    private val registerUser =
+        RegisterUseCase(
+            authRepository
+        )
+    private val signOut =
+        SignOutUseCase(
+            authRepository
+        )
 
     fun login() {
         var fieldsAreEmpty: Boolean

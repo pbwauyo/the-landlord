@@ -124,4 +124,9 @@
             app:popUpTo="@id/registerFragment"
             app:popUpToInclusive="true"/>
     </fragment>
+    <fragment
+        android:id="@+id/addProperty"
+        android:name="com.peter.thelandlord.presentation.addproperty.AddProperty"
+        android:label="fragment_add_property"
+        tools:layout="@layout/fragment_add_property" />
 </navigation>

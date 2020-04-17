@@ -7,7 +7,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomappbar.BottomAppBar
+import com.google.android.material.bottomappbar.BottomAppBarTopEdgeTreatment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.peter.thelandlord.R
 import com.peter.thelandlord.databinding.ActivityLandlordBinding
@@ -29,6 +32,7 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
     lateinit var bottomNavBar: BottomNavigationView
     lateinit var navController: NavController
     lateinit var navControllerListener: NavController.OnDestinationChangedListener
+    lateinit var floatingActionButton: FloatingActionButton
 
     companion object{
         val TAG = LandlordActivity::class.java.simpleName
@@ -40,8 +44,12 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
 
         binding = ActivityLandlordBinding.inflate(layoutInflater)
         val view = binding.root
+
         setContentView(view)
+
         bottomNavBar = binding.navBar
+        floatingActionButton = binding.floatingButton
+
         navController = findNavController(R.id.nav_host)
         bottomNavBar.setupWithNavController(navController)
 
@@ -56,6 +64,10 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
         }
 
         authViewModel = ViewModelProvider(this, vmFactory).get(AuthViewModel::class.java)
+
+        floatingActionButton.setOnClickListener {
+            navController.navigate(R.id.addProperty)
+        }
 
     }
 

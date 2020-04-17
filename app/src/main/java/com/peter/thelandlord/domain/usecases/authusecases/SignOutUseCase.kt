@@ -1,4 +1,4 @@
-package com.peter.thelandlord.domain.usecase
+package com.peter.thelandlord.domain.usecases.authusecases
 
 import com.peter.thelandlord.domain.interfaces.AuthRepositoryInterface
 import com.peter.thelandlord.singleliveevent.SingleLiveEvent
