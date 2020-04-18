@@ -86,4 +86,12 @@ class RentalViewModel( rentalManagementRepoImpl: RentalManagementRepoImpl): View
             saveRental(rental, isSavingLiveData, errorLiveData, successLiveData)
         }
     }
+
+    fun clearFields(){
+        rentalIDLiveData.postValue("")
+        monthlyAmountLiveData.postValue("")
+        tenantNameLiveData.postValue("")
+        tenantContactLiveData.postValue("")
+        tenancyStartDateLiveData.postValue("")
+    }
 }

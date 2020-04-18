@@ -57,4 +57,10 @@ class PropertyViewModel (propertyManagementRepoImpl: PropertyManagementRepoImpl 
         }
 
     }
+
+    fun clearFields(){
+        propertyNameLiveData.postValue("")
+        propertyLocationLiveData.postValue("")
+    }
+
 }

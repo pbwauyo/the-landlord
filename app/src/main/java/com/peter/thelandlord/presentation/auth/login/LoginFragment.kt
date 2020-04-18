@@ -81,6 +81,7 @@ class LoginFragment : Fragment() {
                     binding?.loginProgressBar?.visibility = View.VISIBLE
                 }else{
                     binding?.loginProgressBar?.visibility = View.GONE
+                    authViewModel.clearLoginFields()
                 }
             }
         })

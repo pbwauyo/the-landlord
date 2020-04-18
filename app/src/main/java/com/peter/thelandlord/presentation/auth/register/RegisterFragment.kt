@@ -37,12 +37,6 @@ class RegisterFragment : Fragment() {
         super.onAttach(context)
     }
 
-//    @Suppress("DEPRECATION")
-//    override fun onAttach(activity: Activity) {
-//        AndroidInjection.inject(activity)
-//        super.onAttach(activity)
-//    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         authViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(AuthViewModel::class.java) }!!
@@ -142,6 +136,7 @@ class RegisterFragment : Fragment() {
         authViewModel.signUpSuccessLiveData.observe(viewLifecycleOwner, Observer {
             it?.let {
                 Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
+                authViewModel.clearSignUpFields()
             }
         })
     }

@@ -74,6 +74,7 @@ class AddProperty : Fragment() {
 
         propertyViewModel.successLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+            propertyViewModel.clearFields()
         })
     }
 

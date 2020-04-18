@@ -86,6 +86,7 @@ class AddRental : Fragment() {
 
         rentalViewModel.successLiveData.observe(viewLifecycleOwner, Observer {
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+            rentalViewModel.clearFields()
         })
 
         binding!!.addRentalBtn.setOnClickListener {

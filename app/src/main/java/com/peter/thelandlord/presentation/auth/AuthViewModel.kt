@@ -70,25 +70,24 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
         )
 
     fun login() {
-        var fieldsAreEmpty: Boolean
+        var isEmailFieldEmpty = true
+        var isPswdFieldEmpty = true
 
         if (!emailLiveData.value.isNullableStringValid()){
             emailErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isEmailFieldEmpty = false
         }
 
         if (!passwordLiveData.value.isNullableStringValid()){
             pswdErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isPswdFieldEmpty = false
         }
 
-        if (!fieldsAreEmpty){
+        if (!(isEmailFieldEmpty || isPswdFieldEmpty)){
             loggingInLiveData.value = true
             val loginDetails = Login(emailLiveData.value!!.trim(), passwordLiveData.value!!.trim())
             loginUser(loginDetails, _landlordLiveData, errorLiveData, loggingInLiveData)
@@ -97,51 +96,51 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
     }
 
     fun register(){
-        var fieldsAreEmpty:Boolean
+
+        var isFNameFieldEmpty = true
+        var isLNameFieldEmpty = true
+        var isEmailFieldEmpty = true
+        var isPswdFieldEmpty = true
+        var isConfPswdFieldEmpty = true
 
         if (!signUpFNameLiveData.value.isNullableStringValid()){
             signUpFNameErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isFNameFieldEmpty = false
         }
 
         if (!signUpLNameLiveData.value.isNullableStringValid()){
             signUpLNameErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isLNameFieldEmpty = false
         }
 
         if (!signUpEmailLiveData.value.isNullableStringValid()){
             signUpEmailErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isEmailFieldEmpty = false
         }
 
         if (!signUpPswdLiveData.value.isNullableStringValid()){
             signUpPswdErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isPswdFieldEmpty = false
         }
 
         if (!signUpConfPswdLiveData.value.isNullableStringValid()){
             signUpConfPswdErrorLiveData.value = EMPTY_FIELD_ERROR
-            fieldsAreEmpty = true
         }
         else{
-            fieldsAreEmpty = false
+            isConfPswdFieldEmpty = false
         }
 
-        if(!fieldsAreEmpty){
+        if(!(isFNameFieldEmpty || isLNameFieldEmpty || isEmailFieldEmpty || isPswdFieldEmpty || isConfPswdFieldEmpty)){
             //check if passwords match
-            if (signUpPswdLiveData.value == signUpConfPswdLiveData.value){
+            if (signUpPswdLiveData.value!!.trim() == signUpConfPswdLiveData.value!!.trim()){
                 isRegisteringLiveData.value = true
 
                 val landlord = Landlord(signUpEmailLiveData.value?.trim()!!, signUpFNameLiveData.value?.trim()!!,
@@ -167,17 +166,17 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
         isSignedInLiveData.value = value
     }
 
-    private fun clearSignUpFields(){
-        signUpLNameLiveData.value = ""
-        signUpFNameLiveData.value = ""
-        signUpEmailLiveData.value = ""
-        signUpPswdLiveData.value = ""
-        signUpConfPswdLiveData.value = ""
+    fun clearSignUpFields(){
+        signUpLNameLiveData.postValue("")
+        signUpFNameLiveData.postValue("")
+        signUpEmailLiveData.postValue("")
+        signUpPswdLiveData.postValue("")
+        signUpConfPswdLiveData.postValue("")
     }
 
-    private fun clearLoginFields(){
-        emailLiveData.value = ""
-        passwordLiveData.value = ""
+    fun clearLoginFields(){
+        emailLiveData.postValue("")
+        passwordLiveData.postValue("")
     }
 
     override fun toString(): String {

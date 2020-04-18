@@ -35,7 +35,7 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
     lateinit var floatingActionButton: FloatingActionButton
 
     companion object{
-        val TAG = LandlordActivity::class.java.simpleName
+        val TAG = this::class.java.simpleName
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,6 +59,11 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
                 when(destination.id){
                     R.id.loginFragment, R.id.registerFragment -> bottomNavBar.visibility = View.GONE
                     else -> bottomNavBar.visibility = View.VISIBLE
+                }
+
+                when(destination.id){
+                    R.id.loginFragment, R.id.registerFragment, R.id.addProperty -> binding.floatingButton.visibility = View.GONE
+                    else -> binding.floatingButton.visibility = View.VISIBLE
                 }
 
         }

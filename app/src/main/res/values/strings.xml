@@ -37,5 +37,9 @@
     <string name="enter_tenant_name">Enter tenant name</string>
     <string name="enter_tenant_contact">Enter tenant contact</string>
     <string name="enter_tenant_start_date">Enter tenant start date</string>
+    <string name="add_rental">ADD RENTAL</string>
+    <string name="rentals">RENTALS</string>
+    <string name="money_balances">MONEY BALANCES</string>
+    <string name="defaulters">DEFAULTERS</string>
 
 </resources>
