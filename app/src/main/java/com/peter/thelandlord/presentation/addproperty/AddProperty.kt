@@ -15,13 +15,22 @@ import com.peter.thelandlord.R
 import com.peter.thelandlord.databinding.FragmentAddPropertyBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class AddProperty : Fragment() {
 
+    private companion object{
+        const val SAVE_SUCCESS = "Property saved successfully"
+    }
+
     private var binding: FragmentAddPropertyBinding? = null
     private lateinit var propertyViewModel: PropertyViewModel
     @Inject lateinit var vmFactory: ViewModelProviderFactory
+    private lateinit var compositeDisposable: CompositeDisposable
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -31,6 +40,7 @@ class AddProperty : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        compositeDisposable = CompositeDisposable()
         propertyViewModel = ViewModelProvider(this, vmFactory).get(PropertyViewModel::class.java)
     }
 
@@ -41,8 +51,8 @@ class AddProperty : Fragment() {
 
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_property, container, false)
+        binding!!.lifecycleOwner = viewLifecycleOwner
         binding!!.propertyViewModel = propertyViewModel
-
 
         return binding!!.root
     }
@@ -76,10 +86,35 @@ class AddProperty : Fragment() {
             Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
             propertyViewModel.clearFields()
         })
+
+
+        binding!!.addPropertyBtn.setOnClickListener {
+            val saveDisposable = propertyViewModel.savePropertyDetails()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                    {
+                        propertyViewModel.setSuccess(SAVE_SUCCESS)
+                        propertyViewModel.setSavingStatus(false)
+                    },
+                    {
+                        propertyViewModel.setSavingStatus(false)
+                        propertyViewModel.setError(it.message!!)
+                    }
+                )
+
+            compositeDisposable.add(saveDisposable)
+        }
+
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        binding = null
+    override fun onStop() {
+        super.onStop()
+        compositeDisposable.dispose()
     }
+
+//    override fun onDestroy() {
+//        super.onDestroy()
+//      //  binding = null
+//    }
 }

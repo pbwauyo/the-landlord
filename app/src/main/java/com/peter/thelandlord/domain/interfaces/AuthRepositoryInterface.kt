@@ -7,16 +7,17 @@ import com.peter.thelandlord.singleliveevent.SingleLiveEvent
 
 interface AuthRepositoryInterface {
 
-    fun createUser(landlord: Landlord, liveData: MutableLiveData<Landlord>, errorLiveData: MutableLiveData<String>,
+    suspend fun createUser(landlord: Landlord, errorLiveData: MutableLiveData<String>, emailLiveData: MutableLiveData<String>,
                    isRegisteringLiveData: MutableLiveData<Boolean>, isSignedInLiveData: SingleLiveEvent<Boolean>, successLiveData: MutableLiveData<String>)
 
-    fun loginUser(login: Login, liveData: MutableLiveData<Landlord>,
-                  errorLiveData: MutableLiveData<String>, loggingInLiveData: MutableLiveData<Boolean>)
+    fun loginUser(login: Login, emailLiveData: MutableLiveData<String>, errorLiveData: MutableLiveData<String>,
+                  loggingInLiveData: MutableLiveData<Boolean>, isSignedInLiveData: SingleLiveEvent<Boolean>)
 
     fun signOut(isSignedInLiveData: SingleLiveEvent<Boolean>)
 
     fun isUserLoggedIn(
-        liveData: MutableLiveData<Landlord>,
-        errorLiveData: MutableLiveData<String>, isSignedInLiveData: SingleLiveEvent<Boolean>
+        errorLiveData: MutableLiveData<String>,
+        isSignedInLiveData: SingleLiveEvent<Boolean>,
+        emailLiveData: MutableLiveData<String>
     )
 }

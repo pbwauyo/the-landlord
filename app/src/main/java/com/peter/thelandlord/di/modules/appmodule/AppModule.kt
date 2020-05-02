@@ -1,11 +1,16 @@
 package com.peter.thelandlord.di.modules.appmodule
 
+import android.app.Application
 import androidx.lifecycle.ViewModel
+import androidx.work.WorkManager
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.thelandlord.data.AuthRepository
 import com.peter.thelandlord.data.PropertyManagementRepoImpl
 import com.peter.thelandlord.data.RentalManagementRepoImpl
+import com.peter.thelandlord.data.dao.LandlordDao
+import com.peter.thelandlord.data.dao.PropertyDao
+import com.peter.thelandlord.data.db.AppDatabase
 import com.peter.thelandlord.di.viewmodelkey.ViewModelKey
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
 import com.peter.thelandlord.presentation.addproperty.PropertyViewModel
@@ -19,6 +24,30 @@ import javax.inject.Singleton
 
 @Module
 object AppModule {
+
+    @Singleton
+    @Provides
+    fun providesAppDatabase(application: Application): AppDatabase{
+        return AppDatabase.getInstance(application.applicationContext)
+    }
+
+    @Singleton
+    @Provides
+    fun providesPropertyDao(appDatabase: AppDatabase): PropertyDao{
+        return appDatabase.propertyDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesLandlordDao(appDatabase: AppDatabase): LandlordDao{
+        return appDatabase.landlordDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providesWorkManager(application: Application): WorkManager{
+        return WorkManager.getInstance(application.applicationContext)
+    }
 
     @Singleton
     @Provides
@@ -40,8 +69,9 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesPropertyManagementRepoImpl(firestore: FirebaseFirestore, firebaseAuth: FirebaseAuth): PropertyManagementRepoImpl{
-        return PropertyManagementRepoImpl(firestore, firebaseAuth)
+    fun providesPropertyManagementRepoImpl(firestore: FirebaseFirestore, firebaseAuth: FirebaseAuth,
+                                           propertyDao: PropertyDao, workManager: WorkManager): PropertyManagementRepoImpl{
+        return PropertyManagementRepoImpl(firestore, firebaseAuth, propertyDao, workManager)
     }
 
     @Singleton

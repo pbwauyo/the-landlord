@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.peter.thelandlord.R
+import com.peter.thelandlord.data.db.AppDatabase
 import com.peter.thelandlord.databinding.ActivityLandlordBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
 import com.peter.thelandlord.presentation.auth.AuthViewModel
@@ -28,6 +29,7 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
     @Inject lateinit var vmFactory: ViewModelProviderFactory
     @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
     @Inject lateinit var firebaseAuth: FirebaseAuth
+    @Inject lateinit var appDatabase: AppDatabase
     lateinit var authViewModel: AuthViewModel
     lateinit var bottomNavBar: BottomNavigationView
     lateinit var navController: NavController
@@ -93,5 +95,9 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+        appDatabase.close()
+    }
 }
 

@@ -2,6 +2,7 @@ package com.peter.thelandlord.presentation.propertylist
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.peter.thelandlord.R
 import com.peter.thelandlord.databinding.FragmentPropertyListBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
@@ -24,16 +24,14 @@ class PropertyList : Fragment() {
     lateinit var authViewModel: AuthViewModel
     lateinit var navController: NavController
 
+    private companion object{
+        val TAG = "PROPERTY_LIST"
+    }
+
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
-//
-//    @Suppress("DEPRECATION")    //for APIs < 23
-//    override fun onAttach(activity: Activity) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(activity)
-//    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,12 +47,6 @@ class PropertyList : Fragment() {
 
         binding = FragmentPropertyListBinding.inflate(inflater, container, false)
         navController = findNavController()
-        // Inflate the layout for this fragment
-        return binding!!.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         authViewModel.isSignedInLiveData.observe(viewLifecycleOwner, Observer { //responsible for logging in and out
 
@@ -64,7 +56,19 @@ class PropertyList : Fragment() {
 
         })
 
-        binding?.signOut?.setOnClickListener {
+        authViewModel.landlordLiveData.observe(viewLifecycleOwner, Observer {
+            Log.d(TAG, "$it")
+        })
+
+        // Inflate the layout for this fragment
+        return binding!!.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+        binding?.signOutBtn?.setOnClickListener {
             authViewModel.signOutUser()
         }
     }

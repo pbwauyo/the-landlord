@@ -1,6 +1,5 @@
 package com.peter.thelandlord.presentation.auth.register
 
-import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -14,23 +13,29 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import androidx.work.*
 import com.google.android.material.textview.MaterialTextView
 import com.peter.thelandlord.R
 import com.peter.thelandlord.databinding.FragmentRegisterBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
-import com.peter.thelandlord.presentation.LandlordActivity
 import com.peter.thelandlord.presentation.auth.AuthViewModel
-import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 class RegisterFragment : Fragment() {
     private var binding: FragmentRegisterBinding? = null
     private lateinit var authViewModel: AuthViewModel
     @Inject lateinit var vmFactory: ViewModelProviderFactory
+    @Inject lateinit var workManager: WorkManager
     private lateinit var navController: NavController
     private lateinit var logoImgView: ImageView
     private lateinit var logoTxtView: MaterialTextView
+    private lateinit var compositeDisposable: CompositeDisposable
+
+    private companion object{
+        val TAG = this::class.java.simpleName
+    }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -40,6 +45,7 @@ class RegisterFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         authViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(AuthViewModel::class.java) }!!
+        compositeDisposable = CompositeDisposable()
     }
 
     override fun onCreateView(
@@ -50,6 +56,8 @@ class RegisterFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_register,container, false
         )
+
+        binding?.lifecycleOwner = viewLifecycleOwner
         binding?.authViewModel = authViewModel
         logoImgView = binding!!.logo
         logoTxtView = binding!!.txtView
@@ -137,6 +145,31 @@ class RegisterFragment : Fragment() {
             it?.let {
                 Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
                 authViewModel.clearSignUpFields()
+//                val landlord = authViewModel.landlordLiveData.value!!
+//                val disposable = authViewModel.saveLandlordToDB(landlord)
+//                    .subscribeOn(Schedulers.io())
+//                    .observeOn(AndroidSchedulers.mainThread())
+//                    .subscribe(
+//                        {
+//                            Log.d(TAG, "SAVE_SUCCESS")
+//                        },
+//                        {
+//                           er -> Log.d(TAG, "${er.message}")
+//                        }
+//                    )
+//                compositeDisposable.add(disposable)
+//
+//                val inputData = workDataOf(Constants.KEY_LANDLORD_EMAIL to landlord.email)
+//                val constraints = Constraints.Builder()
+//                    .setRequiredNetworkType(NetworkType.CONNECTED)
+//                    .build()
+//
+//                val uploadRequest = OneTimeWorkRequestBuilder<UploadLandlordDetailsWorker>()
+//                    .setInputData(inputData)
+//                    .setConstraints(constraints)
+//                    .build()
+//
+//                workManager.enqueue(uploadRequest)
             }
         })
     }
@@ -144,5 +177,6 @@ class RegisterFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         binding = null
+        compositeDisposable.dispose()
     }
 }

@@ -1,8 +1,6 @@
 package com.peter.thelandlord.presentation.auth
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.peter.thelandlord.data.AuthRepository
 import com.peter.thelandlord.domain.models.Landlord
 import com.peter.thelandlord.domain.models.Login
@@ -12,8 +10,10 @@ import com.peter.thelandlord.domain.usecases.authusecases.RegisterUseCase
 import com.peter.thelandlord.domain.usecases.authusecases.SignOutUseCase
 import com.peter.thelandlord.extensions.stringextensions.*
 import com.peter.thelandlord.singleliveevent.SingleLiveEvent
+import io.reactivex.Completable
+import kotlinx.coroutines.launch
 
-class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
+class AuthViewModel constructor(val authRepository: AuthRepository) : ViewModel(){
 
     //SIGN UP LIVE DATA
     companion object {
@@ -43,10 +43,14 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
     val loggingInLiveData = MutableLiveData<Boolean>()
     val isSignedInLiveData = SingleLiveEvent<Boolean>()
 
+    val currentUserEmailLiveData = MutableLiveData<String>()
+
     val emailErrorLiveData = MutableLiveData<String>()
     val pswdErrorLiveData = MutableLiveData<String>()
 
-    private val _landlordLiveData = MutableLiveData<Landlord>()
+    private val _landlordLiveData = Transformations.switchMap(currentUserEmailLiveData) {
+        authRepository.getLandlordByEmail(it, errorLiveData)
+    }
 
     val landlordLiveData: LiveData<Landlord>    //exposed livedata
         get() = _landlordLiveData
@@ -90,7 +94,7 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
         if (!(isEmailFieldEmpty || isPswdFieldEmpty)){
             loggingInLiveData.value = true
             val loginDetails = Login(emailLiveData.value!!.trim(), passwordLiveData.value!!.trim())
-            loginUser(loginDetails, _landlordLiveData, errorLiveData, loggingInLiveData)
+            loginUser(loginDetails, currentUserEmailLiveData, errorLiveData, loggingInLiveData, isSignedInLiveData)
         }
 
     }
@@ -146,24 +150,31 @@ class AuthViewModel constructor(authRepository: AuthRepository) : ViewModel(){
                 val landlord = Landlord(signUpEmailLiveData.value?.trim()!!, signUpFNameLiveData.value?.trim()!!,
                     signUpLNameLiveData.value?.trim()!!, signUpPswdLiveData.value?.trim()!!)
 
-                registerUser(landlord, _landlordLiveData, errorLiveData, isRegisteringLiveData, isSignedInLiveData, signUpSuccessLiveData)
+                viewModelScope.launch {
+                    registerUser(landlord, errorLiveData, currentUserEmailLiveData,
+                        isRegisteringLiveData, isSignedInLiveData, signUpSuccessLiveData)
+                }
+
             }else{
-                signUpPswdMatchErrorLiveData.value = FIELD_MATCH_ERROR
+                signUpPswdMatchErrorLiveData.postValue(FIELD_MATCH_ERROR)
             }
         }
 
     }
+
+    //fun saveLandlordToDB(landlord: Landlord) = authRepository.landlordDao.saveLandlord(landlord)
 
     fun signOutUser(){
         signOut(isSignedInLiveData)
     }
 
     fun checkedSignedInUser(){
-        checkSignedInUser(_landlordLiveData, errorLiveData, isSignedInLiveData)
+        checkSignedInUser(errorLiveData, isSignedInLiveData, currentUserEmailLiveData)
     }
 
     fun setSignedInStatus(value: Boolean){
-        isSignedInLiveData.value = value
+        isSignedInLiveData.postValue(value)
+
     }
 
     fun clearSignUpFields(){

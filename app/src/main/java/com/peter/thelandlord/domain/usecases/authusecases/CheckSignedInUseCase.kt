@@ -7,10 +7,10 @@ import com.peter.thelandlord.singleliveevent.SingleLiveEvent
 
 class CheckSignedInUserUseCase constructor(private val authRepositoryInterface: AuthRepositoryInterface) {
     operator fun invoke(
-        liveData: MutableLiveData<Landlord>,
         errorLiveData: MutableLiveData<String>,
-        isSignedInLiveData: SingleLiveEvent<Boolean>
+        isSignedInLiveData: SingleLiveEvent<Boolean>,
+        emailLiveData: MutableLiveData<String>
     ){
-        authRepositoryInterface.isUserLoggedIn(liveData, errorLiveData, isSignedInLiveData)
+        authRepositoryInterface.isUserLoggedIn(errorLiveData, isSignedInLiveData, emailLiveData)
     }
 }

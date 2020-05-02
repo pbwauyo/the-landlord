@@ -7,7 +7,7 @@ import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
 
-class BaseApplication : MultiDexApplication(),  HasAndroidInjector{
+class BaseApplication : MultiDexApplication(),  HasAndroidInjector {
 
     @Inject lateinit var androidInjector: DispatchingAndroidInjector<Any>
 
@@ -15,6 +15,7 @@ class BaseApplication : MultiDexApplication(),  HasAndroidInjector{
         super.onCreate()
 
         DaggerAppComponent.builder().application(this).build().inject(this)
+
     }
 
     override fun androidInjector(): AndroidInjector<Any>? {

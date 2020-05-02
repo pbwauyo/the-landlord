@@ -1,4 +1,4 @@
-package com.peter.thelandlord.domain.objects
+package com.peter.thelandlord.objects
 
 object LandlordFields {
 

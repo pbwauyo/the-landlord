@@ -7,14 +7,14 @@ import com.peter.thelandlord.singleliveevent.SingleLiveEvent
 
 class RegisterUseCase constructor(private val authRepositoryInterface: AuthRepositoryInterface) {
 
-    operator fun invoke(landlord: Landlord,
-                        liveData: MutableLiveData<Landlord>,
-                        errorLiveData: MutableLiveData<String>,
-                        isRegisteringLiveData: MutableLiveData<Boolean>,
-                        isSignedInLiveData: SingleLiveEvent<Boolean>,
-                        successLiveData: MutableLiveData<String>
+    suspend operator fun invoke(landlord: Landlord,
+                                errorLiveData: MutableLiveData<String>,
+                                emailLiveData: MutableLiveData<String>,
+                                isRegisteringLiveData: MutableLiveData<Boolean>,
+                                isSignedInLiveData: SingleLiveEvent<Boolean>,
+                                successLiveData: MutableLiveData<String>
     ){
-        authRepositoryInterface.createUser(landlord, liveData, errorLiveData,
+        authRepositoryInterface.createUser(landlord, errorLiveData, emailLiveData,
             isRegisteringLiveData, isSignedInLiveData, successLiveData)
     }
 
