@@ -9,8 +9,8 @@ import io.reactivex.Observable
 @Dao
 interface PropertyDao {
 
-    @Query("SELECT * FROM properties WHERE owner = :ownerId")
-    fun getOwnedProperties(ownerId: String): DataSource.Factory<Int, Property>
+    @Query("SELECT * FROM properties WHERE owner = :ownerEmail")
+    fun getOwnedProperties(ownerEmail: String): DataSource.Factory<Int, Property>
 
     @Query("SELECT * FROM properties WHERE propertyID = :propertyId LIMIT 1")
     fun getPropertyById(propertyId: String): Observable<Property>

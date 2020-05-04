@@ -1,14 +1,16 @@
 package com.peter.thelandlord.data
 
 import android.util.Log
+import androidx.paging.DataSource
 import androidx.work.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.thelandlord.data.dao.PropertyDao
 import com.peter.thelandlord.domain.interfaces.PropertyManagementRepo
 import com.peter.thelandlord.domain.models.Property
-import com.peter.thelandlord.objects.Constants
-import com.peter.thelandlord.objects.FirestoreCollections
+import com.peter.thelandlord.utils.Constants
+import com.peter.thelandlord.utils.FirestoreCollections
+import com.peter.thelandlord.utils.Utils.getCurrentTimestamp
 import com.peter.thelandlord.work.UploadPropertyToFirebaseWorker
 import io.reactivex.Completable
 
@@ -28,6 +30,9 @@ class PropertyManagementRepoImpl (
 
         property.owner = firebaseAuth.currentUser?.email!!
         property.propertyID = propertyID
+        property.timestamp = getCurrentTimestamp().also {
+            Log.d(TAG, it)
+        }
 
         val inputData = workDataOf(Constants.KEY_PROPERTY_ID to propertyID)
         val constraints = Constraints.Builder()
@@ -44,39 +49,8 @@ class PropertyManagementRepoImpl (
         return propertyDao.saveProperty(property)
     }
 
-//    override fun saveProperty(
-//        property: Property,
-//        isSavingLiveData: MutableLiveData<Boolean>,
-//        errorLiveData: MutableLiveData<String>,
-//        successLiveData: MutableLiveData<String>
-//    ) {
-//        val propertyID = firestore.collection(FirestoreCollections.PROPERTIES).document().id
-//
-//        property.owner = firebaseAuth.currentUser?.email!!
-//        property.propertyID = propertyID
-//
-//        propertyDao.saveProperty(property)
-//                   .subscribe(
-//                       {
-//                           successLiveData.postValue("Property saved successfully")
-//                           isSavingLiveData.postValue(false)
-//                       },
-//                       {
-//                           errorLiveData.postValue(it.message)
-//                           isSavingLiveData.postValue(false)
-//                       }
-//                   ).dispose()
-//
-//        firestore.collection(FirestoreCollections.PROPERTIES)
-//            .document(propertyID).set(property)
-//            .addOnSuccessListener {
-//
-//            }
-//            .addOnFailureListener {
-//
-//            }
-//            .addOnCompleteListener {
-//
-//            }
-//    }
+    fun getAllPropertiesByEmail(email: String): DataSource.Factory<Int, Property>{
+        return propertyDao.getOwnedProperties(email)
+    }
+
 }

@@ -1,21 +1,34 @@
 package com.peter.thelandlord.presentation.addproperty
 
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import com.peter.thelandlord.boundarycallbacks.PropertyBoundaryCallback
 import com.peter.thelandlord.data.PropertyManagementRepoImpl
 import com.peter.thelandlord.domain.models.Property
-import com.peter.thelandlord.domain.usecases.propertyusecases.SavePropertyUseCase
 import io.reactivex.Completable
-import kotlinx.coroutines.launch
 
 class PropertyViewModel (private val propertyManagementRepoImpl: PropertyManagementRepoImpl ): ViewModel() {
 
-    companion object{
+    companion object {
         const val EMPTY_FIELD_ERROR = "field cannot be empty"
         const val TAG = "PropertyViewModel"
+        const val PAGE_SIZE = 15
     }
 
+    val emailLiveData = MutableLiveData<String>()
+
+    val config = PagedList.Config.Builder()
+                .setPageSize(PAGE_SIZE)
+                .build()
+
+    val propertyListLiveData: LiveData<PagedList<Property>> = Transformations.switchMap(emailLiveData){
+
+        val datasourceFactory = propertyManagementRepoImpl.getAllPropertiesByEmail(it)
+        LivePagedListBuilder(datasourceFactory, config)
+        .setBoundaryCallback(PropertyBoundaryCallback(it, propertyManagementRepoImpl.propertyDao, PAGE_SIZE))
+        .build()
+    }
     val propertyNameLiveData = MutableLiveData<String>()
     val propertyLocationLiveData = MutableLiveData<String>()
     val errorLiveData = MutableLiveData<String>()
@@ -77,6 +90,10 @@ class PropertyViewModel (private val propertyManagementRepoImpl: PropertyManagem
     fun clearFields(){
         propertyNameLiveData.postValue("")
         propertyLocationLiveData.postValue("")
+    }
+
+    fun setPropertyEmail(email: String){
+        emailLiveData.postValue(email)
     }
 
 }

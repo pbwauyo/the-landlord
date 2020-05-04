@@ -9,7 +9,7 @@ import com.peter.thelandlord.data.dao.PropertyDao
 import com.peter.thelandlord.domain.models.Landlord
 import com.peter.thelandlord.domain.models.Property
 
-@Database(entities = [Property::class, Landlord::class], version = 1)
+@Database(entities = [Property::class, Landlord::class], version = 2)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
     abstract fun landlordDao(): LandlordDao
@@ -26,6 +26,7 @@ abstract class AppDatabase: RoomDatabase() {
 
         private fun buildDatabase(context: Context): AppDatabase{
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
+                       .fallbackToDestructiveMigration()
                        .build()
         }
     }

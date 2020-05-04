@@ -6,6 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.propertylist.PropertyList">
 
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/sign_out_btn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/sign_out"-->
+<!--        android:layout_gravity="center"/>-->
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/property_list_swipe_view"
         android:layout_width="match_parent"
@@ -19,14 +26,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/property_list_row"/>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/sign_out_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_out"
-        android:layout_gravity="center"/>
+
 </FrameLayout>

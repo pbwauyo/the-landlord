@@ -11,9 +11,9 @@ import com.peter.thelandlord.data.dao.LandlordDao
 import com.peter.thelandlord.domain.interfaces.AuthRepositoryInterface
 import com.peter.thelandlord.domain.models.Landlord
 import com.peter.thelandlord.domain.models.Login
-import com.peter.thelandlord.objects.Constants
-import com.peter.thelandlord.objects.FirestoreCollections
-import com.peter.thelandlord.objects.LandlordFields
+import com.peter.thelandlord.utils.Constants
+import com.peter.thelandlord.utils.FirestoreCollections
+import com.peter.thelandlord.utils.LandlordFields
 import com.peter.thelandlord.singleliveevent.SingleLiveEvent
 import com.peter.thelandlord.work.UploadLandlordDetailsWorker
 import kotlinx.coroutines.CoroutineScope

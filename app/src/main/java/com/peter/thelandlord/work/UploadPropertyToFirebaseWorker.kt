@@ -7,8 +7,8 @@ import androidx.work.WorkerParameters
 import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.thelandlord.data.db.AppDatabase
 import com.peter.thelandlord.domain.models.Property
-import com.peter.thelandlord.objects.Constants
-import com.peter.thelandlord.objects.FirestoreCollections
+import com.peter.thelandlord.utils.Constants
+import com.peter.thelandlord.utils.FirestoreCollections
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.tasks.await
 

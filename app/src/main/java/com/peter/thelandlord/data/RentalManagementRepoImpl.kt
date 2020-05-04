@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.peter.thelandlord.domain.interfaces.RentalManagementRepo
 import com.peter.thelandlord.domain.models.Rental
-import com.peter.thelandlord.objects.FirestoreCollections
+import com.peter.thelandlord.utils.FirestoreCollections
 
 class RentalManagementRepoImpl (val firestore: FirebaseFirestore) : RentalManagementRepo {
 

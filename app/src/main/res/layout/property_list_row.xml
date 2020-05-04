@@ -1,17 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
-    <data>
-        <variable
-            name="Property"
-            type="com.peter.thelandlord.domain.models.Property" />
-    </data>
+
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="true">
 
 
+        <ImageView
+            android:id="@+id/property_image_view"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/rounded_corners"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/property_name_txt_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Property Name"
+            android:textSize="16sp"
+            android:layout_marginStart="@dimen/largeMarginStart"
+            android:layout_marginLeft="@dimen/largeMarginStart"
+            app:layout_constraintBottom_toTopOf="@+id/property_location_txt_view"
+            app:layout_constraintStart_toEndOf="@id/property_image_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/property_location_txt_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Property Location"
+            android:layout_marginStart="@dimen/largeMarginStart"
+            android:layout_marginLeft="@dimen/largeMarginStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/property_image_view"
+            app:layout_constraintTop_toBottomOf="@+id/property_name_txt_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+</com.google.android.material.card.MaterialCardView>

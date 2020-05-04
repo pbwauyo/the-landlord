@@ -1,4 +1,4 @@
-package com.peter.thelandlord.objects
+package com.peter.thelandlord.utils
 
 object FirestoreCollections {
     const val USERS = "users"

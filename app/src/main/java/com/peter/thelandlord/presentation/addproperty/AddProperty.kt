@@ -41,7 +41,7 @@ class AddProperty : Fragment() {
         super.onCreate(savedInstanceState)
 
         compositeDisposable = CompositeDisposable()
-        propertyViewModel = ViewModelProvider(this, vmFactory).get(PropertyViewModel::class.java)
+        propertyViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(PropertyViewModel::class.java) }!!
     }
 
     override fun onCreateView(
@@ -83,7 +83,7 @@ class AddProperty : Fragment() {
         })
 
         propertyViewModel.successLiveData.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(activity, it, Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, it, Toast.LENGTH_SHORT).show()
             propertyViewModel.clearFields()
         })
 

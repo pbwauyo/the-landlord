@@ -11,9 +11,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
 import com.peter.thelandlord.R
 import com.peter.thelandlord.databinding.FragmentPropertyListBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
+import com.peter.thelandlord.pagingadapters.PropertyAdapter
+import com.peter.thelandlord.presentation.addproperty.PropertyViewModel
 import com.peter.thelandlord.presentation.auth.AuthViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -22,10 +26,12 @@ class PropertyList : Fragment() {
     private var binding: FragmentPropertyListBinding? = null
     @Inject lateinit var vmFactory: ViewModelProviderFactory
     lateinit var authViewModel: AuthViewModel
+    lateinit var propertyViewModel: PropertyViewModel
     lateinit var navController: NavController
+    lateinit var propertyAdapter: PropertyAdapter
 
     private companion object{
-        val TAG = "PROPERTY_LIST"
+        const val TAG = "PROPERTY_LIST"
     }
 
     override fun onAttach(context: Context) {
@@ -36,8 +42,14 @@ class PropertyList : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val email = FirebaseAuth.getInstance().currentUser?.email!!
+
         authViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(AuthViewModel::class.java) }!!
+        propertyViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(PropertyViewModel::class.java) }!!
         authViewModel.checkedSignedInUser()
+        propertyAdapter = PropertyAdapter()
+        propertyViewModel.setPropertyEmail(email)
+
     }
 
     override fun onCreateView(
@@ -47,6 +59,7 @@ class PropertyList : Fragment() {
 
         binding = FragmentPropertyListBinding.inflate(inflater, container, false)
         navController = findNavController()
+        binding?.propertyListRv?.adapter = propertyAdapter
 
         authViewModel.isSignedInLiveData.observe(viewLifecycleOwner, Observer { //responsible for logging in and out
 
@@ -60,6 +73,11 @@ class PropertyList : Fragment() {
             Log.d(TAG, "$it")
         })
 
+        propertyViewModel.propertyListLiveData.observe(viewLifecycleOwner, Observer {
+            propertyAdapter.submitList(it)
+        })
+
+
         // Inflate the layout for this fragment
         return binding!!.root
     }
@@ -68,9 +86,9 @@ class PropertyList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        binding?.signOutBtn?.setOnClickListener {
-            authViewModel.signOutUser()
-        }
+//        binding?.signOutBtn?.setOnClickListener {
+//            authViewModel.signOutUser()
+//        }
     }
 
     override fun onDestroyView() {
