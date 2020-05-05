@@ -25,7 +25,8 @@ class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         if (property == null){
 
             Glide.with(propertyImageView.context)
-                .load(R.drawable.apartment_placeholder)
+                .load(R.drawable.default_apartment)
+                .centerCrop()
                 .into(propertyImageView)
 
             propertyNameTxt.text = LOADING
@@ -44,12 +45,12 @@ class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
                 Glide.with(propertyImageView.context)
                      .load(property.imageUrl)
-                     .placeholder(R.drawable.apartment_placeholder)
+                     .placeholder(R.drawable.default_apartment)
                      .centerCrop()
                      .into(propertyImageView)
             }else{
                 Glide.with(propertyImageView.context)
-                    .load(R.drawable.apartment_placeholder)
+                    .load(R.drawable.default_apartment)
                     .centerCrop()
                     .into(propertyImageView)
             }

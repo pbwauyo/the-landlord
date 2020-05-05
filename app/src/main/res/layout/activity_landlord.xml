@@ -9,15 +9,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <fragment
             android:id="@+id/nav_host"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:name="androidx.navigation.fragment.NavHostFragment"
             app:defaultNavHost="true"
             app:navGraph="@navigation/navigation_graph"
-            tools:ignore="FragmentTagUsage" />
-
+            tools:ignore="FragmentTagUsage"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/nav_bar"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/nav_bar"
