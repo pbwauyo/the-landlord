@@ -7,14 +7,14 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?selectableItemBackground"
+    android:clipToPadding="true"
+    app:cardUseCompatPadding="false"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="true">
-
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/property_image_view"
@@ -30,9 +30,10 @@
             android:layout_height="wrap_content"
             android:text="Property Name"
             android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_marginStart="@dimen/largeMarginStart"
             android:layout_marginLeft="@dimen/largeMarginStart"
-            app:layout_constraintBottom_toTopOf="@+id/property_location_txt_view"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toEndOf="@id/property_image_view"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -43,7 +44,7 @@
             android:text="Property Location"
             android:layout_marginStart="@dimen/largeMarginStart"
             android:layout_marginLeft="@dimen/largeMarginStart"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
             app:layout_constraintStart_toEndOf="@id/property_image_view"
             app:layout_constraintTop_toBottomOf="@+id/property_name_txt_view" />
 

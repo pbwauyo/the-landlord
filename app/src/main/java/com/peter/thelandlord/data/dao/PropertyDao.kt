@@ -1,5 +1,6 @@
 package com.peter.thelandlord.data.dao
 
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.*
 import com.peter.thelandlord.domain.models.Property
@@ -13,7 +14,7 @@ interface PropertyDao {
     fun getOwnedProperties(ownerEmail: String): DataSource.Factory<Int, Property>
 
     @Query("SELECT * FROM properties WHERE propertyID = :propertyId LIMIT 1")
-    fun getPropertyById(propertyId: String): Observable<Property>
+    fun getPropertyById(propertyId: String): LiveData<Property>
 
     @Query("SELECT * FROM properties WHERE propertyID = :propertyId LIMIT 1")
     fun findProperty(propertyId: String): Property

@@ -4,11 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.textview.MaterialTextView
 import com.peter.thelandlord.R
 import com.peter.thelandlord.domain.models.Property
+import com.peter.thelandlord.presentation.propertylist.PropertyListDirections
 
 
 class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
@@ -26,6 +29,8 @@ class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
             Glide.with(propertyImageView.context)
                 .load(R.drawable.default_apartment)
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .centerCrop()
                 .into(propertyImageView)
 
@@ -34,6 +39,12 @@ class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             propertyLocationTxt.text = LOADING
         }else{
             showProperty(property)
+            itemView.setOnClickListener {
+                val navController = itemView.findNavController()
+                val propertyID = property.propertyID
+                val action = PropertyListDirections.actionPropertyListToPropertyDetails(propertyID)
+                navController.navigate(action)
+            }
         }
 
     }
@@ -47,10 +58,14 @@ class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
                      .load(property.imageUrl)
                      .placeholder(R.drawable.default_apartment)
                      .centerCrop()
+                     .skipMemoryCache(true)
+                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                      .into(propertyImageView)
             }else{
                 Glide.with(propertyImageView.context)
                     .load(R.drawable.default_apartment)
+                    .skipMemoryCache(true)
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .centerCrop()
                     .into(propertyImageView)
             }

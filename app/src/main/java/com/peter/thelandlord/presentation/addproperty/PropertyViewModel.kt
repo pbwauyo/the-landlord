@@ -29,6 +29,12 @@ class PropertyViewModel (private val propertyManagementRepoImpl: PropertyManagem
         .setBoundaryCallback(PropertyBoundaryCallback(it, propertyManagementRepoImpl.propertyDao, PAGE_SIZE))
         .build()
     }
+
+    val propertyIDLLiveData = MutableLiveData<String>()
+    val propertyLiveData = Transformations.switchMap(propertyIDLLiveData){
+        propertyManagementRepoImpl.getPropertyByID(propertyIDLLiveData.value!!)
+    }
+
     val propertyNameLiveData = MutableLiveData<String>()
     val propertyLocationLiveData = MutableLiveData<String>()
     val errorLiveData = MutableLiveData<String>()
@@ -94,6 +100,10 @@ class PropertyViewModel (private val propertyManagementRepoImpl: PropertyManagem
 
     fun setPropertyEmail(email: String){
         emailLiveData.postValue(email)
+    }
+
+    fun setPropertyID(propertyID: String){
+        propertyIDLLiveData.postValue(propertyID)
     }
 
 }

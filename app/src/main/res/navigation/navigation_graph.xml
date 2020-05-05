@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_propertyDetails_to_addRental"
             app:destination="@id/addRental" />
+        <argument
+            android:name="propertyID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addRental"

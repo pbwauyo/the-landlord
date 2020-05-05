@@ -1,6 +1,7 @@
 package com.peter.thelandlord.data
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.work.*
 import com.google.firebase.auth.FirebaseAuth
@@ -52,5 +53,7 @@ class PropertyManagementRepoImpl (
     fun getAllPropertiesByEmail(email: String): DataSource.Factory<Int, Property>{
         return propertyDao.getOwnedProperties(email)
     }
+
+    fun getPropertyByID(propertyID: String):LiveData<Property> = propertyDao.getPropertyById(propertyID)
 
 }
