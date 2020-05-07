@@ -6,13 +6,13 @@ import com.peter.thelandlord.domain.models.Rental
 
 class SaveRentalUseCase(private val rentalManagementRepo: RentalManagementRepo) {
 
-    operator fun invoke(
-        rental: Rental,
-        isSavingLiveData: MutableLiveData<Boolean>,
-        errorLiveData: MutableLiveData<String>,
-        successLiveData: MutableLiveData<String>
-    ){
-      rentalManagementRepo.saveRental(rental, isSavingLiveData, errorLiveData, successLiveData)
-    }
+//    operator fun invoke(
+//        rental: Rental,
+//        isSavingLiveData: MutableLiveData<Boolean>,
+//        errorLiveData: MutableLiveData<String>,
+//        successLiveData: MutableLiveData<String>
+//    ){
+//      rentalManagementRepo.saveRental(rental, isSavingLiveData, errorLiveData, successLiveData)
+//    }
 
 }

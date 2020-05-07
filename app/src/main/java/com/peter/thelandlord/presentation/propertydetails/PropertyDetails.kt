@@ -82,7 +82,8 @@ class PropertyDetails : Fragment() {
         })
 
         binding?.addRentalCardView?.setOnClickListener{
-            navController.navigate(R.id.action_propertyDetails_to_addRental)
+            val action = PropertyDetailsDirections.actionPropertyDetailsToAddRental(propertyID)
+            navController.navigate(action)
         }
 
         binding?.balancesListCardView?.setOnClickListener {

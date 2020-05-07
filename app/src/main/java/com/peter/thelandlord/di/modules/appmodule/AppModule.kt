@@ -10,6 +10,7 @@ import com.peter.thelandlord.data.PropertyManagementRepoImpl
 import com.peter.thelandlord.data.RentalManagementRepoImpl
 import com.peter.thelandlord.data.dao.LandlordDao
 import com.peter.thelandlord.data.dao.PropertyDao
+import com.peter.thelandlord.data.dao.RentalDao
 import com.peter.thelandlord.data.db.AppDatabase
 import com.peter.thelandlord.di.viewmodelkey.ViewModelKey
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
@@ -45,6 +46,10 @@ object AppModule {
 
     @Singleton
     @Provides
+    fun providesRentalsDao(appDatabase: AppDatabase): RentalDao = appDatabase.rentalDao()
+
+    @Singleton
+    @Provides
     fun providesWorkManager(application: Application): WorkManager{
         return WorkManager.getInstance(application.applicationContext)
     }
@@ -76,8 +81,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesRentalManagementRepoImpl(firestore: FirebaseFirestore): RentalManagementRepoImpl{
-        return RentalManagementRepoImpl(firestore)
+    fun providesRentalManagementRepoImpl(firestore: FirebaseFirestore, rentalDao: RentalDao, workManager: WorkManager): RentalManagementRepoImpl{
+        return RentalManagementRepoImpl(firestore, rentalDao, workManager)
     }
 
     @ViewModelKey(RentalViewModel::class)

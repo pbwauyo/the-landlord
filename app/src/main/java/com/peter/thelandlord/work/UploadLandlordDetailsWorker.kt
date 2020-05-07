@@ -21,16 +21,12 @@ class UploadLandlordDetailsWorker(context: Context, workerParams: WorkerParamete
 
     override suspend fun doWork(): Result = coroutineScope {
 
-        val landlordDao = AppDatabase.getInstance(applicationContext).landlordDao()
-        val firestore = Firebase.firestore
-        val emailKey = inputData.getString(Constants.KEY_LANDLORD_EMAIL)
-        val landlord = landlordDao.findLandlord(emailKey!!)
-
-        Log.d(TAG, "$emailKey")
-        Log.d(TAG, "$landlord")
-
-
         try {
+            val landlordDao = AppDatabase.getInstance(applicationContext).landlordDao()
+            val firestore = Firebase.firestore
+            val emailKey = inputData.getString(Constants.KEY_LANDLORD_EMAIL)
+            val landlord = landlordDao.findLandlord(emailKey!!)
+
             firestore.collection(FirestoreCollections.USERS).add(landlord).await()
             Result.success()
         }catch (e: Exception){

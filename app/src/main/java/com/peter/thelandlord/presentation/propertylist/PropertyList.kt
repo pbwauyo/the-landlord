@@ -20,11 +20,13 @@ import com.peter.thelandlord.pagingadapters.PropertyAdapter
 import com.peter.thelandlord.presentation.addproperty.PropertyViewModel
 import com.peter.thelandlord.presentation.auth.AuthViewModel
 import dagger.android.support.AndroidSupportInjection
+import java.util.EnumSet.range
 import javax.inject.Inject
 
 class PropertyList : Fragment() {
     private var binding: FragmentPropertyListBinding? = null
     @Inject lateinit var vmFactory: ViewModelProviderFactory
+    @Inject lateinit var firebaseAuth: FirebaseAuth
     lateinit var authViewModel: AuthViewModel
     lateinit var propertyViewModel: PropertyViewModel
     lateinit var navController: NavController
@@ -42,13 +44,12 @@ class PropertyList : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val email = FirebaseAuth.getInstance().currentUser?.email!!
-
         authViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(AuthViewModel::class.java) }!!
         propertyViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(PropertyViewModel::class.java) }!!
+
         authViewModel.checkedSignedInUser()
+
         propertyAdapter = PropertyAdapter()
-        propertyViewModel.setPropertyEmail(email)
 
     }
 
@@ -59,11 +60,14 @@ class PropertyList : Fragment() {
 
         binding = FragmentPropertyListBinding.inflate(inflater, container, false)
         navController = findNavController()
+
         binding?.propertyListRv?.adapter = propertyAdapter
 
         authViewModel.isSignedInLiveData.observe(viewLifecycleOwner, Observer { //responsible for logging in and out
 
-            if(!it){
+            if(it){
+               setSignedInEmail()
+            }else{
                 navController.navigate(R.id.action_propertyList_to_loginFragment)
             }
 
@@ -95,5 +99,11 @@ class PropertyList : Fragment() {
         super.onDestroyView()
         binding = null
     }
+
+    private fun setSignedInEmail(){
+        val email = FirebaseAuth.getInstance().currentUser?.email!!
+        propertyViewModel.setPropertyEmail(email)
+    }
+
 }
 

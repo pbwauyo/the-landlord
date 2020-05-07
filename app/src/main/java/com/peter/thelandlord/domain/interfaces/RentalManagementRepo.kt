@@ -1,12 +1,10 @@
 package com.peter.thelandlord.domain.interfaces
 
-import androidx.lifecycle.MutableLiveData
 import com.peter.thelandlord.domain.models.Rental
+import io.reactivex.Completable
 
 interface RentalManagementRepo {
 
-    fun saveRental(rental: Rental, isSavingLiveData: MutableLiveData<Boolean>,
-                     errorLiveData: MutableLiveData<String>, successLiveData: MutableLiveData<String>
-    )
+    fun saveRental(rental: Rental): Completable
 
 }

@@ -4,15 +4,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.peter.thelandlord.data.RentalManagementRepoImpl
 import com.peter.thelandlord.domain.models.Rental
-import com.peter.thelandlord.domain.usecases.rentalusecases.SaveRentalUseCase
+import io.reactivex.Completable
 
-class RentalViewModel( rentalManagementRepoImpl: RentalManagementRepoImpl): ViewModel() {
+class RentalViewModel( val rentalManagementRepoImpl: RentalManagementRepoImpl): ViewModel() {
 
-    private companion object{
+    private companion object {
         const val EMPTY_FIELD_ERROR = "field cannot be empty"
     }
 
-    val rentalIDLiveData = MutableLiveData<String>()
+    val rentalNumberLiveData = MutableLiveData<String>()
     val monthlyAmountLiveData = MutableLiveData<String>()
     val tenantNameLiveData = MutableLiveData<String>()
     val tenantContactLiveData = MutableLiveData<String>()
@@ -22,17 +22,15 @@ class RentalViewModel( rentalManagementRepoImpl: RentalManagementRepoImpl): View
     val successLiveData = MutableLiveData<String>()
     val isSavingLiveData = MutableLiveData<Boolean>()
 
-    val rentalIDErrorLiveData = MutableLiveData<String>()
+    val rentalNumberErrorLiveData = MutableLiveData<String>()
     val monthlyAmountErrorLiveData = MutableLiveData<String>()
     val tenantNameErrorLiveData = MutableLiveData<String>()
     val tenantContactErrorLiveData = MutableLiveData<String>()
     val tenancyStartDateErrorLiveData = MutableLiveData<String>()
 
-    val saveRental = SaveRentalUseCase(rentalManagementRepoImpl)
+    private fun allFieldsAreValid(): Boolean{
 
-    fun saveRentalDetails(propertyID: String){
-
-        val rentalID = rentalIDLiveData.value?.trim()
+        val rentalID = rentalNumberLiveData.value?.trim()
         val monthlyAmount = monthlyAmountLiveData.value?.trim()
         val tenantName = tenantNameLiveData.value?.trim()
         val tenantContact = tenantContactLiveData.value?.trim()
@@ -45,7 +43,7 @@ class RentalViewModel( rentalManagementRepoImpl: RentalManagementRepoImpl): View
         var isTenancyStartDateEmpty = true
 
         if (rentalID.isNullOrEmpty()){
-            rentalIDErrorLiveData.postValue(EMPTY_FIELD_ERROR)
+            rentalNumberErrorLiveData.postValue(EMPTY_FIELD_ERROR)
         }
         else{
             isRentalIDEmpty = false
@@ -79,19 +77,51 @@ class RentalViewModel( rentalManagementRepoImpl: RentalManagementRepoImpl): View
             isTenancyStartDateEmpty = false
         }
 
-        if (!(isRentalIDEmpty || isMonthlyAmountEmpty || isTenantNameEmpty || isTenantContactEmpty || isTenancyStartDateEmpty)){
-            isSavingLiveData.postValue(true)
+        return !(isRentalIDEmpty || isMonthlyAmountEmpty || isTenantNameEmpty || isTenantContactEmpty || isTenancyStartDateEmpty)
+    }
 
-            val rental = Rental(rentalID!!, monthlyAmount!!, tenantName!!, tenantContact!!, tenancyStartDate!!, propertyID)
-            saveRental(rental, isSavingLiveData, errorLiveData, successLiveData)
+
+    fun saveRental(propertyID: String): Completable{
+        val rentalID = rentalNumberLiveData.value?.trim()
+        val monthlyAmount = monthlyAmountLiveData.value?.trim()
+        val tenantName = tenantNameLiveData.value?.trim()
+        val tenantContact = tenantContactLiveData.value?.trim()
+        val tenancyStartDate = tenancyStartDateLiveData.value?.trim()
+
+        return if (allFieldsAreValid()){
+            setSavingStatus(true)
+
+            val rental = Rental(rentalNumber = rentalID!!,
+                monthlyAmount = monthlyAmount!!,
+                tenantName = tenantName!!,
+                tenantContact = tenantContact!!,
+                tenancyStartDate = tenancyStartDate!!,
+                propertyID = propertyID)
+
+            rentalManagementRepoImpl.saveRental(rental)
+        }else{
+            Completable.error(Throwable("Please fill in all fields correctly"))
         }
+
     }
 
     fun clearFields(){
-        rentalIDLiveData.postValue("")
+        rentalNumberLiveData.postValue("")
         monthlyAmountLiveData.postValue("")
         tenantNameLiveData.postValue("")
         tenantContactLiveData.postValue("")
         tenancyStartDateLiveData.postValue("")
+    }
+
+    fun setSavingStatus(value: Boolean){
+        isSavingLiveData.postValue(value)
+    }
+
+    fun setErrorValue(value: String){
+        errorLiveData.postValue(value)
+    }
+
+    fun setSuccessValue(value: String){
+        successLiveData.postValue(value)
     }
 }

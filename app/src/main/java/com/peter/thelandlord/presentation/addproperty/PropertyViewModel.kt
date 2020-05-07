@@ -37,6 +37,7 @@ class PropertyViewModel (private val propertyManagementRepoImpl: PropertyManagem
 
     val propertyNameLiveData = MutableLiveData<String>()
     val propertyLocationLiveData = MutableLiveData<String>()
+
     val errorLiveData = MutableLiveData<String>()
     val successLiveData = MutableLiveData<String>()
 
@@ -82,7 +83,7 @@ class PropertyViewModel (private val propertyManagementRepoImpl: PropertyManagem
 
         return if(!(isPropertyNameEmpty || isPropertyLocationEmpty)) {
             isSavingLiveData.postValue(true)
-            val property = Property(propertyName!!, propertyLocation!!)
+            val property = Property(name = propertyName!!, location = propertyLocation!!)
             //saveProperty (property, isSavingLiveData, errorLiveData, successLiveData)
 
             propertyManagementRepoImpl.saveProperty(property)

@@ -36,13 +36,13 @@
                       android:layout_height="wrap_content">
 
                       <com.google.android.material.textview.MaterialTextView
-                          android:id="@+id/rental_id"
+                          android:id="@+id/rental_number"
                           app:layout_constraintTop_toTopOf="parent"
                           android:layout_width="0dp"
                           android:layout_height="wrap_content"
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintEnd_toEndOf="parent"
-                          android:text="@string/rental__id"
+                          android:text="@string/rental_number"
                           android:paddingHorizontal="@dimen/extraLargePaddingStart"
                           android:paddingTop="@dimen/mediumPaddingTop"/>
 
@@ -52,15 +52,14 @@
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@+id/rental_id"
-                          android:hint="@string/enter_rental_id">
+                          app:layout_constraintTop_toBottomOf="@+id/rental_number">
 
                           <com.google.android.material.textfield.TextInputEditText
                               android:id="@+id/rental_id_edit_txt"
                               android:layout_width="match_parent"
                               android:layout_height="wrap_content"
                               android:textColor="?attr/mainTextInputColor"
-                              android:text="@={RentalViewModel.rentalIDLiveData}"/>
+                              android:text="@={RentalViewModel.rentalNumberLiveData}"/>
                       </com.google.android.material.textfield.TextInputLayout>
                   </androidx.constraintlayout.widget.ConstraintLayout>
               </androidx.cardview.widget.CardView>
@@ -93,8 +92,7 @@
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintEnd_toEndOf="parent"
                           android:layout_marginTop="10dp"
-                          app:layout_constraintTop_toBottomOf="@+id/rental_amount_txt"
-                          android:hint="@string/enter_monthly_amount">
+                          app:layout_constraintTop_toBottomOf="@+id/rental_amount_txt">
 
                           <com.google.android.material.textfield.TextInputEditText
                               android:id="@+id/rental_amount_edit_txt"
@@ -135,8 +133,7 @@
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintEnd_toEndOf="parent"
                           android:layout_marginTop="10dp"
-                          app:layout_constraintTop_toBottomOf="@+id/tenant_name_txt"
-                          android:hint="@string/enter_tenant_name">
+                          app:layout_constraintTop_toBottomOf="@+id/tenant_name_txt">
 
                           <com.google.android.material.textfield.TextInputEditText
                               android:id="@+id/tenant_name_edit_txt"
@@ -177,8 +174,7 @@
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@+id/tenant_contact_txt"
-                          android:hint="@string/enter_tenant_contact">
+                          app:layout_constraintTop_toBottomOf="@+id/tenant_contact_txt">
 
                           <com.google.android.material.textfield.TextInputEditText
                               android:id="@+id/tenant_contact_edit_txt"
@@ -219,8 +215,7 @@
                           android:layout_marginTop="10dp"
                           app:layout_constraintStart_toStartOf="parent"
                           app:layout_constraintEnd_toEndOf="parent"
-                          app:layout_constraintTop_toBottomOf="@+id/tenancy_start_date_txt"
-                          android:hint="@string/enter_tenant_start_date">
+                          app:layout_constraintTop_toBottomOf="@+id/tenancy_start_date_txt">
 
                           <com.google.android.material.textfield.TextInputEditText
                               android:id="@+id/tenancy_start_date_edit_txt"
@@ -247,7 +242,7 @@
                   android:id="@+id/save_rental_progress_bar"
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
-                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
                   android:visibility="gone"
                   app:layout_constraintTop_toBottomOf="@+id/tenancy_start_date_card_view"/>
 

@@ -11,7 +11,7 @@
     <string name="property_name">Property name</string>
     <string name="location">Location</string>
     <string name="add">ADD</string>
-    <string name="rental__id">Rental or Apartment ID</string>
+    <string name="rental_number">Rental or Apartment Number</string>
     <string name="monthly_amount">Monthly amount</string>
     <string name="tenant_name">Tenant name</string>
     <string name="tenant_contact">Tenant contact</string>

@@ -22,13 +22,14 @@ class UploadPropertyToFirebaseWorker(
     }
 
     override suspend fun doWork(): Result = coroutineScope {
-        val firestore = FirebaseFirestore.getInstance()
-        val propertyID = inputData.getString(Constants.KEY_PROPERTY_ID)
-        val appDatabase = AppDatabase.getInstance(applicationContext)
-
-        val property: Property = appDatabase.propertyDao().findProperty(propertyID!!)
 
         try {
+            val firestore = FirebaseFirestore.getInstance()
+            val propertyID = inputData.getString(Constants.KEY_PROPERTY_ID)
+            val appDatabase = AppDatabase.getInstance(applicationContext)
+
+            val property: Property = appDatabase.propertyDao().findProperty(propertyID!!)
+
             firestore.collection(FirestoreCollections.PROPERTIES)
                 .document(propertyID)
                 .set(property).await()

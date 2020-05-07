@@ -60,7 +60,11 @@
         android:id="@+id/addRental"
         android:name="com.peter.thelandlord.presentation.addrental.AddRental"
         android:label="fragment_add_rental"
-        tools:layout="@layout/fragment_add_rental" />
+        tools:layout="@layout/fragment_add_rental" >
+        <argument
+            android:name="propertyId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/rentalsList"
         android:name="com.peter.thelandlord.presentation.rentalslist.RentalsList"

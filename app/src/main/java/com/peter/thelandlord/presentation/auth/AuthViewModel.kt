@@ -190,6 +190,10 @@ class AuthViewModel constructor(val authRepository: AuthRepository) : ViewModel(
         passwordLiveData.postValue("")
     }
 
+    fun setCurrentUserEmail(value: String){
+        currentUserEmailLiveData.postValue(value)
+    }
+
     override fun toString(): String {
         return "AuthViewModel Created"
     }

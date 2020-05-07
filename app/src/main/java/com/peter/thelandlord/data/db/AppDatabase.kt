@@ -6,16 +6,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.peter.thelandlord.data.dao.LandlordDao
 import com.peter.thelandlord.data.dao.PropertyDao
+import com.peter.thelandlord.data.dao.RentalDao
 import com.peter.thelandlord.domain.models.Landlord
 import com.peter.thelandlord.domain.models.Property
+import com.peter.thelandlord.domain.models.Rental
 
-@Database(entities = [Property::class, Landlord::class], version = 2)
+@Database(entities = [Property::class, Landlord::class, Rental::class], version = 4)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
     abstract fun landlordDao(): LandlordDao
+    abstract fun rentalDao(): RentalDao
 
     companion object {
-        private const val DATABASE_NAME = "app-database"
+        private const val DATABASE_NAME = "app-database.db"
         @Volatile private var instance: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase{
