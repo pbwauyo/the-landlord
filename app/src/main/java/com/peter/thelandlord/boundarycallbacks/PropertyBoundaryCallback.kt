@@ -20,6 +20,7 @@ class PropertyBoundaryCallback(
     val propertyDao: PropertyDao,
     val limit: Int
 ) : PagedList.BoundaryCallback<Property>() {
+
     private val ioExecutor = Executors.newSingleThreadExecutor()
     private val firestore = Firebase.firestore
     private val helper = PagingRequestHelper(ioExecutor)
@@ -57,9 +58,9 @@ class PropertyBoundaryCallback(
         ioExecutor.execute(f)
     }
 
-    private fun loadAndCacheProperties(item: Property = Property()){
+    private fun loadAndCacheProperties(item: Property? = null){
 
-        if (item.timestamp.isEmpty()){
+        if (item == null){
             firestore.collection(FirestoreCollections.PROPERTIES)
                 .whereEqualTo(PropertyFields.OWNER, userEmail)
                 .orderBy(PropertyFields.TIMESTAMP, Query.Direction.ASCENDING)

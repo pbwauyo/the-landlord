@@ -95,7 +95,9 @@ class PropertyDetails : Fragment() {
         }
 
         binding?.rentalListCardView?.setOnClickListener {
-            navController.navigate(R.id.action_propertyDetails_to_rentalsList)
+
+            val action = PropertyDetailsDirections.actionPropertyDetailsToRentalsList(propertyID)
+            navController.navigate(action)
         }
 
     }

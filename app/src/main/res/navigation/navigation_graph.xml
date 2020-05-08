@@ -73,6 +73,9 @@
         <action
             android:id="@+id/action_rentalsList_to_rentalDetails"
             app:destination="@id/rentalDetails" />
+        <argument
+            android:name="propertyId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/rentalDetails"

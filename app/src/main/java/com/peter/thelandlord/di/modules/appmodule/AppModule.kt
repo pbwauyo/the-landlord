@@ -81,8 +81,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun providesRentalManagementRepoImpl(firestore: FirebaseFirestore, rentalDao: RentalDao, workManager: WorkManager): RentalManagementRepoImpl{
-        return RentalManagementRepoImpl(firestore, rentalDao, workManager)
+    fun providesRentalManagementRepoImpl(firestore: FirebaseFirestore, appDatabase: AppDatabase, workManager: WorkManager): RentalManagementRepoImpl{
+        return RentalManagementRepoImpl(firestore, appDatabase, workManager)
     }
 
     @ViewModelKey(RentalViewModel::class)

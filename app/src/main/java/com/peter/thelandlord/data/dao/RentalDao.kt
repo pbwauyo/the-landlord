@@ -13,6 +13,18 @@ interface RentalDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveRental(rental: Rental): Completable
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun saveRentals(rentals: List<Rental>): Completable
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRental(rental: Rental)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertRentals(rentals: List<Rental>)
+
+    @Query("DELETE FROM rentals WHERE propertyID = :propertyId")
+    fun deleteRentalByPropertyId(propertyId: String)
+
     @Delete
     fun deleteRental(rental: Rental): Completable
 

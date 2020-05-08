@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/extraLargePaddingEnd">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/tenant_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/rental_number_txt_vw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/extraLargeMarginStart"
+            android:layout_marginLeft="@dimen/extraLargeMarginStart"
+            android:text="NUMBER 001"
+            app:layout_constraintBottom_toTopOf="@+id/tenant_name_txt_vw"
+            app:layout_constraintStart_toEndOf="@id/tenant_image"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tenant_name_txt_vw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/extraLargeMarginStart"
+            android:layout_marginLeft="@dimen/extraLargeMarginStart"
+            android:text="Mama Hajara"
+            app:layout_constraintBottom_toTopOf="@+id/tenant_contact_txt_vw"
+            app:layout_constraintStart_toEndOf="@id/tenant_image"
+            app:layout_constraintTop_toBottomOf="@+id/rental_number_txt_vw" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tenant_contact_txt_vw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/extraLargeMarginStart"
+            android:layout_marginLeft="@dimen/extraLargeMarginStart"
+            android:text="0700908030"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tenant_image"
+            app:layout_constraintTop_toBottomOf="@+id/tenant_name_txt_vw" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/monthly_amount_txt_vw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UGX 20000"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -14,4 +14,22 @@ data class Rental (
     @ColumnInfo(name = "tenancy_start_date") var tenancyStartDate: String = "",
     var propertyID: String = "",
     var timestamp: String = ""
-)
+){
+
+    override fun equals(other: Any?): Boolean {
+        return other is Rental &&
+                this.id == other.id &&
+                this.rentalNumber == other.rentalNumber &&
+                this.monthlyAmount == other.monthlyAmount &&
+                this.tenantName == other.tenantName &&
+                this.tenantContact == other.tenantContact &&
+                this.tenancyStartDate == other.tenancyStartDate &&
+                this.propertyID == other.propertyID &&
+                this.timestamp == other.timestamp
+    }
+
+    override fun hashCode(): Int {
+        return timestamp.hashCode()
+    }
+
+}

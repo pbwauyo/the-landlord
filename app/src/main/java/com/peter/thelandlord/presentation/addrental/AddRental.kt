@@ -22,9 +22,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass.
- */
 class AddRental : Fragment() {
 
     companion object {

@@ -49,8 +49,6 @@ class PropertyList : Fragment() {
 
         authViewModel.checkedSignedInUser()
 
-        propertyAdapter = PropertyAdapter()
-
     }
 
     override fun onCreateView(
@@ -59,6 +57,9 @@ class PropertyList : Fragment() {
     ): View? {
 
         binding = FragmentPropertyListBinding.inflate(inflater, container, false)
+
+        propertyAdapter = PropertyAdapter(binding!!.propertyListProgressBar)
+
         navController = findNavController()
 
         binding?.propertyListRv?.adapter = propertyAdapter

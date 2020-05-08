@@ -2,16 +2,37 @@ package com.peter.thelandlord.presentation.addrental
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import androidx.lifecycle.switchMap
 import com.peter.thelandlord.data.RentalManagementRepoImpl
 import com.peter.thelandlord.domain.models.Rental
 import io.reactivex.Completable
 
-class RentalViewModel( val rentalManagementRepoImpl: RentalManagementRepoImpl): ViewModel() {
+class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): ViewModel() {
 
     private companion object {
         const val EMPTY_FIELD_ERROR = "field cannot be empty"
     }
 
+    val propertyIDLiveData = MutableLiveData<String>()
+    private val repoResult = propertyIDLiveData.map {
+        rentalManagementRepoImpl.rentalsFromProperty(it)
+    }
+
+    val networkState = repoResult.switchMap {
+        it.networkState
+    }
+
+    val refreshState = repoResult.switchMap {
+        it.refreshState
+    }
+
+    val rentalsPagedList = repoResult.switchMap {
+        it.livePagedList
+    }
+
+
+    //input fields
     val rentalNumberLiveData = MutableLiveData<String>()
     val monthlyAmountLiveData = MutableLiveData<String>()
     val tenantNameLiveData = MutableLiveData<String>()
@@ -22,6 +43,7 @@ class RentalViewModel( val rentalManagementRepoImpl: RentalManagementRepoImpl): 
     val successLiveData = MutableLiveData<String>()
     val isSavingLiveData = MutableLiveData<Boolean>()
 
+    //error fields
     val rentalNumberErrorLiveData = MutableLiveData<String>()
     val monthlyAmountErrorLiveData = MutableLiveData<String>()
     val tenantNameErrorLiveData = MutableLiveData<String>()
@@ -113,6 +135,10 @@ class RentalViewModel( val rentalManagementRepoImpl: RentalManagementRepoImpl): 
         tenancyStartDateLiveData.postValue("")
     }
 
+    fun setPropertyId(propertyID: String){
+        propertyIDLiveData.value = propertyID
+    }
+
     fun setSavingStatus(value: Boolean){
         isSavingLiveData.postValue(value)
     }
@@ -123,5 +149,13 @@ class RentalViewModel( val rentalManagementRepoImpl: RentalManagementRepoImpl): 
 
     fun setSuccessValue(value: String){
         successLiveData.postValue(value)
+    }
+
+    fun refresh(){
+        repoResult.value?.refresh?.invoke()
+    }
+
+    fun retry(){
+        repoResult.value?.retry?.invoke()
     }
 }

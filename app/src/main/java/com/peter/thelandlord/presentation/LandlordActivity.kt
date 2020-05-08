@@ -97,7 +97,7 @@ class LandlordActivity : AppCompatActivity(), HasAndroidInjector {
 
     override fun onDestroy() {
         super.onDestroy()
-        appDatabase.close()
+        //appDatabase.close()
     }
 }
 
