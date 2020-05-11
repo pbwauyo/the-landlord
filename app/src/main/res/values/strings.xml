@@ -41,5 +41,14 @@
     <string name="rentals">RENTALS</string>
     <string name="money_balances">MONEY BALANCES</string>
     <string name="defaulters">DEFAULTERS</string>
+    <string name="tenant_name">Tenant name</string>
+    <string name="tenant_contact">Tenant contact</string>
+    <string name="monthly_amount">Monthly amount</string>
+    <string name="outstanding">Outstanding:</string>
+    <string name="last_payment">Last payment:</string>
+    <string name="add_payment">ADD PAYMENT</string>
+    <string name="edit_tenant_details">EDIT TENANT DETAILS</string>
+    <string name="remove_tenant_details">REMOVE TENANT DETAILS</string>
+    <string name="ad_box">AD BOX</string>
 
 </resources>

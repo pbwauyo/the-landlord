@@ -14,7 +14,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 
-import com.peter.thelandlord.R
 import com.peter.thelandlord.data.networkstate.NetworkState
 import com.peter.thelandlord.databinding.FragmentRentalsListBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
