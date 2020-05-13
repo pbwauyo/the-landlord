@@ -5,18 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.datepicker.MaterialDatePicker
 
 import com.peter.thelandlord.R
 
-/**
- * A simple [Fragment] subclass.
- */
 class RentalDetails : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_rental_details, container, false)
     }

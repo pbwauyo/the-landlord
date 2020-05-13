@@ -2,79 +2,162 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".presentation.addpayment.AddPayment">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="?attr/largePaddingStart">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/amount_paid_layout"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/amount_paid"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:padding="?attr/largePaddingStart">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/amount_paid_edit_txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+          <com.google.android.material.card.MaterialCardView
+              android:id="@+id/date_of_payment_card_vw"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/date_of_payment_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/date_of_payment"
-            app:layout_constraintEnd_toStartOf="@+id/calender_icon"
-            app:layout_constraintHorizontal_bias="0.8"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amount_paid_layout">
+              <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="@dimen/extraLargePaddingEnd">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/date_of_payment_txt_view"
+                  <com.google.android.material.textview.MaterialTextView
+                      android:id="@+id/date_of_payment"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      android:text="@string/date_of_payment"/>
+
+                  <com.google.android.material.textview.MaterialTextView
+                      android:id="@+id/date_payment_txt_vw"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/mediumMarginTop"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/date_of_payment"
+                      android:text="dd/mm/yyyy"
+                      android:padding="@dimen/largePaddingEnd"
+                      android:textColor="@color/black"
+                      android:background="@drawable/rounded_border_text_view"/>
+
+              </androidx.constraintlayout.widget.ConstraintLayout>
+
+          </com.google.android.material.card.MaterialCardView>
+
+          <com.google.android.material.card.MaterialCardView
+              android:id="@+id/payment_for_card_vw"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:layout_constraintTop_toBottomOf="@id/date_of_payment_card_vw">
+
+              <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="@dimen/extraLargePaddingEnd">
+
+                  <com.google.android.material.textview.MaterialTextView
+                      android:id="@+id/payment_for"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/payment_for"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"/>
+
+                  <LinearLayout
+                      android:id="@+id/add_payment_fields_layout"
+                      android:layout_width="0dp"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@+id/payment_for"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical">
+
+                      <com.google.android.material.textview.MaterialTextView
+                          android:id="@+id/no_debts"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/no_debts_currently"
+                          android:layout_marginTop="@dimen/mediumMarginTop"
+                          android:textColor="@color/black"/>
+
+                      <include layout="@layout/payment_month_row"/>
+                      <include layout="@layout/payment_month_row"/>
+                  </LinearLayout>
+
+                  <com.google.android.material.button.MaterialButton
+                      android:id="@+id/add_payment_btn"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/add_payment_fields_layout"
+                      android:layout_marginTop="@dimen/extraLargeMarginTop"
+                      android:text="@string/add_field" />
+
+              </androidx.constraintlayout.widget.ConstraintLayout>
+          </com.google.android.material.card.MaterialCardView>
+
+          <com.google.android.material.card.MaterialCardView
+              android:id="@+id/advance_payment_card_vw"
+              app:layout_constraintTop_toBottomOf="@+id/payment_for_card_vw"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+              <androidx.constraintlayout.widget.ConstraintLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:padding="@dimen/extraLargePaddingEnd">
+
+                  <CheckBox
+                      android:id="@+id/pay_advance_check_bx"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintStart_toStartOf="parent"
+                      android:text="@string/advance_payment"
+                      android:textColor="@color/colorPrimaryDark" />
+
+                  <LinearLayout
+                      android:id="@+id/advance_payt_layout"
+                      android:layout_width="0dp"
+                      android:layout_height="wrap_content"
+                      app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      android:orientation="vertical"
+                      app:layout_constraintTop_toBottomOf="@id/pay_advance_check_bx">
+
+                      <include layout="@layout/payment_month_row"/>
+                      <include layout="@layout/payment_month_row"/>
+                  </LinearLayout>
+
+                  <com.google.android.material.button.MaterialButton
+                      android:id="@+id/add_advance_payt_btn"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toBottomOf="@id/advance_payt_layout"
+                      android:layout_marginTop="@dimen/extraLargeMarginTop"
+                      android:text="@string/add_field" />
+              </androidx.constraintlayout.widget.ConstraintLayout>
+          </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit_payment_btn"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/advance_payment_card_vw"
+                android:text="@string/add_payment"/>
 
-        <ImageView
-            android:id="@+id/calender_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            android:src="@drawable/ic_calender"
-            app:layout_constraintStart_toEndOf="@+id/date_of_payment_layout"
-            app:layout_constraintTop_toBottomOf="@+id/amount_paid_layout" />
-
-        <Spinner
-            android:id="@+id/months_spinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/date_of_payment_layout"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/balance_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="?attr/largeMarginTop"
-            android:hint="@string/balance"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/months_spinner">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/balance_edit_txt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>
 
 <!--TODO: COULD BE A DIALOG FRAGMENT-->

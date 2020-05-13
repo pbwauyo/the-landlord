@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/largeMarginTop">
+
+    <LinearLayout
+        android:id="@+id/month_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/year_layout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/largeMarginEnd"
+        android:layout_marginRight="@dimen/largeMarginEnd">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/month"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/month_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@string/mm"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/year_txt"
+            android:background="@drawable/rounded_border_text_view"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/year_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginEnd="@dimen/largeMarginEnd"
+        android:layout_marginRight="@dimen/largeMarginEnd"
+        app:layout_constraintEnd_toStartOf="@+id/amount_layout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/month_layout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/year"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/year_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@string/yyyy"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/rounded_border_text_view"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/amount_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@+id/delete_payt_field"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/year_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="@dimen/largeMarginEnd"
+        android:layout_marginRight="@dimen/largeMarginEnd">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amount"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"/>
+
+        <EditText
+            android:id="@+id/amount_edit_txt_vw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint=" "
+            android:inputType="numberDecimal"
+            android:layout_marginTop="3dp"
+            android:text="1000"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/rounded_border_text_view"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/delete_payt_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/amount_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

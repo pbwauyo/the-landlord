@@ -12,9 +12,6 @@
     <string name="location">Location</string>
     <string name="add">ADD</string>
     <string name="rental_number">Rental or Apartment Number</string>
-    <string name="monthly_amount">Monthly amount</string>
-    <string name="tenant_name">Tenant name</string>
-    <string name="tenant_contact">Tenant contact</string>
     <string name="tenancy_start_date">Tenancy start date</string>
     <string name="done">DONE</string>
     <string name="amount_paid">Amount paid</string>
@@ -36,7 +33,7 @@
     <string name="enter_monthly_amount">Enter monthly amount</string>
     <string name="enter_tenant_name">Enter tenant name</string>
     <string name="enter_tenant_contact">Enter tenant contact</string>
-    <string name="enter_tenant_start_date">Enter tenant start date</string>
+    <string name="enter_tenant_start_date">Enter tenancy start date</string>
     <string name="add_rental">ADD RENTAL</string>
     <string name="rentals">RENTALS</string>
     <string name="money_balances">MONEY BALANCES</string>
@@ -46,9 +43,20 @@
     <string name="monthly_amount">Monthly amount</string>
     <string name="outstanding">Outstanding:</string>
     <string name="last_payment">Last payment:</string>
-    <string name="add_payment">ADD PAYMENT</string>
     <string name="edit_tenant_details">EDIT TENANT DETAILS</string>
     <string name="remove_tenant_details">REMOVE TENANT DETAILS</string>
     <string name="ad_box">AD BOX</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="amount">Amount</string>
+    <string name="payment_for">Payment for</string>
+    <string name="advance_payment">Advance payment?</string>
+    <string name="add_payment">ADD PAYMENT</string>
+    <string name="add_field">ADD FIELD</string>
+    <string name="no_debts_currently">No debts currently</string>
+    <string name="mm">mm</string>
+    <string name="yyyy">yyyy</string>
+    <string name="start_computing_rent_from">Start computing rent from</string>
+    <string name="set">SET</string>
 
 </resources>

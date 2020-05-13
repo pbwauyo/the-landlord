@@ -11,7 +11,7 @@ import com.peter.thelandlord.domain.models.Landlord
 import com.peter.thelandlord.domain.models.Property
 import com.peter.thelandlord.domain.models.Rental
 
-@Database(entities = [Property::class, Landlord::class, Rental::class], version = 4)
+@Database(entities = [Property::class, Landlord::class, Rental::class], version = 5)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
     abstract fun landlordDao(): LandlordDao

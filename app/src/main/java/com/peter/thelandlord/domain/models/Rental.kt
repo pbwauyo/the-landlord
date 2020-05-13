@@ -12,6 +12,7 @@ data class Rental (
     @ColumnInfo(name = "tenant_name") var tenantName: String = "",
     @ColumnInfo(name = "tenant_contact") var tenantContact: String = "",
     @ColumnInfo(name = "tenancy_start_date") var tenancyStartDate: String = "",
+    @ColumnInfo(name = "rent_computation_start_date") var rentComputationStartDate: String = "",
     var propertyID: String = "",
     var timestamp: String = ""
 ){

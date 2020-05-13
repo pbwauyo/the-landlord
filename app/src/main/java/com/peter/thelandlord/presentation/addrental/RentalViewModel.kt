@@ -38,6 +38,8 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
     val tenantNameLiveData = MutableLiveData<String>()
     val tenantContactLiveData = MutableLiveData<String>()
     val tenancyStartDateLiveData = MutableLiveData<String>()
+    val rentalComputationStartMonthLiveData = MutableLiveData<String>()
+    val rentalComputationStartYearLiveData = MutableLiveData<String>()
 
     val errorLiveData = MutableLiveData<String>()
     val successLiveData = MutableLiveData<String>()
@@ -49,76 +51,106 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
     val tenantNameErrorLiveData = MutableLiveData<String>()
     val tenantContactErrorLiveData = MutableLiveData<String>()
     val tenancyStartDateErrorLiveData = MutableLiveData<String>()
+    val tenantDetailsErrorLiveData = MutableLiveData<String>()
+    val rentComputStartMonthErrorLiveData = MutableLiveData<String>()
+    val rentComputStartYearErrorLiveData = MutableLiveData<String>()
+
 
     private fun allFieldsAreValid(): Boolean{
 
         val rentalID = rentalNumberLiveData.value?.trim()
         val monthlyAmount = monthlyAmountLiveData.value?.trim()
-        val tenantName = tenantNameLiveData.value?.trim()
-        val tenantContact = tenantContactLiveData.value?.trim()
-        val tenancyStartDate = tenancyStartDateLiveData.value?.trim()
 
         var isRentalIDEmpty = true
         var isMonthlyAmountEmpty = true
-        var isTenantNameEmpty = true
-        var isTenantContactEmpty = true
-        var isTenancyStartDateEmpty = true
 
-        if (rentalID.isNullOrEmpty()){
+        if (rentalID.isNullOrBlank()){
             rentalNumberErrorLiveData.postValue(EMPTY_FIELD_ERROR)
         }
         else{
             isRentalIDEmpty = false
         }
 
-        if(monthlyAmount.isNullOrEmpty()){
+        if(monthlyAmount.isNullOrBlank()){
             monthlyAmountErrorLiveData.postValue(EMPTY_FIELD_ERROR)
         }
         else{
             isMonthlyAmountEmpty = false
         }
 
-        if (tenantName.isNullOrEmpty()){
-            tenantNameErrorLiveData.postValue(EMPTY_FIELD_ERROR)
-        }
-        else{
-            isTenantNameEmpty = false
+
+
+        return !(isRentalIDEmpty || isMonthlyAmountEmpty || tenantDetailsAreValid())
+    }
+
+    private fun tenantDetailsAreValid(): Boolean{
+
+        val tenantName = tenantNameLiveData.value?.trim()
+        val tenantContact = tenantContactLiveData.value?.trim()
+        val tenancyStartDate = tenancyStartDateLiveData.value?.trim()
+        val rentComputationMonth = rentalComputationStartMonthLiveData.value?.trim()
+        val rentComputationYear = rentalComputationStartYearLiveData.value?.trim()
+
+        var areTenantDetailsValid = true
+        var isTenantContactOk = true
+        var isTenancyStartDateOk = true
+        var isRentComptMonthOk = true
+        var isRentComptYearOk = true
+
+        if (!tenantName.isNullOrBlank()){
+
+            if (tenantContact.isNullOrBlank()){
+                isTenantContactOk = false
+                tenantContactErrorLiveData.value = EMPTY_FIELD_ERROR
+            }
+
+            if(tenancyStartDate.isNullOrBlank()){
+                isTenancyStartDateOk = false
+                tenancyStartDateErrorLiveData.value = EMPTY_FIELD_ERROR
+            }
+
+            if (rentComputationMonth.isNullOrBlank()){
+                isRentComptMonthOk = false
+                rentComputStartMonthErrorLiveData.value = EMPTY_FIELD_ERROR
+            }
+
+            if(rentComputationYear.isNullOrBlank()){
+                isRentComptYearOk = false
+                rentComputStartYearErrorLiveData.value = EMPTY_FIELD_ERROR
+            }
+
+            if(!isTenantContactOk && !isTenancyStartDateOk && !isRentComptMonthOk && !isRentComptYearOk){
+                areTenantDetailsValid = false
+            }
         }
 
-        if (tenantContact.isNullOrEmpty()){
-            tenantContactErrorLiveData.postValue(EMPTY_FIELD_ERROR)
-        }
-        else{
-            isTenantContactEmpty = false
-        }
-
-        if (tenancyStartDate.isNullOrEmpty()){
-            tenancyStartDateErrorLiveData.postValue(EMPTY_FIELD_ERROR)
-        }
-        else{
-            isTenancyStartDateEmpty = false
-        }
-
-        return !(isRentalIDEmpty || isMonthlyAmountEmpty || isTenantNameEmpty || isTenantContactEmpty || isTenancyStartDateEmpty)
+        return areTenantDetailsValid
     }
 
 
     fun saveRental(propertyID: String): Completable{
+
         val rentalID = rentalNumberLiveData.value?.trim()
         val monthlyAmount = monthlyAmountLiveData.value?.trim()
-        val tenantName = tenantNameLiveData.value?.trim()
-        val tenantContact = tenantContactLiveData.value?.trim()
-        val tenancyStartDate = tenancyStartDateLiveData.value?.trim()
+        val tenantName = tenantNameLiveData.value?.trim() ?: ""
+        val tenantContact = tenantContactLiveData.value?.trim() ?: ""
+        val tenancyStartDate = tenancyStartDateLiveData.value?.trim() ?: ""
+        val rentComputationMonth = rentalComputationStartMonthLiveData.value?.trim()
+        val rentComputationYear = rentalComputationStartYearLiveData.value?.trim()
+        val rentComputationStartDate = if (tenantName != "")
+            "${rentComputationMonth}/${rentComputationYear}"
+            else ""
 
         return if (allFieldsAreValid()){
             setSavingStatus(true)
 
             val rental = Rental(rentalNumber = rentalID!!,
                 monthlyAmount = monthlyAmount!!,
-                tenantName = tenantName!!,
-                tenantContact = tenantContact!!,
-                tenancyStartDate = tenancyStartDate!!,
-                propertyID = propertyID)
+                tenantName = tenantName,
+                tenantContact = tenantContact,
+                tenancyStartDate = tenancyStartDate,
+                propertyID = propertyID,
+                rentComputationStartDate = rentComputationStartDate)
 
             rentalManagementRepoImpl.saveRental(rental)
         }else{
@@ -128,11 +160,13 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
     }
 
     fun clearFields(){
-        rentalNumberLiveData.postValue("")
-        monthlyAmountLiveData.postValue("")
-        tenantNameLiveData.postValue("")
-        tenantContactLiveData.postValue("")
-        tenancyStartDateLiveData.postValue("")
+        rentalNumberLiveData.value = ""
+        monthlyAmountLiveData.value = ""
+        tenantNameLiveData.value = ""
+        tenantContactLiveData.value = ""
+        tenancyStartDateLiveData.value = ""
+        rentalComputationStartMonthLiveData.value = "mm"
+        rentalComputationStartYearLiveData.value = "yyyy"
     }
 
     fun setPropertyId(propertyID: String){
@@ -153,6 +187,18 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
 
     fun refresh(){
         repoResult.value?.refresh?.invoke()
+    }
+
+    fun setRentStartMonth(value: String){
+        rentalComputationStartMonthLiveData.value = value
+    }
+
+    fun setRentStartYear(value: String){
+        rentalComputationStartYearLiveData.value = value
+    }
+
+    fun setTenacyStartDate(value: String){
+        tenancyStartDateLiveData.value = value
     }
 
     fun retry(){
