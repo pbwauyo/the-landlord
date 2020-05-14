@@ -23,6 +23,7 @@
         <item name="mainTextColor">@color/colorPrimary</item>
         <item name="mainTextInputColor">@color/black</item>
         <item name="editTextStyle">@style/CustomEditTextStyle</item>
+        <item name="materialAlertDialogTheme">@style/CustomMaterialAlertDialogStyle</item>
 
         <item name="rentalDetailsAttrs">@color/white</item>
         <item name="rentalDetialsTxtAttrs">@color/white</item>
@@ -169,4 +170,47 @@
     <style name="AppTheme.SecondaryTheme">
         <item name="textInputStyle">@style/CustomMaterialFilledTextInputLayout</item>
     </style>
+
+    <style name="CustomMaterialAlertDialogStyle" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="colorSurface">@color/white</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="buttonBarPositiveButtonStyle">@style/MaterialAlertDialogButtonPositive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/MaterialAlertDialogButtonNegative</item>
+<!--        <item name="alertDialogStyle">@style/MaterialAlertDialogShape</item>-->
+<!--        <item name="materialAlertDialogTitleTextStyle">@style/MaterialAlertDialog.App.Title.Text</item>-->
+    </style>
+
+<!--    <style name="MaterialAlertDialogTitleText" parent="MaterialAlertDialog.MaterialComponents.Title.Text">-->
+<!--        <item name="android:textColor">@color/white</item>-->
+<!--    </style>-->
+
+    <style name="MaterialAlertDialogButtonNegative" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="materialThemeOverlay">@style/MaterialAlertDialogBtnOverlayNegative</item>
+        <item name="strokeColor">@color/red_selector_color</item>
+    </style>
+
+    <style name="MaterialAlertDialogBtnOverlayNegative" parent="">
+        <item name="colorPrimary">@color/red</item>
+
+    </style>
+
+    <style name="MaterialAlertDialogButtonPositive" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="materialThemeOverlay">@style/MaterialAlertDialogBtnOverlayPositive</item>
+        <item name="strokeColor">@color/green_selector_color</item>
+    </style>
+
+    <style name="MaterialAlertDialogBtnOverlayPositive" parent="">
+        <item name="colorPrimary">@color/green</item>
+
+    </style>
+
+<!--    <style name="MaterialAlertDialogShape" parent="MaterialAlertDialog.MaterialComponents">-->
+<!--        <item name="shapeAppearance">@style/ShapeAppearance</item>-->
+<!--    </style>-->
+
+<!--    <style name="ShapeAppearance" parent="ShapeAppearance.MaterialComponents.MediumComponent">-->
+<!--        <item name="cornerFamily">rounded</item>-->
+<!--        <item name="cornerSize">8dp</item>-->
+<!--    </style>-->
+
 </resources>
