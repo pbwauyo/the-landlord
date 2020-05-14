@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavArgs
@@ -15,12 +16,16 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import com.peter.thelandlord.R
 import com.peter.thelandlord.databinding.FragmentRentalDetailsBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
 import com.peter.thelandlord.presentation.addrental.RentalViewModel
 import dagger.android.support.AndroidSupportInjection
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RentalDetails : Fragment() {
@@ -30,6 +35,8 @@ class RentalDetails : Fragment() {
     val args: RentalDetailsArgs by navArgs()
     lateinit var rentalId: String
     lateinit var navController: NavController
+    lateinit var alertDialogBuilder: MaterialAlertDialogBuilder
+    lateinit var compositeDisposable: CompositeDisposable
 
     companion object {
         const val TAG = "RENTAL_DETAILS"
@@ -45,6 +52,8 @@ class RentalDetails : Fragment() {
         super.onCreate(savedInstanceState)
 
         rentalId = args.rentalID
+        compositeDisposable = CompositeDisposable()
+        alertDialogBuilder = MaterialAlertDialogBuilder(activity)
     }
 
     override fun onCreateView(
@@ -70,6 +79,33 @@ class RentalDetails : Fragment() {
     fun setUpOnClickListeners(){
         binding!!.addPaymentCardVw.setOnClickListener {
             navController.navigate(R.id.action_rentalDetails_to_addPayment)
+        }
+
+        binding!!.removeTenantCardVw.setOnClickListener {
+            alertDialogBuilder
+                .setTitle("Are you sure?")
+                .setMessage("Tenant Details will be deleted permanently")
+                .setNegativeButton("No"){
+                        dialog, _ -> dialog.dismiss()
+                }
+                .setPositiveButton("Yes"){
+                        dialog, _ ->
+                    dialog.dismiss()
+                    val removeTenantDisposable = rentalViewModel.removeTenantDetails()
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe (
+                            {
+                                Toast.makeText(activity, "Details deleted successfully", Toast.LENGTH_SHORT).show()
+                            },
+                            {
+                              Log.d(TAG, "${it.message}")
+                            }
+                        )
+
+                    compositeDisposable.add(removeTenantDisposable)
+                }
+                .show()
         }
     }
 
@@ -106,7 +142,7 @@ class RentalDetails : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-
-         binding = null
+        compositeDisposable.dispose()
+        binding = null
     }
 }

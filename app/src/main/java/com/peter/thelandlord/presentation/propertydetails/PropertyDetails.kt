@@ -43,7 +43,6 @@ class PropertyDetails : Fragment() {
         
         propertyID = args.propertyID
         propertyViewModel = activity?.let { ViewModelProvider(it, vmFactory).get(PropertyViewModel::class.java) }!!
-        navController = findNavController()
 
         propertyViewModel.setPropertyID(propertyID)
     }
@@ -53,6 +52,7 @@ class PropertyDetails : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentPropertyDetailsBinding.inflate(inflater, container, false)
+        navController = findNavController()
 
         return binding!!.root
     }

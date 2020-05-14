@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.peter.thelandlord.data.listing.Listing
 import com.peter.thelandlord.domain.models.Property
 import com.peter.thelandlord.domain.models.Rental
+import com.peter.thelandlord.domain.models.Tenant
 import io.reactivex.Completable
 
 interface RentalManagementRepo {
@@ -15,4 +16,8 @@ interface RentalManagementRepo {
     fun getRentalLiveData(rentalId: String): LiveData<Rental>
 
     fun getPropertyDetailsForRental(propertyId: String): LiveData<Property>
+
+    fun removeTenantDetails(rental: Rental): Completable
+
+    fun updateTenantDetails(rental: Rental): Completable
 }

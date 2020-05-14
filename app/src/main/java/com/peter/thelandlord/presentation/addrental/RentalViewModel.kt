@@ -226,4 +226,17 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
     fun retry(){
         repoResult.value?.retry?.invoke()
     }
+
+    fun removeTenantDetails(): Completable{
+        val rental = currentRentalLiveData.value
+        rental?.tenantName = ""
+        rental?.tenantContact = ""
+        rental?.tenancyStartDate = ""
+
+        return rentalManagementRepoImpl.removeTenantDetails(rental!!)
+    }
+
+    fun updateTenantDetails(): Completable{
+        TODO()
+    }
 }

@@ -17,10 +17,13 @@ import com.peter.thelandlord.data.networkstate.NetworkState
 import com.peter.thelandlord.domain.interfaces.RentalManagementRepo
 import com.peter.thelandlord.domain.models.Property
 import com.peter.thelandlord.domain.models.Rental
+import com.peter.thelandlord.domain.models.Tenant
 import com.peter.thelandlord.utils.Constants
 import com.peter.thelandlord.utils.FirestoreCollections
+import com.peter.thelandlord.work.UpdateTenantDetailsWorker
 import com.peter.thelandlord.work.UploadRentalWorker
 import io.reactivex.Completable
+import layout.RemoveTenantDetailsWorker
 import java.util.concurrent.Executors
 
 class RentalManagementRepoImpl (val firestore: FirebaseFirestore, val appDb: AppDatabase, val workManager: WorkManager) : RentalManagementRepo {
@@ -122,6 +125,37 @@ class RentalManagementRepoImpl (val firestore: FirebaseFirestore, val appDb: App
     override fun getRentalLiveData(rentalId: String): LiveData<Rental> = rentalDao.getRentalByIdLiveData(rentalId)
 
     override fun getPropertyDetailsForRental(propertyId: String): LiveData<Property> = propertyDao.getPropertyById(propertyId)
+
+    override fun removeTenantDetails(rental: Rental): Completable {
+
+        val data = workDataOf(Constants.KEY_RENTAL_ID to rental.id)
+        val constraints = Constraints.Builder()
+                            .setRequiredNetworkType(NetworkType.CONNECTED)
+                            .build()
+        val workRequest = OneTimeWorkRequestBuilder<RemoveTenantDetailsWorker>()
+            .setConstraints(constraints)
+            .setInputData(data)
+            .build()
+
+        workManager.enqueue(workRequest)
+
+        return rentalDao.updateRental(rental)
+    }
+
+    override fun updateTenantDetails(rental: Rental): Completable {
+        val data = workDataOf(Constants.KEY_RENTAL_ID to rental.id)
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .build()
+        val workRequest = OneTimeWorkRequestBuilder<UpdateTenantDetailsWorker>() //difference here
+            .setConstraints(constraints)
+            .setInputData(data)
+            .build()
+
+        workManager.enqueue(workRequest)
+
+        return rentalDao.updateRental(rental)
+    }
 
     private fun ioThread(f: () -> Unit){
         executor.execute(f)
