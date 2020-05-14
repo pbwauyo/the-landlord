@@ -1,5 +1,6 @@
 package com.peter.thelandlord.presentation.addrental
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
@@ -12,6 +13,7 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
 
     private companion object {
         const val EMPTY_FIELD_ERROR = "field cannot be empty"
+        const val TAG = "RENTAL_VIEW_MODEL"
     }
 
     val propertyIDLiveData = MutableLiveData<String>()
@@ -80,7 +82,7 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
 
 
 
-        return !(isRentalIDEmpty || isMonthlyAmountEmpty || tenantDetailsAreValid())
+        return !isRentalIDEmpty && !isMonthlyAmountEmpty && tenantDetailsAreValid()
     }
 
     private fun tenantDetailsAreValid(): Boolean{
@@ -124,6 +126,8 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
             }
         }
 
+        Log.d(TAG, "Tenant details valid, $areTenantDetailsValid")
+
         return areTenantDetailsValid
     }
 
@@ -165,8 +169,8 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
         tenantNameLiveData.value = ""
         tenantContactLiveData.value = ""
         tenancyStartDateLiveData.value = ""
-        rentalComputationStartMonthLiveData.value = "mm"
-        rentalComputationStartYearLiveData.value = "yyyy"
+        rentalComputationStartMonthLiveData.value = ""
+        rentalComputationStartYearLiveData.value = ""
     }
 
     fun setPropertyId(propertyID: String){
