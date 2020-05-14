@@ -28,10 +28,10 @@ interface RentalDao {
     @Delete
     fun deleteRental(rental: Rental): Completable
 
-    @Query("SELECT * FROM rentals WHERE rentalNumber = :rentalId LIMIT 1")
+    @Query("SELECT * FROM rentals WHERE id = :rentalId LIMIT 1")
     fun getRentalByIdLiveData(rentalId: String): LiveData<Rental>
 
-    @Query("SELECT * FROM rentals WHERE rentalNumber = :rentalId")
+    @Query("SELECT * FROM rentals WHERE id = :rentalId")
     fun findRentalById(rentalId: String): Rental
 
     @Query("SELECT * FROM rentals WHERE propertyID = :propertyId")

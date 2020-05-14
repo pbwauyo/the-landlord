@@ -280,7 +280,8 @@
                                 app:layout_constraintTop_toBottomOf="@+id/edit_tenant_icon"
                                 android:text="@string/edit_tenant_details"
                                 android:textAlignment="center"
-                                android:layout_gravity="center_horizontal" />
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center_horizontal"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -324,7 +325,8 @@
                                 app:layout_constraintTop_toBottomOf="@+id/remove_tenant_icon"
                                 android:text="@string/remove_tenant_details"
                                 android:textAlignment="center"
-                                android:layout_gravity="center_horizontal"/>
+                                android:layout_gravity="center_horizontal"
+                                android:gravity="center_horizontal"/>
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 

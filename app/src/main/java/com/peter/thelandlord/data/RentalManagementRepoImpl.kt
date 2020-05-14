@@ -15,6 +15,7 @@ import com.peter.thelandlord.data.db.AppDatabase
 import com.peter.thelandlord.data.listing.Listing
 import com.peter.thelandlord.data.networkstate.NetworkState
 import com.peter.thelandlord.domain.interfaces.RentalManagementRepo
+import com.peter.thelandlord.domain.models.Property
 import com.peter.thelandlord.domain.models.Rental
 import com.peter.thelandlord.utils.Constants
 import com.peter.thelandlord.utils.FirestoreCollections
@@ -26,6 +27,7 @@ class RentalManagementRepoImpl (val firestore: FirebaseFirestore, val appDb: App
     private val executor = Executors.newSingleThreadExecutor()
     private val rentalsApi = RentalsApi()
     private val rentalDao = appDb.rentalDao()
+    private val propertyDao = appDb.propertyDao()
 
     companion object{
         const val TAG = "RENTAL_MANGT_REPO"
@@ -81,6 +83,8 @@ class RentalManagementRepoImpl (val firestore: FirebaseFirestore, val appDb: App
         return refreshState
     }
 
+
+
     override fun rentalsFromProperty(propertyId: String): Listing<Rental> {
 
         val boundaryCallback = RentalsBoundaryCallback(
@@ -114,6 +118,10 @@ class RentalManagementRepoImpl (val firestore: FirebaseFirestore, val appDb: App
             }
         )
     }
+
+    override fun getRentalLiveData(rentalId: String): LiveData<Rental> = rentalDao.getRentalByIdLiveData(rentalId)
+
+    override fun getPropertyDetailsForRental(propertyId: String): LiveData<Property> = propertyDao.getPropertyById(propertyId)
 
     private fun ioThread(f: () -> Unit){
         executor.execute(f)

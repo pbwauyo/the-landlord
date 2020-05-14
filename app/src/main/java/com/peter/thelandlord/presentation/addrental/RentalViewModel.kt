@@ -16,6 +16,16 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
         const val TAG = "RENTAL_VIEW_MODEL"
     }
 
+    val currentRentalIdLiveData = MutableLiveData<String>()
+    val currentRentalLiveData = currentRentalIdLiveData.switchMap {
+        Log.d(TAG, it)
+        rentalManagementRepoImpl.getRentalLiveData(it)
+    }
+    val currentPropertyIdForRentalLiveData = MutableLiveData<String>()
+    val currentPropertyDetailsForRental = currentPropertyIdForRentalLiveData.switchMap {
+        rentalManagementRepoImpl.getPropertyDetailsForRental(it)
+    }
+
     val propertyIDLiveData = MutableLiveData<String>()
     private val repoResult = propertyIDLiveData.map {
         rentalManagementRepoImpl.rentalsFromProperty(it)
@@ -203,6 +213,14 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
 
     fun setTenacyStartDate(value: String){
         tenancyStartDateLiveData.value = value
+    }
+
+    fun setCurrentRentalId(value: String){
+        currentRentalIdLiveData.value = value
+    }
+
+    fun setCurrentPropertyIdForRental(propertyID: String){
+        currentPropertyIdForRentalLiveData.value = propertyID
     }
 
     fun retry(){

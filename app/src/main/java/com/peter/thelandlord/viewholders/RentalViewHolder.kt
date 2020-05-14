@@ -3,25 +3,33 @@ package com.peter.thelandlord.viewholders
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.peter.thelandlord.R
 import com.peter.thelandlord.domain.models.Rental
+import com.peter.thelandlord.presentation.rentalslist.RentalsListDirections
 import de.hdodenhof.circleimageview.CircleImageView
 
-class RentalViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class RentalViewHolder(val itemVw: View): RecyclerView.ViewHolder(itemVw) {
 
-    val tenantImageView: CircleImageView = itemView.findViewById(R.id.tenant_image)
-    val rentalNumberTxtView: MaterialTextView = itemView.findViewById(R.id.rental_number_txt_vw)
-    val tenantNameTxtView: MaterialTextView = itemView.findViewById(R.id.tenant_name_txt_vw)
-    val tenantContactTxtView: MaterialTextView = itemView.findViewById(R.id.tenant_contact_txt_vw)
-    val monthlyAmountTxtView: MaterialTextView = itemView.findViewById(R.id.monthly_amount_txt_vw)
+    val tenantImageView: CircleImageView = itemVw.findViewById(R.id.tenant_image)
+    val rentalNumberTxtView: MaterialTextView = itemVw.findViewById(R.id.rental_number_txt_vw)
+    val tenantNameTxtView: MaterialTextView = itemVw.findViewById(R.id.tenant_name_txt_vw)
+    val tenantContactTxtView: MaterialTextView = itemVw.findViewById(R.id.tenant_contact_txt_vw)
+    val monthlyAmountTxtView: MaterialTextView = itemVw.findViewById(R.id.monthly_amount_txt_vw)
 
     fun bindTo(rental: Rental?){
         if (rental == null){
             showPlaceholders()
         }else{
             showRental(rental)
+            val action = RentalsListDirections.actionRentalsListToRentalDetails(rental.id)
+            itemVw.setOnClickListener (
+                Navigation.createNavigateOnClickListener(action)
+            )
         }
     }
 

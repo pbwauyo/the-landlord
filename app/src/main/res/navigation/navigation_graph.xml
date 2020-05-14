@@ -85,6 +85,9 @@
         <action
             android:id="@+id/action_rentalDetails_to_addPayment"
             app:destination="@id/addPayment" />
+        <argument
+            android:name="rentalID"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/addPayment"

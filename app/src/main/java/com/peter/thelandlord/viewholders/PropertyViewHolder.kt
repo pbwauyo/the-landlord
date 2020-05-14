@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,11 +15,11 @@ import com.peter.thelandlord.domain.models.Property
 import com.peter.thelandlord.presentation.propertylist.PropertyListDirections
 
 
-class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+class PropertyViewHolder(val itemVw: View): RecyclerView.ViewHolder(itemVw) {
 
-    var propertyImageView:ImageView = itemView.findViewById(R.id.property_image_view)
-    var propertyNameTxt: MaterialTextView = itemView.findViewById(R.id.property_name_txt_view)
-    var propertyLocationTxt:MaterialTextView = itemView.findViewById(R.id.property_location_txt_view)
+    var propertyImageView:ImageView = itemVw.findViewById(R.id.property_image_view)
+    var propertyNameTxt: MaterialTextView = itemVw.findViewById(R.id.property_name_txt_view)
+    var propertyLocationTxt:MaterialTextView = itemVw.findViewById(R.id.property_location_txt_view)
 
     //private var property: Property? = null
 
@@ -39,12 +40,11 @@ class PropertyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
             propertyLocationTxt.text = LOADING
         }else{
             showProperty(property)
-            itemView.setOnClickListener {
-                val navController = itemView.findNavController()
-                val propertyID = property.propertyID
-                val action = PropertyListDirections.actionPropertyListToPropertyDetails(propertyID)
-                navController.navigate(action)
-            }
+            val propertyID = property.propertyID
+            val action = PropertyListDirections.actionPropertyListToPropertyDetails(propertyID)
+            itemVw.setOnClickListener (
+                Navigation.createNavigateOnClickListener(action)
+            )
         }
 
     }
