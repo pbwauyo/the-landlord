@@ -58,5 +58,6 @@
     <string name="yyyy">yyyy</string>
     <string name="start_computing_rent_from">Start computing rent from</string>
     <string name="set">SET</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

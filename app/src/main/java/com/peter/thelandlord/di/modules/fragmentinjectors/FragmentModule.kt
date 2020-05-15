@@ -7,6 +7,7 @@ import com.peter.thelandlord.presentation.auth.login.LoginFragment
 import com.peter.thelandlord.presentation.auth.register.RegisterFragment
 import com.peter.thelandlord.presentation.balanceslist.BalancesList
 import com.peter.thelandlord.presentation.debtorslist.DebtorsList
+import com.peter.thelandlord.presentation.edittenantdetails.EditTenantDetails
 import com.peter.thelandlord.presentation.paymentslist.PaymentsListFragment
 import com.peter.thelandlord.presentation.profile.ProfileFragment
 import com.peter.thelandlord.presentation.propertydetails.PropertyDetails
@@ -62,4 +63,6 @@ abstract class FragmentModule {
     @ContributesAndroidInjector
     abstract fun transactionsSummaryInjector(): TransactionSummary
 
+    @ContributesAndroidInjector
+    abstract fun editTenantDetailsInjector(): EditTenantDetails
 }

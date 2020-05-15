@@ -7,6 +7,7 @@ import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import com.peter.thelandlord.data.RentalManagementRepoImpl
 import com.peter.thelandlord.domain.models.Rental
+import com.peter.thelandlord.domain.models.Tenant
 import io.reactivex.Completable
 
 class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): ViewModel() {
@@ -236,7 +237,11 @@ class RentalViewModel(val rentalManagementRepoImpl: RentalManagementRepoImpl): V
         return rentalManagementRepoImpl.removeTenantDetails(rental!!)
     }
 
-    fun updateTenantDetails(): Completable{
-        TODO()
+    fun updateTenantDetails(tenant: Tenant): Completable {
+        val rental = currentRentalLiveData.value
+        rental?.tenantName = tenant.name
+        rental?.tenantContact = tenant.contact
+        rental?.tenancyStartDate = tenant.startDate
+        return rentalManagementRepoImpl.updateTenantDetails(rental!!)
     }
 }

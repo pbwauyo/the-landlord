@@ -24,6 +24,7 @@
         <item name="mainTextInputColor">@color/black</item>
         <item name="editTextStyle">@style/CustomEditTextStyle</item>
         <item name="materialAlertDialogTheme">@style/CustomMaterialAlertDialogStyle</item>
+        <item name="dialogTheme">@style/DialogStyle</item>
 
         <item name="rentalDetailsAttrs">@color/white</item>
         <item name="rentalDetialsTxtAttrs">@color/white</item>
@@ -202,6 +203,25 @@
     <style name="MaterialAlertDialogBtnOverlayPositive" parent="">
         <item name="colorPrimary">@color/green</item>
 
+    </style>
+
+<!--    TODO: This styling seems to be faulty-->
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColorPrimary">@color/red</item>
+        <item name="colorAccent">@color/green</item>
+        <item name="background">@color/white</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="colorSecondary">@color/green</item>
+    </style>
+
+    <style name="DialogMaterialOutlineButtonStyleNegative" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/red_selector_color</item>
+        <item name="cornerRadius">18dp</item>
+    </style>
+
+    <style name="DialogMaterialOutlineButtonStylePositive" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/green_selector_color</item>
+        <item name="cornerRadius">18dp</item>
     </style>
 
 <!--    <style name="MaterialAlertDialogShape" parent="MaterialAlertDialog.MaterialComponents">-->

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.edittenantdetails.EditTenantDetails">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/mediumMarginEnd"
+        android:paddingVertical="@dimen/largePaddingEnd">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tenant_name_card_vw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:contentPadding="@dimen/extraLargeMarginEnd">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AuthTextInputLayoutStyle"
+                android:hint="@string/tenant_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tenant_name_edit_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?authEditTextColor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tenant_contact_card_vw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tenant_name_card_vw"
+            app:contentPadding="@dimen/extraLargeMarginEnd">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AuthTextInputLayoutStyle"
+                android:hint="@string/tenant_contact">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tenant_contact_edit_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?authEditTextColor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tenant_start_date_card_vw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tenant_contact_card_vw"
+            app:contentPadding="@dimen/extraLargeMarginEnd">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/AuthTextInputLayoutStyle"
+                android:hint="@string/tenancy_start_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tenant_start_date_edit_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?authEditTextColor"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/confirm_edit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tenant_start_date_card_vw"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/done"
+            android:textColor="@color/green_selector_color"
+            android:layout_marginHorizontal="@dimen/largeMarginStart"
+            style="@style/DialogMaterialOutlineButtonStylePositive"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancel_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            android:textColor="@color/red_selector_color"
+            app:layout_constraintTop_toBottomOf="@id/tenant_start_date_card_vw"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginHorizontal="@dimen/largeMarginStart"
+            style="@style/DialogMaterialOutlineButtonStyleNegative"/>
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tenant_start_date_card_vw"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/SpinKitView.Small.Circle"
+            app:SpinKit_Color="@color/primaryLight"
+            android:visibility="gone"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>

@@ -17,6 +17,7 @@
             android:id="@+id/action_propertyList_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/transactionSummary"
         android:name="com.peter.thelandlord.presentation.transactionsummary.TransactionSummary"
@@ -88,6 +89,9 @@
         <argument
             android:name="rentalID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_rentalDetails_to_editTenantDetails"
+            app:destination="@id/editTenantDetails" />
     </fragment>
     <fragment
         android:id="@+id/addPayment"
@@ -142,4 +146,10 @@
         android:name="com.peter.thelandlord.presentation.addproperty.AddProperty"
         android:label="fragment_add_property"
         tools:layout="@layout/fragment_add_property" />
+
+    <dialog
+        android:id="@+id/editTenantDetails"
+        android:name="com.peter.thelandlord.presentation.edittenantdetails.EditTenantDetails"
+        android:label="fragment_edit_tenant_details"
+        tools:layout="@layout/fragment_edit_tenant_details" />
 </navigation>

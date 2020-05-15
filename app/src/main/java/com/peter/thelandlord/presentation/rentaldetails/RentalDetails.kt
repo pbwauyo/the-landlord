@@ -81,6 +81,10 @@ class RentalDetails : Fragment() {
             navController.navigate(R.id.action_rentalDetails_to_addPayment)
         }
 
+        binding!!.editTenantCardVw.setOnClickListener {
+            navController.navigate(R.id.action_rentalDetails_to_editTenantDetails)
+        }
+
         binding!!.removeTenantCardVw.setOnClickListener {
             alertDialogBuilder
                 .setTitle("Are you sure?")

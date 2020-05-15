@@ -31,11 +31,11 @@ android {
         targetCompatibility = 1.8
     }
 
-    viewBinding{
+    viewBinding {
         enabled = true
     }
 
-    kotlinOptions{
+    kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
