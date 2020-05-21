@@ -86,6 +86,7 @@ class PropertyDetails : Fragment() {
             navController.navigate(action)
         }
 
+
         binding?.balancesListCardView?.setOnClickListener {
             navController.navigate(R.id.action_propertyDetails_to_balancesList)
         }

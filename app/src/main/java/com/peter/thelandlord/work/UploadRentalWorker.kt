@@ -28,10 +28,12 @@ class UploadRentalWorker(context: Context, workerParams: WorkerParameters):
                 val rentalId = inputData.getString(Constants.KEY_RENTAL_ID)
                 val rental = rentalDao.findRentalById(rentalId!!)
 
+                Log.d(TAG, "RENTAL, $rental")
+
                 firestore.collection(FirestoreCollections.RENTALS).document(rental.id).set(rental).await()
                 Result.success()
             }catch (e: Exception){
-                Log.d(TAG, "${e.message}")
+                Log.d(TAG, "ERROR, ${e.message}")
                 Result.retry()
             }
 

@@ -43,7 +43,7 @@ class RentalManagementRepoImpl (val firestore: FirebaseFirestore, val appDb: App
         rental.timestamp = getCurrentTimestamp()
         rental.id = firestore.collection(FirestoreCollections.RENTALS).document().id
 
-        val data = workDataOf(Constants.KEY_RENTAL_ID to rental.rentalNumber)
+        val data = workDataOf(Constants.KEY_RENTAL_ID to rental.id)
 
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
