@@ -6,14 +6,14 @@
     <data>
         <variable
             name="RentalViewModel"
-            type="com.peter.thelandlord.presentation.addrental.RentalViewModel" />
+            type="com.peter.thelandlord.presentation.viewmodels.RentalViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:theme="@style/AppTheme.SecondaryTheme"
-        tools:context=".presentation.addrental.AddRental">
+        tools:context=".presentation.ui.addrental.AddRental">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -303,7 +303,7 @@
                                   android:textAlignment="center"
                                   android:textColor="@color/black"
                                   android:textSize="16sp"
-                                  app:layout_constraintEnd_toStartOf="@+id/year_txt" />
+                                  app:layout_constraintEnd_toStartOf="@+id/advance_year_txt" />
                           </LinearLayout>
 
                           <LinearLayout

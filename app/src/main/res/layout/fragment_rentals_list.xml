@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.rentalslist.RentalsList">
+    tools:context=".presentation.ui.rentalslist.RentalsList">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/rentals_list_swipe_refresh_layout"

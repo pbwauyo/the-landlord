@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/propertyList"
-        android:name="com.peter.thelandlord.presentation.propertylist.PropertyList"
+        android:name="com.peter.thelandlord.presentation.ui.propertylist.PropertyList"
         android:label="fragment_property_list"
         tools:layout="@layout/fragment_property_list" >
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/transactionSummary"
-        android:name="com.peter.thelandlord.presentation.transactionsummary.TransactionSummary"
+        android:name="com.peter.thelandlord.presentation.ui.transactionsummary.TransactionSummary"
         android:label="fragment_transaction_summary"
         tools:layout="@layout/fragment_transaction_summary" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.peter.thelandlord.presentation.profile.ProfileFragment"
+        android:name="com.peter.thelandlord.presentation.ui.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" >
         <action
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/propertyDetails"
-        android:name="com.peter.thelandlord.presentation.propertydetails.PropertyDetails"
+        android:name="com.peter.thelandlord.presentation.ui.propertydetails.PropertyDetails"
         android:label="fragment_property_details"
         tools:layout="@layout/fragment_property_details" >
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/addRental"
-        android:name="com.peter.thelandlord.presentation.addrental.AddRental"
+        android:name="com.peter.thelandlord.presentation.ui.addrental.AddRental"
         android:label="fragment_add_rental"
         tools:layout="@layout/fragment_add_rental" >
         <argument
@@ -68,7 +68,7 @@
     </fragment>
     <fragment
         android:id="@+id/rentalsList"
-        android:name="com.peter.thelandlord.presentation.rentalslist.RentalsList"
+        android:name="com.peter.thelandlord.presentation.ui.rentalslist.RentalsList"
         android:label="fragment_rentals_list"
         tools:layout="@layout/fragment_rentals_list" >
         <action
@@ -80,7 +80,7 @@
     </fragment>
     <fragment
         android:id="@+id/rentalDetails"
-        android:name="com.peter.thelandlord.presentation.rentaldetails.RentalDetails"
+        android:name="com.peter.thelandlord.presentation.ui.rentaldetails.RentalDetails"
         android:label="fragment_rental_details"
         tools:layout="@layout/fragment_rental_details" >
         <action
@@ -95,27 +95,27 @@
     </fragment>
     <fragment
         android:id="@+id/addPayment"
-        android:name="com.peter.thelandlord.presentation.addpayment.AddPayment"
+        android:name="com.peter.thelandlord.presentation.ui.addpayment.AddPayment"
         android:label="fragment_add_payment"
         tools:layout="@layout/fragment_add_payment" />
     <fragment
         android:id="@+id/debtorsList"
-        android:name="com.peter.thelandlord.presentation.debtorslist.DebtorsList"
+        android:name="com.peter.thelandlord.presentation.ui.debtorslist.DebtorsList"
         android:label="fragment_debtors_list"
         tools:layout="@layout/fragment_debtors_list" />
     <fragment
         android:id="@+id/balancesList"
-        android:name="com.peter.thelandlord.presentation.balanceslist.BalancesList"
+        android:name="com.peter.thelandlord.presentation.ui.balanceslist.BalancesList"
         android:label="fragment_balances_list"
         tools:layout="@layout/fragment_balances_list" />
     <fragment
         android:id="@+id/paymentsListFragment"
-        android:name="com.peter.thelandlord.presentation.paymentslist.PaymentsListFragment"
+        android:name="com.peter.thelandlord.presentation.ui.paymentslist.PaymentsListFragment"
         android:label="fragment_payments_list"
         tools:layout="@layout/fragment_payments_list" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.peter.thelandlord.presentation.auth.login.LoginFragment"
+        android:name="com.peter.thelandlord.presentation.ui.auth.login.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -129,7 +129,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.peter.thelandlord.presentation.auth.register.RegisterFragment"
+        android:name="com.peter.thelandlord.presentation.ui.auth.register.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -143,13 +143,13 @@
     </fragment>
     <fragment
         android:id="@+id/addProperty"
-        android:name="com.peter.thelandlord.presentation.addproperty.AddProperty"
+        android:name="com.peter.thelandlord.presentation.ui.addproperty.AddProperty"
         android:label="fragment_add_property"
         tools:layout="@layout/fragment_add_property" />
 
     <dialog
         android:id="@+id/editTenantDetails"
-        android:name="com.peter.thelandlord.presentation.edittenantdetails.EditTenantDetails"
+        android:name="com.peter.thelandlord.presentation.ui.edittenantdetails.EditTenantDetails"
         android:label="fragment_edit_tenant_details"
         tools:layout="@layout/fragment_edit_tenant_details" />
 </navigation>

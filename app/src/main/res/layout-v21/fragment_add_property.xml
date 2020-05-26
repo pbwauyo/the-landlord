@@ -4,7 +4,7 @@
     <data>
         <variable
             name="PropertyViewModel"
-            type="com.peter.thelandlord.presentation.addproperty.PropertyViewModel" />
+            type="com.peter.thelandlord.presentation.viewmodels.PropertyViewModel" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:theme="@style/AppTheme.SecondaryTheme"
-        tools:context=".presentation.addproperty.AddProperty">
+        tools:context=".presentation.ui.addproperty.AddProperty">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

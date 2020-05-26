@@ -5,15 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.textview.MaterialTextView
 import com.peter.thelandlord.R
 import com.peter.thelandlord.domain.models.Property
-import com.peter.thelandlord.presentation.propertylist.PropertyListDirections
-
+import com.peter.thelandlord.presentation.ui.propertylist.PropertyListDirections
 
 class PropertyViewHolder(val itemVw: View): RecyclerView.ViewHolder(itemVw) {
 

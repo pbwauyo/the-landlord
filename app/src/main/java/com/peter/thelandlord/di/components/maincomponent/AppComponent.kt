@@ -4,6 +4,9 @@ import android.app.Application
 import com.peter.thelandlord.di.baseapplication.BaseApplication
 import com.peter.thelandlord.di.modules.appmodule.AppModule
 import com.peter.thelandlord.di.modules.activityinjectors.LandlordActivityInjectorModule
+import com.peter.thelandlord.di.modules.networkmodule.NetworkModule
+import com.peter.thelandlord.di.modules.reposmodule.RepoModule
+import com.peter.thelandlord.di.modules.viewmodelmodule.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -13,7 +16,10 @@ import javax.inject.Singleton
 @Component(modules = [
         AndroidInjectionModule::class,
         AppModule::class,
-        LandlordActivityInjectorModule::class
+        LandlordActivityInjectorModule::class,
+        NetworkModule::class,
+        RepoModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent{

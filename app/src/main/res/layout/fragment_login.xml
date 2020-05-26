@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.auth.login.LoginFragment">
+    tools:context=".presentation.ui.auth.login.LoginFragment">
 
     <data>
         <variable
             name="AuthViewModel"
-            type="com.peter.thelandlord.presentation.auth.AuthViewModel" />
+            type="com.peter.thelandlord.presentation.viewmodels.AuthViewModel" />
     </data>
 
    <FrameLayout

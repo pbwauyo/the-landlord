@@ -4,18 +4,23 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.peter.thelandlord.data.dao.LandlordDao
-import com.peter.thelandlord.data.dao.PropertyDao
-import com.peter.thelandlord.data.dao.RentalDao
-import com.peter.thelandlord.domain.models.Landlord
-import com.peter.thelandlord.domain.models.Property
-import com.peter.thelandlord.domain.models.Rental
+import com.peter.thelandlord.data.dao.*
+import com.peter.thelandlord.domain.models.*
 
-@Database(entities = [Property::class, Landlord::class, Rental::class], version = 5)
+@Database(entities = [
+    Property::class,
+    Landlord::class,
+    Rental::class,
+    Payment::class,
+    Debt::class,
+    RentalAccountSummary::class], version = 7, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
     abstract fun landlordDao(): LandlordDao
     abstract fun rentalDao(): RentalDao
+    abstract fun paymentDao(): PaymentDao
+    abstract fun debtDao(): DebtDao
+    abstract fun rentalAccountSummaryDao(): RentalAccountSummaryDao
 
     companion object {
         private const val DATABASE_NAME = "app-database.db"

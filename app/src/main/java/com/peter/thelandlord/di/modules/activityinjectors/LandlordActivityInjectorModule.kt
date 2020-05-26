@@ -1,7 +1,7 @@
 package com.peter.thelandlord.di.modules.activityinjectors
 
 import com.peter.thelandlord.di.modules.fragmentinjectors.FragmentModule
-import com.peter.thelandlord.presentation.LandlordActivity
+import com.peter.thelandlord.LandlordActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

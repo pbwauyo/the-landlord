@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.LandlordActivity">
+        <activity android:name=".LandlordActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

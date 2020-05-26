@@ -3,14 +3,12 @@ package com.peter.thelandlord.viewholders
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.peter.thelandlord.R
 import com.peter.thelandlord.domain.models.Rental
-import com.peter.thelandlord.presentation.rentalslist.RentalsListDirections
+import com.peter.thelandlord.presentation.ui.rentalslist.RentalsListDirections
 import de.hdodenhof.circleimageview.CircleImageView
 
 class RentalViewHolder(val itemVw: View): RecyclerView.ViewHolder(itemVw) {

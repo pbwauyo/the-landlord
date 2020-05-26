@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.propertylist.PropertyList">
+    tools:context=".presentation.ui.propertylist.PropertyList">
 
 <!--    <com.google.android.material.button.MaterialButton-->
 <!--        android:id="@+id/sign_out_btn"-->

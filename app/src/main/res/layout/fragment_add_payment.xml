@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.addpayment.AddPayment">
+    tools:context=".presentation.ui.addpayment.AddPayment">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -47,6 +47,15 @@
                       android:textColor="@color/black"
                       android:background="@drawable/rounded_border_text_view"/>
 
+                  <com.google.android.material.button.MaterialButton
+                      android:id="@+id/set_payment_date_btn"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/set"
+                      app:layout_constraintEnd_toEndOf="parent"
+                      app:layout_constraintTop_toTopOf="parent"
+                      android:layout_marginTop="8dp"/>
+
               </androidx.constraintlayout.widget.ConstraintLayout>
 
           </com.google.android.material.card.MaterialCardView>
@@ -55,7 +64,8 @@
               android:id="@+id/payment_for_card_vw"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              app:layout_constraintTop_toBottomOf="@id/date_of_payment_card_vw">
+              app:layout_constraintTop_toBottomOf="@id/date_of_payment_card_vw"
+              app:contentPaddingBottom="@dimen/mediumPaddingBottom">
 
               <androidx.constraintlayout.widget.ConstraintLayout
                   android:layout_width="match_parent"
@@ -80,25 +90,23 @@
                       android:orientation="vertical">
 
                       <com.google.android.material.textview.MaterialTextView
-                          android:id="@+id/no_debts"
+                          android:id="@+id/no_debts_txt"
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
                           android:text="@string/no_debts_currently"
                           android:layout_marginTop="@dimen/mediumMarginTop"
-                          android:textColor="@color/black"/>
+                          android:textColor="@color/black" />
 
-                      <include layout="@layout/payment_month_row"/>
-                      <include layout="@layout/payment_month_row"/>
                   </LinearLayout>
 
-                  <com.google.android.material.button.MaterialButton
-                      android:id="@+id/add_payment_btn"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintEnd_toEndOf="parent"
-                      app:layout_constraintTop_toBottomOf="@id/add_payment_fields_layout"
-                      android:layout_marginTop="@dimen/extraLargeMarginTop"
-                      android:text="@string/add_field" />
+<!--                  <com.google.android.material.button.MaterialButton-->
+<!--                      android:id="@+id/add_payment_btn"-->
+<!--                      android:layout_width="wrap_content"-->
+<!--                      android:layout_height="wrap_content"-->
+<!--                      app:layout_constraintEnd_toEndOf="parent"-->
+<!--                      app:layout_constraintTop_toBottomOf="@id/add_payment_fields_layout"-->
+<!--                      android:layout_marginTop="@dimen/extraLargeMarginTop"-->
+<!--                      android:text="@string/add_field" />-->
 
               </androidx.constraintlayout.widget.ConstraintLayout>
           </com.google.android.material.card.MaterialCardView>
@@ -132,12 +140,11 @@
                       android:orientation="vertical"
                       app:layout_constraintTop_toBottomOf="@id/pay_advance_check_bx">
 
-                      <include layout="@layout/payment_month_row"/>
-                      <include layout="@layout/payment_month_row"/>
+                      <include layout="@layout/advance_payment_row"/>
                   </LinearLayout>
 
                   <com.google.android.material.button.MaterialButton
-                      android:id="@+id/add_advance_payt_btn"
+                      android:id="@+id/add_advance_payt_field_btn"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       app:layout_constraintEnd_toEndOf="parent"
