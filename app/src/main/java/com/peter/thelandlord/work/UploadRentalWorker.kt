@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.functions.FirebaseFunctions
 import com.google.firebase.functions.ktx.functions
@@ -25,6 +26,8 @@ class UploadRentalWorker(context: Context, workerParams: WorkerParameters):
     }
 
     override suspend fun doWork(): Result = coroutineScope {
+
+            Log.d(TAG, "CURRENT USER, ${FirebaseAuth.getInstance().currentUser?.email}")
 
             try {
                 val rentalDao = AppDatabase.getInstance(applicationContext).rentalDao()

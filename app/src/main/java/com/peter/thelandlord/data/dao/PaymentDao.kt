@@ -36,7 +36,7 @@ interface PaymentDao {
     @Query("SELECT * FROM payments WHERE property_id = :propertyId")
     fun getAllPaymentsForPropertyLD(propertyId: String): DataSource.Factory<Int, Payment>
 
-    @Query("SELECT * FROM payments WHERE property_id = :timestamp")
+    @Query("SELECT * FROM payments WHERE timestamp = :timestamp")
     fun getAllPaymentsByTimestamp(timestamp: String): List<Payment>
 
 }

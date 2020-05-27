@@ -2,7 +2,7 @@ package com.peter.thelandlord.data
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.work.WorkManager
+import androidx.work.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObjects
 import com.google.firebase.ktx.Firebase
@@ -12,7 +12,9 @@ import com.peter.thelandlord.data.listing.Listing
 import com.peter.thelandlord.domain.interfaces.RentalAccountRepo
 import com.peter.thelandlord.domain.models.Debt
 import com.peter.thelandlord.domain.models.Payment
+import com.peter.thelandlord.utils.Constants
 import com.peter.thelandlord.utils.FirestoreCollections
+import com.peter.thelandlord.work.UploadPaymentsWorker
 import io.reactivex.Completable
 import java.util.concurrent.Executor
 import javax.inject.Inject
@@ -88,9 +90,25 @@ class RentalAccountRepoImpl @Inject constructor (
 
     override fun savePayments(payments: List<Payment>): Completable {
 
+        val reference = firestore.collection(FirestoreCollections.PAYMENTS)
         payments.forEach {
-            it.paymentId = firestore.collection(FirestoreCollections.PAYMENTS_SUMMARY).document().id
+            it.paymentId = reference.document().id
         }
+
+        val data = workDataOf(
+            Constants.KEY_TIMESTAMP to payments[0].timestamp
+        )
+
+        val constraints = Constraints.Builder()
+             .setRequiredNetworkType(NetworkType.CONNECTED)
+             .build()
+
+        val uploadRequest = OneTimeWorkRequestBuilder<UploadPaymentsWorker>()
+            .setInputData(data)
+            .setConstraints(constraints)
+            .build()
+
+        workManager.enqueue(uploadRequest)
 
         return paymentDao.savePaymentsCompletable(payments)
     }
