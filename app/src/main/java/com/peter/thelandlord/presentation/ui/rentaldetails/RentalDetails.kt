@@ -51,7 +51,7 @@ class RentalDetails : Fragment() {
 
         rentalId = args.rentalID
         compositeDisposable = CompositeDisposable()
-        alertDialogBuilder = MaterialAlertDialogBuilder(activity)
+        alertDialogBuilder = activity?.let { MaterialAlertDialogBuilder(it) }!!
     }
 
     override fun onCreateView(
