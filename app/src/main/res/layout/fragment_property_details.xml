@@ -62,10 +62,10 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/add_rental_card_view"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:focusable="true"
+                android:layout_width="142dp"
+                android:layout_height="144dp"
                 android:clickable="true"
+                android:focusable="true"
                 android:foreground="?selectableItemBackground"
                 app:layout_constraintBottom_toBottomOf="@id/guideline4"
                 app:layout_constraintEnd_toStartOf="@+id/rental_list_card_view"
@@ -163,7 +163,7 @@
                     <com.google.android.material.textview.MaterialTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/money_balances"
+                        android:text="@string/payments"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/balances_list_img_view" />

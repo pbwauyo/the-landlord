@@ -14,5 +14,16 @@ data class Payment (
     @ColumnInfo(name = "rental_id") val rentalId: String = "",
     @ColumnInfo(name = "property_id") val propertyId: String = "",
     @ColumnInfo(name = "date_of_payment") val dateOfPayment: String = "",
-    @get:Exclude val timestamp: String = "" // exclude from firestore storage
-)
+    val timestamp: String = ""
+){
+    override fun equals(other: Any?): Boolean {
+        return other is Payment &&
+                other.paymentId == this.paymentId &&
+                other.dateOfPayment == this.dateOfPayment &&
+                other.amount == this.amount
+    }
+
+    override fun hashCode(): Int {
+        return timestamp.hashCode()
+    }
+}

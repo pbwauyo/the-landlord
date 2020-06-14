@@ -21,9 +21,6 @@ import com.peter.thelandlord.presentation.viewmodels.PropertyViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-/**
- * A simple [Fragment] subclass.
- */
 class PropertyDetails : Fragment() {
 
     val args: PropertyDetailsArgs by navArgs()
@@ -91,7 +88,7 @@ class PropertyDetails : Fragment() {
 
 
         binding?.balancesListCardView?.setOnClickListener {
-            navController.navigate(R.id.action_propertyDetails_to_balancesList)
+            navController.navigate(R.id.action_propertyDetails_to_paymentsListFragment)
         }
 
         binding?.debtorsListCardView?.setOnClickListener {

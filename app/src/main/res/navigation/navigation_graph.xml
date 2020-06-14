@@ -48,14 +48,14 @@
             android:id="@+id/action_propertyDetails_to_debtorsList"
             app:destination="@id/debtorsList" />
         <action
-            android:id="@+id/action_propertyDetails_to_balancesList"
-            app:destination="@id/balancesList" />
-        <action
             android:id="@+id/action_propertyDetails_to_addRental"
             app:destination="@id/addRental" />
         <argument
             android:name="propertyID"
             app:argType="string" />
+        <action
+            android:id="@+id/action_propertyDetails_to_paymentsListFragment"
+            app:destination="@id/paymentsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/addRental"
@@ -103,11 +103,6 @@
         android:name="com.peter.thelandlord.presentation.ui.debtorslist.DebtorsList"
         android:label="fragment_debtors_list"
         tools:layout="@layout/fragment_debtors_list" />
-    <fragment
-        android:id="@+id/balancesList"
-        android:name="com.peter.thelandlord.presentation.ui.balanceslist.BalancesList"
-        android:label="fragment_balances_list"
-        tools:layout="@layout/fragment_balances_list" />
     <fragment
         android:id="@+id/paymentsListFragment"
         android:name="com.peter.thelandlord.presentation.ui.paymentslist.PaymentsListFragment"

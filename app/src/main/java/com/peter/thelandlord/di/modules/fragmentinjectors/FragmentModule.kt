@@ -5,7 +5,6 @@ import com.peter.thelandlord.presentation.ui.addproperty.AddProperty
 import com.peter.thelandlord.presentation.ui.addrental.AddRental
 import com.peter.thelandlord.presentation.ui.auth.login.LoginFragment
 import com.peter.thelandlord.presentation.ui.auth.register.RegisterFragment
-import com.peter.thelandlord.presentation.ui.balanceslist.BalancesList
 import com.peter.thelandlord.presentation.ui.debtorslist.DebtorsList
 import com.peter.thelandlord.presentation.ui.edittenantdetails.EditTenantDetails
 import com.peter.thelandlord.presentation.ui.paymentslist.PaymentsListFragment
@@ -35,9 +34,6 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun registerLandlordFragmentInjector(): RegisterFragment
-
-    @ContributesAndroidInjector
-    abstract fun balancesListFragmentInjector(): BalancesList
 
     @ContributesAndroidInjector
     abstract fun debtorsListFragmentInjector(): DebtorsList

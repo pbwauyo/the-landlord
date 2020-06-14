@@ -35,7 +35,7 @@ interface RentalDao {
     fun getRentalByIdLiveData(rentalId: String): LiveData<Rental>
 
     @Query("SELECT * FROM rentals WHERE id = :rentalId")
-    fun findRentalById(rentalId: String): Rental
+    fun findRentalById(rentalId: String): Rental?
 
     @Query("SELECT * FROM rentals WHERE propertyID = :propertyId")
     fun getRentalsByProperty(propertyId: String): DataSource.Factory<Int, Rental>

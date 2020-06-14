@@ -1,6 +1,7 @@
 package com.peter.thelandlord.data.apis
 
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.WriteBatch
 import com.google.firebase.firestore.ktx.firestore
@@ -8,6 +9,7 @@ import com.google.firebase.ktx.Firebase
 import com.peter.thelandlord.domain.models.Payment
 import com.peter.thelandlord.utils.DebtFields
 import com.peter.thelandlord.utils.FirestoreCollections
+import com.peter.thelandlord.utils.PaymentFields
 import com.peter.thelandlord.utils.RentalAccountSummaryFields
 
 object RentalAccountApi {
@@ -31,11 +33,31 @@ object RentalAccountApi {
             .get()
     }
 
-    fun getPaymentsInitial(propertyId: String): Task<QuerySnapshot>{
+    fun getPaymentsInitial(propertyId: String, limit: Int): Task<QuerySnapshot>{
+        return firestore.collection(FirestoreCollections.PAYMENTS)
+            .whereEqualTo(PaymentFields.PROPERTY_ID, propertyId)
+            .limit(limit.toLong())
+            .orderBy(PaymentFields.TIMESTAMP, Query.Direction.ASCENDING)
+            .get()
+    }
+
+    fun getPaymentsAfter(propertyId: String, timestamp: String, limit: Int ): Task<QuerySnapshot>{
+        return firestore.collection(FirestoreCollections.PAYMENTS)
+            .whereEqualTo(PaymentFields.PROPERTY_ID, propertyId)
+            .whereGreaterThan(PaymentFields.TIMESTAMP, timestamp)
+            .limit(limit.toLong())
+            .orderBy(PaymentFields.TIMESTAMP, Query.Direction.ASCENDING)
+            .get()
+    }
+
+    fun getSearchPaymentsInitial(propertyId: String, limit: Int): Task<QuerySnapshot>{
+//        return firestore.collection(FirestoreCollections.PAYMENTS)
+//            .where
+        // TODO: 10/06/2020
         TODO()
     }
 
-    fun getPaymentsAfter(propertyId: String, start: Int, limit: Int ): Task<QuerySnapshot>{
+    fun getSearchPaymentsAfter(propertyId: String, timestamp: String, limit: Int ): Task<QuerySnapshot>{
         TODO()
     }
 

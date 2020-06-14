@@ -7,4 +7,5 @@ object PaymentFields {
     const val YEAR = "year"
     const val RENTAL_ID = "rentalId"
     const val PROPERTY_ID = "propertyId"
+    const val TIMESTAMP = "timestamp"
 }

@@ -2,10 +2,7 @@ package com.peter.thelandlord.data.dao
 
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.peter.thelandlord.domain.models.Payment
 import io.reactivex.Completable
 
@@ -23,6 +20,12 @@ interface PaymentDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun savePayments(payments: List<Payment>)
+
+    @Delete
+    fun deleteAllPayments(payments: List<Payment>)
+
+    @Query("DELETE FROM payments WHERE property_id = :propertyId")
+    fun deleteAllPaymentsByPropertyId(propertyId: String)
 
     @Query("SELECT * FROM payments WHERE payment_id = :paymentId LIMIT 1")
     fun getPaymentById(paymentId: String): Payment

@@ -111,48 +111,48 @@
               </androidx.constraintlayout.widget.ConstraintLayout>
           </com.google.android.material.card.MaterialCardView>
 
-          <com.google.android.material.card.MaterialCardView
-              android:id="@+id/advance_payment_card_vw"
-              app:layout_constraintTop_toBottomOf="@+id/payment_for_card_vw"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<!--          <com.google.android.material.card.MaterialCardView-->
+<!--              android:id="@+id/advance_payment_card_vw"-->
+<!--              app:layout_constraintTop_toBottomOf="@+id/payment_for_card_vw"-->
+<!--              android:layout_width="match_parent"-->
+<!--              android:layout_height="wrap_content">-->
 
-              <androidx.constraintlayout.widget.ConstraintLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:padding="@dimen/extraLargePaddingEnd">
+<!--              <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                  android:layout_width="match_parent"-->
+<!--                  android:layout_height="match_parent"-->
+<!--                  android:padding="@dimen/extraLargePaddingEnd">-->
 
-                  <CheckBox
-                      android:id="@+id/pay_advance_check_bx"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintTop_toTopOf="parent"
-                      app:layout_constraintStart_toStartOf="parent"
-                      android:text="@string/advance_payment"
-                      android:textColor="@color/colorPrimaryDark" />
+<!--                  <CheckBox-->
+<!--                      android:id="@+id/pay_advance_check_bx"-->
+<!--                      android:layout_width="wrap_content"-->
+<!--                      android:layout_height="wrap_content"-->
+<!--                      app:layout_constraintTop_toTopOf="parent"-->
+<!--                      app:layout_constraintStart_toStartOf="parent"-->
+<!--                      android:text="@string/advance_payment"-->
+<!--                      android:textColor="@color/colorPrimaryDark" />-->
 
-                  <LinearLayout
-                      android:id="@+id/advance_payt_layout"
-                      android:layout_width="0dp"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintStart_toStartOf="parent"
-                      app:layout_constraintEnd_toEndOf="parent"
-                      android:orientation="vertical"
-                      app:layout_constraintTop_toBottomOf="@id/pay_advance_check_bx">
+<!--                  <LinearLayout-->
+<!--                      android:id="@+id/advance_payt_layout"-->
+<!--                      android:layout_width="0dp"-->
+<!--                      android:layout_height="wrap_content"-->
+<!--                      app:layout_constraintStart_toStartOf="parent"-->
+<!--                      app:layout_constraintEnd_toEndOf="parent"-->
+<!--                      android:orientation="vertical"-->
+<!--                      app:layout_constraintTop_toBottomOf="@id/pay_advance_check_bx">-->
 
-                      <include layout="@layout/advance_payment_row"/>
-                  </LinearLayout>
+<!--                      <include layout="@layout/advance_payment_row"/>-->
+<!--                  </LinearLayout>-->
 
-                  <com.google.android.material.button.MaterialButton
-                      android:id="@+id/add_advance_payt_field_btn"
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      app:layout_constraintEnd_toEndOf="parent"
-                      app:layout_constraintTop_toBottomOf="@id/advance_payt_layout"
-                      android:layout_marginTop="@dimen/extraLargeMarginTop"
-                      android:text="@string/add_field" />
-              </androidx.constraintlayout.widget.ConstraintLayout>
-          </com.google.android.material.card.MaterialCardView>
+<!--                  <com.google.android.material.button.MaterialButton-->
+<!--                      android:id="@+id/add_advance_payt_field_btn"-->
+<!--                      android:layout_width="wrap_content"-->
+<!--                      android:layout_height="wrap_content"-->
+<!--                      app:layout_constraintEnd_toEndOf="parent"-->
+<!--                      app:layout_constraintTop_toBottomOf="@id/advance_payt_layout"-->
+<!--                      android:layout_marginTop="@dimen/extraLargeMarginTop"-->
+<!--                      android:text="@string/add_field" />-->
+<!--              </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--          </com.google.android.material.card.MaterialCardView>-->
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/submit_payment_btn"
@@ -160,7 +160,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/advance_payment_card_vw"
+                app:layout_constraintTop_toBottomOf="@id/payment_for_card_vw"
                 android:text="@string/add_payment"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

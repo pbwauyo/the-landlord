@@ -36,7 +36,7 @@
     <string name="enter_tenant_start_date">Enter tenancy start date</string>
     <string name="add_rental">ADD RENTAL</string>
     <string name="rentals">RENTALS</string>
-    <string name="money_balances">MONEY BALANCES</string>
+    <string name="payments">PAYMENTS</string>
     <string name="defaulters">DEFAULTERS</string>
     <string name="tenant_name">Tenant name</string>
     <string name="tenant_contact">Tenant contact</string>
@@ -60,5 +60,7 @@
     <string name="set">SET</string>
     <string name="cancel">Cancel</string>
     <string name="remove_field">Remove field</string>
+    <string name="search_debts">Search debts</string>
+    <string name="search_payments">Search payments</string>
 
 </resources>

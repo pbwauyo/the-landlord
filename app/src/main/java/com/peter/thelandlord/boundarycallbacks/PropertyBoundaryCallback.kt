@@ -7,23 +7,24 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.peter.thelandlord.data.dao.PropertyDao
+import com.peter.thelandlord.domain.models.Payment
 import com.peter.thelandlord.domain.models.Property
+import com.peter.thelandlord.utils.Executors
 import com.peter.thelandlord.utils.FirestoreCollections
 import com.peter.thelandlord.utils.PropertyFields
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.util.concurrent.Executors
 
 class PropertyBoundaryCallback(
     val userEmail: String,
     val propertyDao: PropertyDao,
     val limit: Int
+
 ) : PagedList.BoundaryCallback<Property>() {
 
-    private val ioExecutor = Executors.newSingleThreadExecutor()
     private val firestore = Firebase.firestore
-    private val helper = PagingRequestHelper(ioExecutor)
+    private val helper = PagingRequestHelper(Executors.executor)
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     companion object{
@@ -52,10 +53,6 @@ class PropertyBoundaryCallback(
             Log.d(TAG, Thread.currentThread().name)
         }
 
-    }
-
-    private fun ioThread(f: () -> Unit){
-        ioExecutor.execute(f)
     }
 
     private fun loadAndCacheProperties(item: Property? = null){

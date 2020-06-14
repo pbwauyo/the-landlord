@@ -3,6 +3,7 @@ package com.peter.thelandlord.presentation.viewmodels
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import com.peter.thelandlord.domain.interfaces.RentalAccountRepo
 import com.peter.thelandlord.domain.models.Payment
@@ -10,11 +11,34 @@ import io.reactivex.Completable
 
 class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewModel() {
 
+    val debtsSearchTextLiveData = MutableLiveData<String>()
+    val paymentsSearchTextLiveData = MutableLiveData<String>()
+
     val debtsMapList: ArrayList<Map<String, EditText>> = ArrayList()
 
     val propertyIdLiveData = MutableLiveData<String>()
     val propertyDebtsLiveData = propertyIdLiveData.switchMap {
         rentalAccountRepo.getAllDebtsForProperty(it)
+    }
+
+    val searchTextLiveData = MutableLiveData<String>()
+
+    // handle payments fetch
+
+    val repoResult = propertyIdLiveData.map {
+        rentalAccountRepo.getAllPayments(it)
+    }
+
+    val networkState = repoResult.switchMap {
+        it.networkState
+    }
+
+    val refreshState = repoResult.switchMap {
+        it.refreshState
+    }
+
+    val paymentsPagedList = repoResult.switchMap {
+        it.livePagedList
     }
 
     val rentalIdLiveData = MutableLiveData<String>()
@@ -50,6 +74,14 @@ class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewMod
 
     fun getPropertyId(): String{
         return propertyIdLiveData.value!!
+    }
+
+    fun refresh(){
+        repoResult.value?.refresh?.invoke()
+    }
+
+    fun retry(){
+        repoResult.value?.retry?.invoke()
     }
 
 }

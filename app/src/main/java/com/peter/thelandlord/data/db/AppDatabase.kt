@@ -13,7 +13,7 @@ import com.peter.thelandlord.domain.models.*
     Rental::class,
     Payment::class,
     Debt::class,
-    RentalAccountSummary::class], version = 7, exportSchema = false)
+    RentalAccountSummary::class], version = 8, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun propertyDao(): PropertyDao
     abstract fun landlordDao(): LandlordDao

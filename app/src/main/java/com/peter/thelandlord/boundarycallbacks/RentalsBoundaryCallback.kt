@@ -1,14 +1,13 @@
 package com.peter.thelandlord.boundarycallbacks
 
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import androidx.paging.PagingRequestHelper
 import com.google.firebase.firestore.ktx.toObjects
 import com.peter.thelandlord.data.apis.RentalsApi
 import com.peter.thelandlord.domain.models.Rental
-import java.util.concurrent.Executors
 import com.peter.thelandlord.extensions.pagingrequesthelperextensions.createNetworkStatusLiveData
+import com.peter.thelandlord.utils.Executors
 
 class RentalsBoundaryCallback(
     val pageSize: Int,
@@ -17,7 +16,7 @@ class RentalsBoundaryCallback(
     val rentalsApi: RentalsApi
 ): PagedList.BoundaryCallback<Rental>() {
 
-    private val executor = Executors.newSingleThreadExecutor()
+    private val executor = Executors.executor
     val helper = PagingRequestHelper(executor)
     val networkState = helper.createNetworkStatusLiveData()
 
@@ -42,16 +41,12 @@ class RentalsBoundaryCallback(
 
     }
 
-    private fun ioThread(f: () -> Unit){
-        executor.execute(f)
-    }
-
     private fun loadAndCacheRentals(itemAtEnd: Rental? = null){
 
         if (itemAtEnd == null){
             rentalsApi.getRentalsInitial(propertyId, pageSize)
             .addOnSuccessListener {
-                ioThread {
+                Executors.ioExecutor {
                     val rentals = it.toObjects<Rental>()
                     handleRentalInsertion(rentals)
                 }
@@ -62,7 +57,7 @@ class RentalsBoundaryCallback(
         }else{
             rentalsApi.getRentalsAfter(propertyId, pageSize, itemAtEnd)
             .addOnSuccessListener {
-                ioThread {
+                Executors.ioExecutor {
                     val rentals = it.toObjects<Rental>()
                     handleRentalInsertion(rentals)
                 }

@@ -42,6 +42,12 @@ class RentalsApi {
                 .document(rentalId)
                 .update(updates)
         }
+
+        fun getRental(rentalId: String): Task<QuerySnapshot>{
+            return firestore.collection(FirestoreCollections.RENTALS)
+                .whereEqualTo(RentalFields.ID, rentalId)
+                .get()
+        }
     }
 
 
