@@ -14,11 +14,12 @@ interface RentalAccountRepo {
 
     fun getAllPayments(propertyId: String): Listing<Payment>
 
+    fun handlePaymentsFetching(propertyId: String): Listing<Payment>
+
     fun getAllPaymentsByTimestamp(timestamp: String): List<Payment>
 
     fun saveDebts(debts: List<Debt>)
 
     fun savePayments(payments: List<Payment>): Completable
-
 
 }

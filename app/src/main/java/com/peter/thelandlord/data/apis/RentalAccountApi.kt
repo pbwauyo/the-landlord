@@ -1,5 +1,6 @@
 package com.peter.thelandlord.data.apis
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
@@ -14,6 +15,7 @@ import com.peter.thelandlord.utils.RentalAccountSummaryFields
 
 object RentalAccountApi {
     private val firestore = Firebase.firestore
+    private val TAG = "RentalAccApi"
 
     fun getAllDebtsForRental(rentalId: String): Task<QuerySnapshot> {
         return firestore.collection(FirestoreCollections.DEBTS)
@@ -34,6 +36,8 @@ object RentalAccountApi {
     }
 
     fun getPaymentsInitial(propertyId: String, limit: Int): Task<QuerySnapshot>{
+        Log.d(TAG, "${PaymentFields.PROPERTY_ID}, $propertyId")
+
         return firestore.collection(FirestoreCollections.PAYMENTS)
             .whereEqualTo(PaymentFields.PROPERTY_ID, propertyId)
             .limit(limit.toLong())
@@ -42,6 +46,8 @@ object RentalAccountApi {
     }
 
     fun getPaymentsAfter(propertyId: String, timestamp: String, limit: Int ): Task<QuerySnapshot>{
+        Log.d(TAG, "Property Id, $propertyId")
+
         return firestore.collection(FirestoreCollections.PAYMENTS)
             .whereEqualTo(PaymentFields.PROPERTY_ID, propertyId)
             .whereGreaterThan(PaymentFields.TIMESTAMP, timestamp)

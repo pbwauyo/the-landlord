@@ -40,11 +40,12 @@ class PaymentsViewHolder constructor(val view: View) : RecyclerView.ViewHolder(v
         paymentDateTxt.text = payment.dateOfPayment
         paymentForTxt.text = String.format("%s/%s", payment.month, payment.year)
 
+        var dbRental:Rental? = null
         Executors.ioExecutor {
-            val dbRental = rentalDao.findRentalById(payment.rentalId)
-            loadImage(payment.rentalId, dbRental)
+            dbRental = rentalDao.findRentalById(payment.rentalId) //TODO("ISSUE HERE CONCERNING DB")
             displayName(payment.rentalId, dbRental)
         }
+        loadImage(payment.rentalId, dbRental)
 
     }
 
@@ -62,16 +63,18 @@ class PaymentsViewHolder constructor(val view: View) : RecyclerView.ViewHolder(v
 
     private fun loadImage(rentalId: String, dbRental: Rental?){
 
-        if(dbRental != null){
+        if(dbRental != null){  //if the rental is in the database, load the image directly
             glideImage(dbRental.tenantImage)
-        }else{
+        }else{                          //else download rental and save in the database
             RentalsApi.getRental(rentalId)
                 .addOnSuccessListener {
                     val rental = it.documents[0].toObject<Rental>()
-                    if (!rental?.tenantImage.isNullOrBlank()){
-                        glideImage(rental?.tenantImage)
+                    glideImage(rental?.tenantImage)
+
+                    Executors.ioExecutor {
                         rentalDao.insertRental(rental!!)
                     }
+
                 }
         }
     }
@@ -80,6 +83,11 @@ class PaymentsViewHolder constructor(val view: View) : RecyclerView.ViewHolder(v
         if (!imageUrl.isNullOrBlank()){
             Glide.with(view.context)
                 .load(imageUrl)
+                .centerCrop()
+                .into(tenantImageImgView)
+        }else{
+            Glide.with(view.context)
+                .load(R.drawable.ic_user)
                 .centerCrop()
                 .into(tenantImageImgView)
         }

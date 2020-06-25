@@ -23,7 +23,6 @@ import com.peter.thelandlord.utils.Executors
 import com.peter.thelandlord.utils.FirestoreCollections
 import com.peter.thelandlord.work.UploadPaymentsWorker
 import io.reactivex.Completable
-import java.util.concurrent.Executor
 import javax.inject.Inject
 
 class RentalAccountRepoImpl @Inject constructor (
@@ -49,6 +48,7 @@ class RentalAccountRepoImpl @Inject constructor (
             }
             .addOnSuccessListener {
                 val debts: List<Debt> = it.toObjects()
+
                 Executors.ioExecutor {
                     val currentDbDebts = debtDao.getRentalDebts(propertyId)
                     debts.forEach { debt ->
@@ -56,8 +56,8 @@ class RentalAccountRepoImpl @Inject constructor (
                             debtDao.saveDebt(debt)
                         }
                     }
-
                 }
+
             }
 
         return debtDao.getPropertyDebtsLD(propertyId)
@@ -71,6 +71,7 @@ class RentalAccountRepoImpl @Inject constructor (
             }
             .addOnSuccessListener {
                 val debts: List<Debt> = it.toObjects()
+
                 Executors.ioExecutor {
                     val currentDbDebts = debtDao.getRentalDebts(rentalId)
                     debts.forEach { debt ->
@@ -79,6 +80,7 @@ class RentalAccountRepoImpl @Inject constructor (
                         }
                     }
                 }
+
             }
 
         return debtDao.getRentalDebtsLD(rentalId)
@@ -127,7 +129,7 @@ class RentalAccountRepoImpl @Inject constructor (
         paymentDao.savePayments(paymentsList)
     }
 
-    fun refresh(propertyId: String): LiveData<NetworkState>{
+    fun refreshPaymentsFetching(propertyId: String): LiveData<NetworkState>{
         val networkState = MutableLiveData<NetworkState>()
         networkState.value = NetworkState.LOADING
 
@@ -135,9 +137,12 @@ class RentalAccountRepoImpl @Inject constructor (
             .addOnSuccessListener {
                 val payments = it.toObjects<Payment>()
                 networkState.value = NetworkState.LOADED
-                appDatabase.runInTransaction {
-                    paymentDao.deleteAllPaymentsByPropertyId(propertyId)
-                    paymentDao.savePayments(payments)
+
+                Executors.ioExecutor {
+                    appDatabase.runInTransaction {
+                        paymentDao.deleteAllPaymentsByPropertyId(propertyId)
+                        paymentDao.savePayments(payments)
+                    }
                 }
 
             }
@@ -148,7 +153,7 @@ class RentalAccountRepoImpl @Inject constructor (
         return networkState
     }
 
-    fun handlePaymentsFetching(propertyId: String): Listing<Payment>{
+    override fun handlePaymentsFetching(propertyId: String): Listing<Payment>{
 
         val boundaryCallback = PaymentsBoundaryCallback(
             propertyId = propertyId,
@@ -159,7 +164,7 @@ class RentalAccountRepoImpl @Inject constructor (
 
         val refreshTrigger = MutableLiveData<Unit>()
         val refreshState = refreshTrigger.switchMap {
-            refresh(propertyId)
+            refreshPaymentsFetching(propertyId)
         }
 
         val config = Config(

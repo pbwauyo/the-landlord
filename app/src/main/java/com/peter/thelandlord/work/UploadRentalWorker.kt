@@ -37,7 +37,7 @@ class UploadRentalWorker(context: Context, workerParams: WorkerParameters):
 
                 Log.d(TAG, "RENTAL, $rental")
 
-                firestore.collection(FirestoreCollections.RENTALS).document(rental.id).set(rental).await()
+                firestore.collection(FirestoreCollections.RENTALS).document(rental!!.id).set(rental).await()
 
                 Result.success()
             }catch (e: Exception){

@@ -26,7 +26,7 @@ class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewMod
     // handle payments fetch
 
     val repoResult = propertyIdLiveData.map {
-        rentalAccountRepo.getAllPayments(it)
+        rentalAccountRepo.handlePaymentsFetching(it)
     }
 
     val networkState = repoResult.switchMap {
@@ -57,7 +57,7 @@ class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewMod
     }
 
     fun setPropertyId(value: String?){
-        propertyIdLiveData.value = value
+        if(propertyIdLiveData.value != value) propertyIdLiveData.value = value
     }
 
     fun setRentalId(value: String?){

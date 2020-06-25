@@ -1,5 +1,6 @@
 package com.peter.thelandlord.boundarycallbacks
 
+import android.util.Log
 import androidx.paging.PagedList
 import androidx.paging.PagingRequestHelper
 import com.google.firebase.firestore.ktx.toObjects
@@ -32,8 +33,12 @@ class PaymentsBoundaryCallback(
                 .addOnSuccessListener {
                     Executors.ioExecutor {
                         val paymentsList = it.toObjects<Payment>()
+                        Log.d(TAG, "Payments initial, $paymentsList")
                         handlePaymentsInsertion(paymentsList)
                     }
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, "Payments Error initial, ${it.message}")
                 }
         }
     }
@@ -46,8 +51,12 @@ class PaymentsBoundaryCallback(
                 .addOnSuccessListener {
                     Executors.ioExecutor {
                         val paymentsList = it.toObjects<Payment>()
+                        Log.d(TAG, "Payments after, $paymentsList")
                         handlePaymentsInsertion(paymentsList)
                     }
+                }
+                .addOnFailureListener {
+                    Log.d(TAG, "Payments Error after, ${it.message}")
                 }
         }
     }

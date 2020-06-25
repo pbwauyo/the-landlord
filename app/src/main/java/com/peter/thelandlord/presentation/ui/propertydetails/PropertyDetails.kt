@@ -87,11 +87,11 @@ class PropertyDetails : Fragment() {
         }
 
 
-        binding?.balancesListCardView?.setOnClickListener {
+        binding?.paymentsListCardView?.setOnClickListener {
             navController.navigate(R.id.action_propertyDetails_to_paymentsListFragment)
         }
 
-        binding?.debtorsListCardView?.setOnClickListener {
+        binding?.debtsListCardView?.setOnClickListener {
             navController.navigate(R.id.action_propertyDetails_to_debtorsList)
         }
 

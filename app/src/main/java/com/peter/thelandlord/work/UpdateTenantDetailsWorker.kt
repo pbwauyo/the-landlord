@@ -24,9 +24,9 @@ class UpdateTenantDetailsWorker(context: Context, params: WorkerParameters): Cor
             val appDb = AppDatabase.getInstance(applicationContext)
             val rentalDao = appDb.rentalDao()
             val rentalId = inputData.getString(Constants.KEY_RENTAL_ID)!!
-            val rental: Rental = rentalDao.findRentalById(rentalId)
+            val rental = rentalDao.findRentalById(rentalId)
             val tenant = Tenant(
-                name = rental.tenantName,
+                name = rental!!.tenantName,
                 contact = rental.tenantContact,
                 startDate = rental.tenancyStartDate
             )

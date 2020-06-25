@@ -135,13 +135,13 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/debtors_list_card_view"
+                android:id="@+id/payments_list_card_view"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:focusable="true"
                 android:clickable="true"
                 android:foreground="?selectableItemBackground"
-                app:layout_constraintEnd_toStartOf="@+id/balances_list_card_view"
+                app:layout_constraintEnd_toStartOf="@+id/debts_list_card_view"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/guideline4">
@@ -152,7 +152,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
-                        android:id="@+id/balances_list_img_view"
+                        android:id="@+id/payments_img_view"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/balances_list"
@@ -166,13 +166,13 @@
                         android:text="@string/payments"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/balances_list_img_view" />
+                        app:layout_constraintTop_toBottomOf="@id/payments_img_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/balances_list_card_view"
+                android:id="@+id/debts_list_card_view"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:focusable="true"
@@ -180,7 +180,7 @@
                 android:foreground="?selectableItemBackground"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/debtors_list_card_view"
+                app:layout_constraintStart_toEndOf="@+id/payments_list_card_view"
                 app:layout_constraintTop_toBottomOf="@id/guideline4">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -189,7 +189,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
-                        android:id="@+id/debtors_list_img_view"
+                        android:id="@+id/debts_img_view"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:src="@drawable/debtors_list"
@@ -203,7 +203,7 @@
                         android:text="@string/defaulters"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/debtors_list_img_view" />
+                        app:layout_constraintTop_toBottomOf="@id/debts_img_view" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
