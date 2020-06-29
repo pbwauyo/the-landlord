@@ -92,7 +92,9 @@ class PropertyDetails : Fragment() {
         }
 
         binding?.debtsListCardView?.setOnClickListener {
-            navController.navigate(R.id.action_propertyDetails_to_debtorsList)
+
+            val action  = PropertyDetailsDirections.actionPropertyDetailsToDebtorsList(propertyID)
+            navController.navigate(action)
         }
 
         binding?.rentalListCardView?.setOnClickListener {

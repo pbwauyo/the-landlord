@@ -1,5 +1,6 @@
 package com.peter.thelandlord.presentation.viewmodels
 
+import android.util.Log
 import android.widget.EditText
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,6 +11,10 @@ import com.peter.thelandlord.domain.models.Payment
 import io.reactivex.Completable
 
 class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewModel() {
+
+    companion object {
+        const val TAG = "RENTAL_ACC_VM"
+    }
 
     val debtsSearchTextLiveData = MutableLiveData<String>()
     val paymentsSearchTextLiveData = MutableLiveData<String>()

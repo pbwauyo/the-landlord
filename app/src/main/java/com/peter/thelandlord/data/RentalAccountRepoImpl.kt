@@ -50,11 +50,13 @@ class RentalAccountRepoImpl @Inject constructor (
                 val debts: List<Debt> = it.toObjects()
 
                 Executors.ioExecutor {
-                    val currentDbDebts = debtDao.getRentalDebts(propertyId)
+//                    val currentDbDebts = debtDao.getRentalDebts(propertyId)
                     debts.forEach { debt ->
-                        if(!currentDbDebts.contains(debt)){
-                            debtDao.saveDebt(debt)
-                        }
+//                        if(!currentDbDebts.contains(debt)){
+//                            debtDao.saveDebt(debt)
+//                        }
+
+                        debtDao.saveDebt(debt)
                     }
                 }
 

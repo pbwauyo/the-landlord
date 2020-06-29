@@ -25,7 +25,7 @@ object RentalAccountApi {
 
     fun getAllDebtsForProperty(propertyId: String): Task<QuerySnapshot> {
         return firestore.collection(FirestoreCollections.DEBTS)
-            .whereEqualTo(DebtFields.RENTAL_ID, propertyId)
+            .whereEqualTo(DebtFields.PROPERTY_ID, propertyId)
             .get()
     }
 

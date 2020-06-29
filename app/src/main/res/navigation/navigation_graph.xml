@@ -102,7 +102,11 @@
         android:id="@+id/debtorsList"
         android:name="com.peter.thelandlord.presentation.ui.debtorslist.DebtorsList"
         android:label="fragment_debtors_list"
-        tools:layout="@layout/fragment_debtors_list" />
+        tools:layout="@layout/fragment_debtors_list" >
+        <argument
+            android:name="propertyId"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/paymentsListFragment"
         android:name="com.peter.thelandlord.presentation.ui.paymentslist.PaymentsListFragment"
