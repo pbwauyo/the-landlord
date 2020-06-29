@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 
 import com.peter.thelandlord.R
+import com.peter.thelandlord.data.networkstate.NetworkState
 import com.peter.thelandlord.databinding.FragmentDebtorsListBinding
 import com.peter.thelandlord.di.viewmodelproviderfactory.ViewModelProviderFactory
 import com.peter.thelandlord.pagingadapters.DebtsAdapter
@@ -60,6 +61,7 @@ class DebtorsList : Fragment() {
         initAdapter()
         initRecyclerView()
         initData()
+        initSwipeRefresh()
 
         // Inflate the layout for this fragment
         return binding.root
@@ -85,6 +87,19 @@ class DebtorsList : Fragment() {
 
         val propertyid = args.propertyId
         rentalAccountViewModel.setPropertyId(propertyid)
+    }
+
+    fun initSwipeRefresh(){
+
+        binding.debtorsSwipeLayout.setOnRefreshListener {
+
+            Log.d(TAG, "Refresh in progress")
+            rentalAccountViewModel.refreshPropertyDebtsList()
+        }
+
+        rentalAccountViewModel.propertyDebtsRefreshState.observe(viewLifecycleOwner, Observer {
+            binding.debtorsSwipeLayout.isRefreshing = it == NetworkState.LOADING
+        })
     }
 
 }

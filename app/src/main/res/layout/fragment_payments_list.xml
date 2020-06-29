@@ -28,7 +28,8 @@
                 app:layout_constraintTop_toTopOf="parent"
                 android:hint="@string/search_payments"
                 android:textColor="@color/black"
-                android:text="@={RentalAccountViewModel.paymentsSearchTextLiveData}"/>
+                android:text="@={RentalAccountViewModel.paymentsSearchTextLiveData}"
+                android:visibility="gone"/>
 
             <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                 android:id="@+id/payments_swipe_layout"

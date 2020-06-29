@@ -19,6 +19,9 @@ interface DebtDao {
     @Query("DELETE FROM debts WHERE rental_id = :rentalId")
     fun deleteDebtsForRental(rentalId: String)
 
+    @Query("DELETE FROM debts WHERE property_id = :propertyId")
+    fun deleteDebtsForProperty(propertyId: String)
+
     @Query("SELECT * FROM debts WHERE property_id = :propertyId ORDER BY year, month")
     fun getPropertyDebtsLD(propertyId: String): LiveData<List<Debt>>
 

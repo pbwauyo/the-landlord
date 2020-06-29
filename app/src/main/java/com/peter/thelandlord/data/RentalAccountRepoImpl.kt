@@ -14,6 +14,7 @@ import com.peter.thelandlord.boundarycallbacks.PaymentsBoundaryCallback
 import com.peter.thelandlord.data.apis.RentalAccountApi
 import com.peter.thelandlord.data.db.AppDatabase
 import com.peter.thelandlord.data.listing.Listing
+import com.peter.thelandlord.data.listing.NormalListing
 import com.peter.thelandlord.data.networkstate.NetworkState
 import com.peter.thelandlord.domain.interfaces.RentalAccountRepo
 import com.peter.thelandlord.domain.models.Debt
@@ -40,29 +41,56 @@ class RentalAccountRepoImpl @Inject constructor (
     private val paymentDao = appDatabase.paymentDao()
     private val debtDao = appDatabase.debtDao()
 
-    override fun getAllDebtsForProperty(propertyId: String): LiveData<List<Debt>> {
+    override fun refreshPropertyDebts(propertyId: String): LiveData<NetworkState> {
+        val refreshState = MutableLiveData<NetworkState>()
+        refreshState.value = NetworkState.LOADING
 
         RentalAccountApi.getAllDebtsForProperty(propertyId)
-            .addOnFailureListener {
-                Log.d(TAG, "DEBTS FOR PROPERTY, ${it.message}")
-            }
             .addOnSuccessListener {
                 val debts: List<Debt> = it.toObjects()
-
                 Executors.ioExecutor {
-//                    val currentDbDebts = debtDao.getRentalDebts(propertyId)
-                    debts.forEach { debt ->
-//                        if(!currentDbDebts.contains(debt)){
-//                            debtDao.saveDebt(debt)
-//                        }
-
-                        debtDao.saveDebt(debt)
+                    appDatabase.runInTransaction {
+                        debtDao.deleteDebtsForProperty(propertyId)
+                        debtDao.saveDebts(debts)
                     }
                 }
-
+                refreshState.value = NetworkState.LOADED
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "REFRESH PROPERTY DEBTS, ${it.message}")
+                refreshState.value = NetworkState.error("${it.message}")
             }
 
-        return debtDao.getPropertyDebtsLD(propertyId)
+        return refreshState
+    }
+
+    override fun handlePropertyDebtsFetching(propertyId: String): NormalListing<Debt> {
+
+        val refreshTrigger = MutableLiveData<Unit>()
+        val refreshState = refreshTrigger.switchMap {
+            refreshPropertyDebts(propertyId)
+        }
+
+        RentalAccountApi.getAllDebtsForProperty(propertyId)
+            .addOnSuccessListener {
+                val debts: List<Debt> = it.toObjects()
+                Executors.ioExecutor {
+                    debtDao.saveDebts(debts)
+                }
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "PROPERTY DEBTS, ${it.message}")
+            }
+
+        return NormalListing(
+            liveList = debtDao.getPropertyDebtsLD(propertyId),
+            refresh = {
+                refreshTrigger.value = null
+            },
+            refreshState = refreshState,
+            retry = {
+            }
+        )
     }
 
     override fun getAllDebtsForRental(rentalId: String): LiveData<List<Debt>> {

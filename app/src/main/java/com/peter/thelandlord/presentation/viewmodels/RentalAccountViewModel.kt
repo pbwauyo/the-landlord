@@ -22,8 +22,17 @@ class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewMod
     val debtsMapList: ArrayList<Map<String, EditText>> = ArrayList()
 
     val propertyIdLiveData = MutableLiveData<String>()
-    val propertyDebtsLiveData = propertyIdLiveData.switchMap {
-        rentalAccountRepo.getAllDebtsForProperty(it)
+
+    val propertyDebtsRepoResult = propertyIdLiveData.map {
+        rentalAccountRepo.handlePropertyDebtsFetching(it)
+    }
+
+    val propertyDebtsLiveData = propertyDebtsRepoResult.switchMap {
+        it.liveList
+    }
+
+    val propertyDebtsRefreshState = propertyDebtsRepoResult.switchMap {
+        it.refreshState
     }
 
     val searchTextLiveData = MutableLiveData<String>()
@@ -87,6 +96,10 @@ class RentalAccountViewModel(val rentalAccountRepo: RentalAccountRepo) : ViewMod
 
     fun retry(){
         repoResult.value?.retry?.invoke()
+    }
+
+    fun refreshPropertyDebtsList(){
+        propertyDebtsRepoResult.value?.refresh?.invoke()
     }
 
 }
