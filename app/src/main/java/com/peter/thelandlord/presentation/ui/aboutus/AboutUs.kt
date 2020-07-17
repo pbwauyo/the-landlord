@@ -101,6 +101,13 @@ class AboutUs : Fragment() {
     }
 
     private fun openFacebookProfile(){
+        val uri = Uri.parse("https://www.facebook.com/wauyo")
+        val fbIntent = Intent(Intent.ACTION_VIEW, uri)
+        try {
+            startActivity(fbIntent)
+        }catch (e: Exception){
+            Log.d(TAG, "Facebook Exception: ${e.message}")
+        }
 
     }
 
