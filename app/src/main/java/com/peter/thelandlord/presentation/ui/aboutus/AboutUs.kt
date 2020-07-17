@@ -53,6 +53,8 @@ class AboutUs : Fragment() {
         initInstaFollowButtonClick()
         initFbFollowBtnClick()
         initTwitterFollowBtnClick()
+        initEmailBtnClick()
+        initCallBtnsClick()
     }
 
     override fun onDestroy() {
@@ -76,6 +78,22 @@ class AboutUs : Fragment() {
     private fun initTwitterFollowBtnClick(){
         binding?.twitterFollowBtn?.setOnClickListener {
             openTwitterProfile()
+        }
+    }
+
+    private fun initEmailBtnClick(){
+        binding?.sendEmailBtn?.setOnClickListener {
+            sendEmail()
+        }
+    }
+
+    private fun initCallBtnsClick(){
+        binding?.callBtn1?.setOnClickListener {
+            call("0785271004")
+        }
+
+        binding?.callBtn2?.setOnClickListener {
+            call("0700908030")
         }
     }
 
@@ -125,6 +143,31 @@ class AboutUs : Fragment() {
             startActivity(twitterIntent)
         }
 
+    }
+
+    private fun sendEmail(){
+        val emailAddresses = arrayOf("pbwauyo@gmail.com")
+
+        val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, emailAddresses)
+        }
+
+        try {
+            startActivity(Intent.createChooser(emailIntent, "Send email"))
+        }catch (e: Exception){
+            Log.d(TAG, "Email Exception: ${e.message}")
+        }
+    }
+
+    private fun call(number: String){
+        val uri = Uri.parse("tel:$number")
+        val callIntent = Intent(Intent.ACTION_DIAL, uri)
+        try {
+            startActivity(callIntent)
+        }catch (e: Exception){
+            Log.d(TAG, "Call Exception: ${e.message}")
+        }
     }
 
     companion object {

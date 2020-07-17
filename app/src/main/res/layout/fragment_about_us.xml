@@ -120,6 +120,7 @@
                 android:layout_marginTop="15dp"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/send_email_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/email_ic"
@@ -129,7 +130,7 @@
                 android:layout_marginHorizontal="@dimen/extraLargeMarginStart"/>
 
             <ImageView
-                android:id="@+id/phone_ic"
+                android:id="@+id/phone_ic_1"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:src="@drawable/ic_phone"
@@ -138,11 +139,31 @@
                 android:layout_marginTop="15dp"/>
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/call_btn_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintStart_toEndOf="@+id/phone_ic"
-                app:layout_constraintTop_toTopOf="@id/phone_ic"
-                android:text="+256785271004 or +256700908030"
+                app:layout_constraintStart_toEndOf="@+id/phone_ic_1"
+                app:layout_constraintTop_toTopOf="@id/phone_ic_1"
+                android:text="+256785271004"
+                android:textSize="18sp"
+                android:layout_marginHorizontal="@dimen/extraLargeMarginStart"/>
+
+            <ImageView
+                android:id="@+id/phone_ic_2"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:src="@drawable/ic_phone"
+                app:layout_constraintTop_toBottomOf="@+id/phone_ic_1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="15dp"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/call_btn_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toEndOf="@+id/phone_ic_2"
+                app:layout_constraintTop_toTopOf="@id/phone_ic_2"
+                android:text="+256700908030"
                 android:textSize="18sp"
                 android:layout_marginHorizontal="@dimen/extraLargeMarginStart"/>
 
