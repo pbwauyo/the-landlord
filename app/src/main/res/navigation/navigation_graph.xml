@@ -35,6 +35,12 @@
         <action
             android:id="@+id/action_profileFragment_to_transactionSummary"
             app:destination="@id/transactionSummary" />
+        <action
+            android:id="@+id/action_profileFragment_to_aboutUs"
+            app:destination="@id/aboutUs" />
+        <action
+            android:id="@+id/action_profileFragment_to_donate"
+            app:destination="@id/donate" />
     </fragment>
     <fragment
         android:id="@+id/propertyDetails"
@@ -151,4 +157,14 @@
         android:name="com.peter.thelandlord.presentation.ui.edittenantdetails.EditTenantDetails"
         android:label="fragment_edit_tenant_details"
         tools:layout="@layout/fragment_edit_tenant_details" />
+    <fragment
+        android:id="@+id/aboutUs"
+        android:name="com.peter.thelandlord.presentation.ui.aboutus.AboutUs"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/donate"
+        android:name="com.peter.thelandlord.presentation.ui.donate.Donate"
+        android:label="fragment_donate"
+        tools:layout="@layout/fragment_donate" />
 </navigation>

@@ -150,12 +150,28 @@
         <item name="cardPreventCornerOverlap">false</item>
     </style>
 
+    <style name="CardViewStyleMain.UnroundedBottomLeft" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/white</item>
+        <item name="cardElevation">6dp</item>
+        <item name="cardUseCompatPadding">true</item>
+        <item name="cardPreventCornerOverlap">false</item>
+        <item name="shapeAppearanceOverlay">@style/UnroundedBottomLeftCornerShape</item>
+    </style>
+
     <style name="OldCardViewStyleMain" parent="">
         <item name="cardBackgroundColor">@color/white</item>
         <item name="cardCornerRadius">8dp</item>
         <item name="cardElevation">6dp</item>
         <item name="cardUseCompatPadding">true</item>
         <item name="cardPreventCornerOverlap">false</item>
+    </style>
+
+    <style name="UnroundedBottomLeftCornerShape" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">30dp</item>
+        <item name="cornerSizeTopLeft">30dp</item>
+        <item name="cornerSizeBottomLeft">30dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
     </style>
 
     <style name="HintTextAppearance" parent="TextAppearance.MaterialComponents.Caption">

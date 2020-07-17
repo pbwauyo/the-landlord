@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".presentation.ui.donate.Donate">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="@dimen/extraLargePaddingStart">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/why_donate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Why Donate?"
+            android:textSize="25sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="15dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/why_donate_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/why_donate"
+            android:text="It costs money to pay for the servers that host the users' data and several data required to ensure accurate computation of the rental details. Your donations greatly reduce on the burden of paying for the data hosting services."/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/how_do_i_donate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How do I donate?"
+            android:layout_marginTop="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/why_donate_content"
+            android:textSize="25sp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/for_uganda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="center"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/how_do_i_donate"
+            android:text="For Ugandan users"
+            android:textSize="20sp"
+            android:layout_marginTop="8dp"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/for_uganda_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/for_uganda"
+            android:text="You can conveniently donate using Airtel Money on +256700908030 or MTN Mobile Money on +256785271004. Any amount is greatly appreciated."/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/for_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/for_uganda_content"
+            android:text="For Other users"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/for_other_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/for_other"
+            android:text="For international users or ugandan users willing to use other means, please tap here for other options"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
