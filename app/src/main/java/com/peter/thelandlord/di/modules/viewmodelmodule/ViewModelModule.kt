@@ -5,11 +5,9 @@ import com.peter.thelandlord.data.AuthRepository
 import com.peter.thelandlord.data.PropertyManagementRepoImpl
 import com.peter.thelandlord.data.RentalManagementRepoImpl
 import com.peter.thelandlord.di.viewmodelkey.ViewModelKey
+import com.peter.thelandlord.domain.interfaces.ProfileRepo
 import com.peter.thelandlord.domain.interfaces.RentalAccountRepo
-import com.peter.thelandlord.presentation.viewmodels.RentalAccountViewModel
-import com.peter.thelandlord.presentation.viewmodels.PropertyViewModel
-import com.peter.thelandlord.presentation.viewmodels.RentalViewModel
-import com.peter.thelandlord.presentation.viewmodels.AuthViewModel
+import com.peter.thelandlord.presentation.viewmodels.*
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
@@ -51,6 +49,13 @@ object ViewModelModule {
         return RentalAccountViewModel(
             rentalAccountRepo
         )
+    }
+
+    @ViewModelKey(ProfileViewModel::class)
+    @IntoMap
+    @Provides
+    fun providesProfileViewModel(profileRepo: ProfileRepo): ViewModel{
+        return ProfileViewModel(profileRepo)
     }
 
 }
